@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#1E1B18"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C5A880" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background & Architectural Grid -->
+  <rect width="1200" height="800" fill="url(#bgGrad)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+
+  <!-- Architectural Framing & Corner Crosshairs -->
+  <rect x="40" y="40" width="1120" height="720" fill="none" stroke="#C5A880" stroke-opacity="0.25" stroke-width="1.5"/>
+  <rect x="52" y="52" width="1096" height="696" fill="none" stroke="#C5A880" stroke-opacity="0.12" stroke-width="0.75" stroke-dasharray="4,4"/>
+  
+  <line x1="20" y1="40" x2="60" y2="40" stroke="#C5A880" stroke-width="1.5"/>
+  <line x1="40" y1="20" x2="40" y2="60" stroke="#C5A880" stroke-width="1.5"/>
+  
+  <line x1="1140" y1="40" x2="1180" y2="40" stroke="#C5A880" stroke-width="1.5"/>
+  <line x1="1160" y1="20" x2="1160" y2="60" stroke="#C5A880" stroke-width="1.5"/>
+
+  <line x1="20" y1="760" x2="60" y2="760" stroke="#C5A880" stroke-width="1.5"/>
+  <line x1="40" y1="740" x2="40" y2="780" stroke="#C5A880" stroke-width="1.5"/>
+
+  <line x1="1140" y1="760" x2="1180" y2="760" stroke="#C5A880" stroke-width="1.5"/>
+  <line x1="1160" y1="740" x2="1160" y2="780" stroke="#C5A880" stroke-width="1.5"/>
+
+  <!-- Header Metadata -->
+  <text x="80" y="88" font-family="monospace" font-size="13" fill="#C5A880" fill-opacity="0.85" letter-spacing="3">VAASTVIK DESIGN GROUP &bull; ARCHITECTURAL SPECIFICATION</text>
+  <text x="80" y="112" font-family="monospace" font-size="11" fill="#C5A880" fill-opacity="0.55" letter-spacing="2">DRAWING REF: VDG-2026-BOFFI &bull; SCALE 1:10 &bull; UNITS: MM &bull; FIG. 01</text>
+  
+  <!-- Title & Subtitle -->
+  <text x="80" y="175" font-family="Georgia, serif" font-size="36" font-weight="300" fill="#C5A880" letter-spacing="1">BOFFI &bull; MONOLITHIC TRAVERTINE ISLAND</text>
+  <text x="80" y="210" font-family="monospace" font-size="13" fill="#C5A880" fill-opacity="0.75" letter-spacing="2">FIG 01 &bull; 45-DEGREE MITERED CANTILEVER &amp; RECESSED SHADOWLINE</text>
+
+  <!-- Central Technical Schematic Artwork -->
+  <g transform="translate(600, 440)">
+    <rect x="-350" y="-120" width="700" height="240" fill="none" stroke="#C5A880" stroke-width="2"/>
+    <line x1="-350" y1="-40" x2="350" y2="-40" stroke="#C5A880" stroke-width="1" stroke-dasharray="6,6"/>
+    <circle cx="-150" cy="0" r="50" fill="none" stroke="#C5A880" stroke-width="1.5"/>
+    <rect x="50" y="-80" width="220" height="160" fill="none" stroke="#C5A880" stroke-width="1.5" stroke-dasharray="4,4"/>
+  </g>
+
+  <!-- Bottom Specification Bar -->
+  <rect x="80" y="670" width="1040" height="60" fill="#C5A880" fill-opacity="0.04" stroke="#C5A880" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="100" y="695" font-family="monospace" font-size="12" fill="#C5A880" fill-opacity="0.9" letter-spacing="2">SPECIFICATION: Italian Roman Travertine slab with 1mm hairline joinery and integrated sink basin.</text>
+  <text x="100" y="715" font-family="monospace" font-size="10" fill="#C5A880" fill-opacity="0.5" letter-spacing="1">FACTORY AUTHORIZED &bull; PASSES EN/ISO 9001 STRUCTURAL INTEGRITY STANDARDS</text>
+</svg>

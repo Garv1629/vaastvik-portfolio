@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#F2EDE4] text-[#232B2B]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAASTVIK STUDIO — Monograph CMS Console v2.5 (Real-Time 3D Media Suite)</title>
+
+  <!-- Google Fonts: Bodoni Moda, Instrument Serif, Cinzel, Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clayCanvas: '#F2EDE4',
+            clayCard: '#FAF6F0',
+            claySage: '#A3C9BC',
+            claySageLight: '#BDE0D4',
+            clayBlue: '#A2C5DD',
+            clayBlueLight: '#C3E1F5',
+            clayPink: '#F3C9C6',
+            clayCream: '#EBE3D7',
+            clayText: '#232B2B',
+            clayMuted: '#6B7676',
+            clayGold: '#C5A059',
+            clayGoldLight: '#E5C989',
+            clayGoldDark: '#8F7032'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
+            serif: ['Instrument Serif', 'Cormorant Garamond', 'Georgia', 'serif'],
+            display: ['Bodoni Moda', 'Cinzel', 'serif'],
+            cinzel: ['Cinzel', 'Georgia', 'serif'],
+            garamond: ['Cormorant Garamond', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ========================================================================= */
+    /* 3D LUXURY CLAYMORPHISM & DRAG-DROP MEDIA SYSTEM */
+    /* ========================================================================= */
+    
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #E6E0D5; }
+    ::-webkit-scrollbar-thumb { background: #C4BBB0; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C5A059; }
+
+    /* 3D Clay Base Surfaces */
+    .clay-surface {
+      background-color: #FAF6F0;
+      border-radius: 32px;
+      box-shadow: 
+        14px 14px 32px rgba(175, 163, 148, 0.45), 
+        -12px -12px 28px rgba(255, 255, 255, 0.98),
+        inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .clay-card {
+      background-color: #FAF6F0;
+      border-radius: 28px;
+      box-shadow: 
+        12px 12px 28px rgba(180, 168, 153, 0.4), 
+        -10px -10px 24px rgba(255, 255, 255, 0.95),
+        inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .clay-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        16px 16px 36px rgba(170, 157, 141, 0.48), 
+        -12px -12px 30px rgba(255, 255, 255, 1);
+    }
+    
+    .clay-card-sage {
+      background: linear-gradient(135deg, #C5E6DA 0%, #A2C9BB 100%);
+      border-radius: 28px;
+      color: #123629;
+      box-shadow: 
+        12px 12px 28px rgba(130, 168, 154, 0.5), 
+        -10px -10px 24px rgba(255, 255, 255, 0.9),
+        inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .clay-card-blue {
+      background: linear-gradient(135deg, #B9DCEF 0%, #9EBED3 100%);
+      border-radius: 28px;
+      color: #102838;
+      box-shadow: 
+        12px 12px 28px rgba(135, 165, 185, 0.5), 
+        -10px -10px 24px rgba(255, 255, 255, 0.9),
+        inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .clay-card-pink {
+      background: linear-gradient(135deg, #FBD5D3 0%, #E9B5B2 100%);
+      border-radius: 28px;
+      color: #4A1B1A;
+      box-shadow: 
+        12px 12px 28px rgba(190, 145, 142, 0.45), 
+        -10px -10px 24px rgba(255, 255, 255, 0.9),
+        inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .clay-card-gold {
+      background: linear-gradient(135deg, #F3E6CD 0%, #DFCA9E 100%);
+      border-radius: 28px;
+      color: #453413;
+      box-shadow: 
+        12px 12px 28px rgba(185, 160, 115, 0.45), 
+        -10px -10px 24px rgba(255, 255, 255, 0.9),
+        inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    /* Recessed Inputs */
+    .input-field, .clay-input {
+      width: 100%;
+      background-color: #E7E1D6;
+      border-radius: 18px;
+      border: 1px solid rgba(215, 205, 192, 0.9);
+      color: #232B2B;
+      padding: 0.8rem 1.1rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      outline: none;
+      box-shadow: 
+        inset 4px 4px 9px rgba(170, 158, 143, 0.45), 
+        inset -4px -4px 9px rgba(255, 255, 255, 0.95);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .input-field:focus, .clay-input:focus {
+      border-color: #C5A059;
+      background-color: #ECE5DA;
+      box-shadow: 
+        inset 2px 2px 6px rgba(170, 158, 143, 0.35), 
+        inset -2px -2px 6px rgba(255, 255, 255, 0.95),
+        0 0 0 4px rgba(197, 160, 89, 0.3);
+    }
+
+    .textarea-field {
+      width: 100%;
+      background-color: #E7E1D6;
+      border-radius: 20px;
+      border: 1px solid rgba(215, 205, 192, 0.9);
+      color: #232B2B;
+      padding: 0.9rem 1.1rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      min-height: 115px;
+      outline: none;
+      box-shadow: 
+        inset 4px 4px 9px rgba(170, 158, 143, 0.45), 
+        inset -4px -4px 9px rgba(255, 255, 255, 0.95);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .textarea-field:focus {
+      border-color: #C5A059;
+      background-color: #ECE5DA;
+      box-shadow: 
+        inset 2px 2px 6px rgba(170, 158, 143, 0.35), 
+        inset -2px -2px 6px rgba(255, 255, 255, 0.95),
+        0 0 0 4px rgba(197, 160, 89, 0.3);
+    }
+
+    /* 3D Drag & Drop Media Dropzone */
+    .clay-dropzone {
+      background-color: #EFEAE0;
+      border: 2px dashed #C5A059;
+      border-radius: 22px;
+      padding: 1.25rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 
+        inset 3px 3px 8px rgba(170, 158, 143, 0.35), 
+        inset -3px -3px 8px rgba(255, 255, 255, 0.9);
+      transition: all 0.25s ease;
+    }
+    .clay-dropzone:hover, .clay-dropzone.dragover {
+      background-color: #E8E0D1;
+      border-color: #8F7032;
+      transform: scale(1.01);
+    }
+
+    /* 3D Tactile Buttons */
+    .clay-btn {
+      border-radius: 9999px;
+      padding: 0.65rem 1.45rem;
+      font-weight: 700;
+      font-size: 0.825rem;
+      letter-spacing: 0.025em;
+      background: #FAF6F0;
+      color: #232B2B;
+      box-shadow: 
+        6px 6px 14px rgba(175, 163, 148, 0.45), 
+        -6px -6px 14px rgba(255, 255, 255, 0.98),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+    }
+
+    .clay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        8px 8px 18px rgba(175, 163, 148, 0.52), 
+        -8px -8px 18px rgba(255, 255, 255, 1);
+    }
+
+    .clay-btn:active {
+      transform: translateY(1px);
+      box-shadow: 
+        inset 3.5px 3.5px 7px rgba(165, 153, 138, 0.5), 
+        inset -3.5px -3.5px 7px rgba(255, 255, 255, 0.95);
+    }
+
+    .clay-btn-sage {
+      background: linear-gradient(135deg, #BDE0D4 0%, #A2C9BB 100%);
+      color: #123328;
+      box-shadow: 
+        6px 6px 15px rgba(125, 160, 148, 0.52), 
+        -6px -6px 14px rgba(255, 255, 255, 0.98),
+        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    .clay-btn-gold {
+      background: linear-gradient(135deg, #EAD7AF 0%, #C5A059 100%);
+      color: #38270A;
+      box-shadow: 
+        6px 6px 15px rgba(175, 145, 90, 0.52), 
+        -6px -6px 14px rgba(255, 255, 255, 0.98),
+        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    .clay-btn-blue {
+      background: linear-gradient(135deg, #B5D7EC 0%, #9EBED3 100%);
+      color: #112838;
+      box-shadow: 
+        6px 6px 15px rgba(130, 160, 180, 0.52), 
+        -6px -6px 14px rgba(255, 255, 255, 0.98),
+        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    /* 3D Navigation Pills */
+    .nav-tab {
+      width: 100%;
+      border-radius: 22px;
+      padding: 0.8rem 1.15rem;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: #6B7676;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 0.45rem;
+    }
+
+    .nav-tab:hover {
+      color: #232B2B;
+      background: rgba(250, 246, 240, 0.65);
+      transform: translateX(5px);
+    }
+
+    .nav-tab.active {
+      background: linear-gradient(135deg, #FAF6F0 0%, #EFEAE2 100%);
+      color: #232B2B;
+      font-weight: 700;
+      box-shadow: 
+        7px 7px 18px rgba(180, 168, 154, 0.48), 
+        -7px -7px 18px rgba(255, 255, 255, 0.98),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* 3D Spheres */
+    .clay-sphere {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #A2C9BB 60%, #4D7A6D 100%);
+      box-shadow: 2px 3px 7px rgba(90, 130, 115, 0.45);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .clay-sphere-gold {
+      background: radial-gradient(circle at 35% 35%, #FFF5DC 0%, #D4AF37 60%, #836513 100%);
+      box-shadow: 2px 3px 7px rgba(150, 120, 40, 0.45);
+    }
+
+    .clay-sphere-blue {
+      background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #9EBED3 60%, #4B7693 100%);
+      box-shadow: 2px 3px 7px rgba(80, 120, 145, 0.45);
+    }
+
+    .clay-sphere-pink {
+      background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E9B5B2 60%, #A35A55 100%);
+      box-shadow: 2px 3px 7px rgba(160, 90, 85, 0.45);
+    }
+
+    .clay-sphere-cream {
+      background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E7DDD0 60%, #AAA088 100%);
+      box-shadow: 2px 3px 7px rgba(140, 130, 110, 0.45);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .gold-badge {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(197, 160, 89, 0.3) 100%);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      color: #5C4617;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+    }
+  </style>
+  <script type="module" crossorigin src="./assets/admin-2OyYPJiS.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+
+<body class="h-full font-sans antialiased overflow-hidden flex flex-col bg-[#F2EDE4] text-[#232B2B]">
+
+  <!-- TOP HEADER CONTROL BAR (EXECUTIVE LUXURY HEADER) -->
+  <header class="h-20 px-8 py-3 flex items-center justify-between shrink-0 z-20">
+    <div class="flex items-center gap-5">
+      <div class="clay-card px-5 py-2.5 flex items-center gap-3.5 border border-white/90">
+        <span class="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#C5A059] to-[#836513] text-white font-cinzel font-extrabold flex items-center justify-center text-xl shadow-lg ring-2 ring-white/60">V</span>
+        <div>
+          <h1 class="font-cinzel text-base tracking-widest font-bold text-[#232B2B] flex items-center gap-2">
+            VAASTVIK STUDIO 
+            <span class="gold-badge">REAL-TIME 3D MEDIA</span>
+          </h1>
+          <p class="text-[10px] font-mono text-[#6B7676] tracking-widest uppercase font-semibold">Architectural Monograph &amp; Media CMS Engine</p>
+        </div>
+      </div>
+
+      <div class="clay-btn text-xs py-1.5 px-4 flex items-center gap-2.5">
+        <span id="sync-indicator-sphere" class="clay-sphere-gold animate-pulse"></span>
+        <span id="sync-indicator-text" class="font-mono text-xs font-bold text-[#453413] tracking-wide">REAL-TIME AUTO-SYNC LIVE</span>
+      </div>
+    </div>
+
+    <!-- GLOBAL ACTION BUTTONS -->
+    <div class="flex items-center gap-3.5">
+      <button id="btn-toggle-preview" class="clay-btn clay-btn-blue">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        <span id="preview-btn-text">Hide Live Preview</span>
+      </button>
+
+      <button id="btn-reset-defaults" class="clay-btn text-[#6B7676] hover:text-[#232B2B]">
+        Reset Defaults
+      </button>
+
+      <button id="btn-export-json" class="clay-btn">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Export JSON
+      </button>
+
+      <label class="clay-btn cursor-pointer">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+        Import JSON
+        <input type="file" id="file-import-json" accept=".json" class="hidden">
+      </label>
+
+      <button id="btn-save-all" class="clay-btn clay-btn-gold">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+        SAVE ALL CHANGES
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT LAYOUT CONTAINER -->
+  <div class="flex-1 flex overflow-hidden p-6 pt-0 gap-6">
+
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside class="w-72 clay-surface p-5 flex flex-col shrink-0 overflow-y-auto border border-white/80">
+      <div class="pb-4 mb-3 border-b border-[#E6DEC6]/70">
+        <div class="flex items-center gap-2 mb-1.5">
+          <span class="clay-sphere-gold"></span>
+          <span class="text-[11px] font-mono text-[#6B7676] tracking-widest uppercase font-bold">MANAGEMENT MODULES</span>
+        </div>
+        <p class="text-xs text-[#5C6666] font-medium">Select any monograph module to edit.</p>
+      </div>
+
+      <nav class="flex-1 space-y-1">
+        <button data-tab="tab-dashboard" class="nav-tab active">
+          <span class="clay-sphere-gold"></span>
+          <span>00 • Executive Overview</span>
+        </button>
+        <button data-tab="tab-hero" class="nav-tab">
+          <span class="clay-sphere clay-sphere-blue"></span>
+          <span>01 • Hero &amp; Monograph Header</span>
+        </button>
+        <button data-tab="tab-about" class="nav-tab">
+          <span class="clay-sphere clay-sphere-pink"></span>
+          <span>02 • Studio Monograph / Bio</span>
+        </button>
+        <button data-tab="tab-projects" class="nav-tab">
+          <span class="clay-sphere clay-sphere-cream"></span>
+          <span>03 • Selected Works (Projects)</span>
+        </button>
+        <button data-tab="tab-services" class="nav-tab">
+          <span class="clay-sphere"></span>
+          <span>04 • Services &amp; Execution</span>
+        </button>
+        <button data-tab="tab-specdeck" class="nav-tab">
+          <span class="clay-sphere clay-sphere-blue"></span>
+          <span>05 • Spec Deck (Engineering)</span>
+        </button>
+        <button data-tab="tab-milestones" class="nav-tab">
+          <span class="clay-sphere clay-sphere-pink"></span>
+          <span>06 • Turnkey Milestones</span>
+        </button>
+        <button data-tab="tab-partners" class="nav-tab">
+          <span class="clay-sphere clay-sphere-gold"></span>
+          <span>07 • Materials &amp; Partners (20)</span>
+        </button>
+        <button data-tab="tab-articles" class="nav-tab">
+          <span class="clay-sphere"></span>
+          <span>08 • Journal &amp; Case Essays</span>
+        </button>
+        <button data-tab="tab-contact" class="nav-tab">
+          <span class="clay-sphere clay-sphere-blue"></span>
+          <span>09 • Contact &amp; Consultations</span>
+        </button>
+        <button data-tab="tab-seo" class="nav-tab">
+          <span class="clay-sphere clay-sphere-pink"></span>
+          <span>10 • SEO &amp; Technical Meta</span>
+        </button>
+        <button data-tab="tab-guide" class="nav-tab">
+          <span class="clay-sphere clay-sphere-gold"></span>
+          <span>11 • Home Interior Guide</span>
+        </button>
+        <button data-tab="tab-video-section" class="nav-tab">
+          <span class="clay-sphere clay-sphere-blue"></span>
+          <span>12 • Beautiful Interior Reel</span>
+        </button>
+        <button data-tab="tab-process-framework" class="nav-tab">
+          <span class="clay-sphere"></span>
+          <span>13 • How It Works Process</span>
+        </button>
+        <button data-tab="tab-testimonials" class="nav-tab">
+          <span class="clay-sphere clay-sphere-pink"></span>
+          <span>14 • Client Testimonials</span>
+        </button>
+        <button data-tab="tab-partner-brands" class="nav-tab">
+          <span class="clay-sphere clay-sphere-gold"></span>
+          <span>15 • Trusted Partner Brands</span>
+        </button>
+        <button data-tab="tab-journal-articles" class="nav-tab">
+          <span class="clay-sphere clay-sphere-blue"></span>
+          <span>16 • Journal Blog Articles</span>
+        </button>
+        <button data-tab="tab-newsletter" class="nav-tab">
+          <span class="clay-sphere"></span>
+          <span>17 • Newsletter &amp; Log</span>
+        </button>
+        <button data-tab="tab-start-project" class="nav-tab">
+          <span class="clay-sphere clay-sphere-gold"></span>
+          <span>18 • Start a Project &amp; Enquiries</span>
+        </button>
+        <button data-tab="tab-studio-team" class="nav-tab">
+          <span class="clay-sphere clay-sphere-pink"></span>
+          <span>19 • Studio Team &amp; Leadership</span>
+        </button>
+        <button data-tab="tab-footer-config" class="nav-tab">
+          <span class="clay-sphere clay-sphere-cream"></span>
+          <span>20 • Footer &amp; Global Links</span>
+        </button>
+
+        <div class="px-3 py-2 text-[10px] uppercase tracking-[0.2em] font-mono text-[#8F7032] font-semibold border-t border-[#E6DEC6]/80 mt-4 pt-4">
+          ADVANCED EXPERIENCES
+        </div>
+
+        <button data-tab="tab-calculator-config" class="nav-tab">
+          <span class="clay-sphere clay-sphere-pink"></span>
+          <span>23 • Turnkey Investment Calculator</span>
+        </button>
+
+        <button data-tab="tab-whatsapp-engine" class="nav-tab">
+          <span class="clay-sphere clay-sphere-gold"></span>
+          <span>26 • WhatsApp Consultation Engine</span>
+        </button>
+      </nav>
+
+      <div class="mt-4 pt-4 border-t border-[#E6DEC6]/70 text-[10px] font-mono text-[#6B7676] space-y-1">
+        <p class="font-bold text-[#232B2B]">VAASTVIK MONOGRAPH ENGINE</p>
+        <p>Local DB: <span id="storage-status" class="text-[#8F7032] font-bold">Active (0.2 MB)</span></p>
+      </div>
+    </aside>
+
+    <!-- CENTER EDITING FORM CANVAS -->
+    <main id="editor-canvas" class="flex-1 clay-surface p-8 overflow-y-auto space-y-8 relative border border-white/80">
+
+      <!-- ORGANIC 3D CURVES OVERLAY -->
+      <div class="absolute top-0 right-0 w-96 h-96 pointer-events-none opacity-25 z-0 overflow-hidden rounded-tr-[32px]">
+        <svg viewBox="0 0 400 400" fill="none" class="w-full h-full text-[#C5A059]">
+          <path d="M100,0 Q250,180 400,100 L400,0 Z" fill="currentColor"></path>
+        </svg>
+      </div>
+
+      <div class="relative z-10">
+
+        <!-- =================================================================== -->
+        <!-- TAB 00: DASHBOARD OVERVIEW -->
+        <!-- =================================================================== -->
+        <section id="tab-dashboard" class="tab-content space-y-6">
+          
+          <div class="clay-card-gold p-8 relative overflow-hidden">
+            <div class="max-w-xl relative z-10 space-y-3">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/50 text-xs font-mono font-bold text-[#38270A]">
+                <span class="clay-sphere-gold"></span> MODULE 00 EXECUTIVE OVERVIEW
+              </div>
+              <h2 class="font-cinzel text-3xl font-extrabold text-[#38270A] tracking-tight">Synttactic Monograph Suite</h2>
+              <p class="text-sm font-sans text-[#453413]/90 leading-relaxed font-medium">
+                Welcome to Vaastvik Design Group’s CMS Console. Drag and drop any image or video file directly into media dropzones for instant real-time live preview synchronization.
+              </p>
+            </div>
+            
+            <div class="absolute right-7 bottom-7 flex items-center gap-3 z-10">
+              <a href="./index.html" target="_blank" class="clay-btn bg-white text-[#38270A] hover:bg-white/95 font-bold shadow-md">
+                Open Live Site ↗
+              </a>
+            </div>
+
+            <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-white/30 rounded-full blur-2xl pointer-events-none"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+            <div class="clay-card p-6 space-y-2">
+              <span class="text-[10px] font-mono text-[#6B7676] uppercase tracking-widest block font-bold">TOTAL PROJECTS</span>
+              <p id="stat-projects-count" class="font-cinzel text-4xl text-[#C5A059] font-extrabold">4</p>
+              <p class="text-xs text-[#6B7676] font-medium">Aravali, Serene, Sky, Courtyard</p>
+            </div>
+            <div class="clay-card p-6 space-y-2">
+              <span class="text-[10px] font-mono text-[#6B7676] uppercase tracking-widest block font-bold">PARTNER BRANDS</span>
+              <p id="stat-partners-count" class="font-cinzel text-4xl text-[#9EBED3] font-extrabold">20</p>
+              <p class="text-xs text-[#6B7676] font-medium">Boffi, Dornbracht, Flos, etc.</p>
+            </div>
+            <div class="clay-card p-6 space-y-2">
+              <span class="text-[10px] font-mono text-[#6B7676] uppercase tracking-widest block font-bold">SPEC DECK SECTIONS</span>
+              <p id="stat-spec-count" class="font-cinzel text-4xl text-[#E9B5B2] font-extrabold">4</p>
+              <p class="text-xs text-[#6B7676] font-medium">Structure, Joinery, MEP, Stone</p>
+            </div>
+            <div class="clay-card p-6 space-y-2">
+              <span class="text-[10px] font-mono text-[#6B7676] uppercase tracking-widest block font-bold">INQUIRY SUBMISSIONS</span>
+              <p id="stat-inquiry-count" class="font-cinzel text-4xl text-[#5A887A] font-extrabold">0</p>
+              <p class="text-xs text-[#6B7676] font-medium">Saved in local CMS database</p>
+            </div>
+          </div>
+
+          <div class="clay-card p-7 space-y-4">
+            <h3 class="font-cinzel text-xl text-[#232B2B] font-bold">Quick CMS Editing Shortcuts</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button onclick="switchTab('tab-hero')" class="clay-card p-5 text-left hover:scale-[1.02] transition-transform">
+                <span class="text-xs font-mono text-[#8F7032] font-bold block mb-1">MODULE 01 • HERO</span>
+                <p class="text-sm font-bold text-[#232B2B]">Update Tagline &amp; Video</p>
+              </button>
+              <button onclick="switchTab('tab-projects')" class="clay-card p-5 text-left hover:scale-[1.02] transition-transform">
+                <span class="text-xs font-mono text-[#8F7032] font-bold block mb-1">MODULE 03 • PROJECTS</span>
+                <p class="text-sm font-bold text-[#232B2B]">Modify Architectural Showcase</p>
+              </button>
+              <button onclick="switchTab('tab-partners')" class="clay-card p-5 text-left hover:scale-[1.02] transition-transform">
+                <span class="text-xs font-mono text-[#8F7032] font-bold block mb-1">MODULE 07 • BRANDS</span>
+                <p class="text-sm font-bold text-[#232B2B]">Manage 20 Luxury Partners</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 01: HERO & BRAND HEADER -->
+        <!-- =================================================================== -->
+        <section id="tab-hero" class="tab-content hidden space-y-6">
+          <div class="clay-card-blue p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#102838]/80">MODULE 01</span>
+              <h2 class="font-cinzel text-2xl font-bold">Hero Section &amp; Monograph Header</h2>
+            </div>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Studio Brand Title</label>
+                <input type="text" id="hero-studio-title" class="input-field" value="VAASTVIK DESIGN GROUP">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Monograph Subtitle</label>
+                <input type="text" id="hero-subtitle" class="input-field" value="ARCHITECTURE &amp; INTERIOR DESIGN STUDIO">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Hero Main Headline (Words array)</label>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" id="hero-word-1" class="input-field" value="ARCHITECTURAL">
+                <input type="text" id="hero-word-2" class="input-field" value="RIGOR.">
+                <input type="text" id="hero-word-3" class="input-field" value="QUIET LUXURY.">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Hero Description Narrative</label>
+              <textarea id="hero-description" class="textarea-field">Vaastvik Design Group is an ultra-premium architecture, luxury interior design, and turnkey civil construction studio based in Greater Noida, Delhi NCR, founded by civil engineer Archit Rathi.</textarea>
+            </div>
+
+            <!-- DRAG AND DROP HERO VIDEO DROPZONE -->
+            <div class="space-y-3">
+              <label class="block text-xs font-mono font-bold text-[#6B7676]">Hero Background Video URL or Drag &amp; Drop Video</label>
+              <div id="dropzone-hero-video" class="clay-dropzone flex flex-col items-center justify-center space-y-2">
+                <svg class="w-8 h-8 text-[#C5A059]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                <p class="text-xs font-bold text-[#232B2B]">Drag &amp; Drop Video File (MP4, WEBM) or Click to Browse</p>
+                <p class="text-[10px] font-mono text-[#6B7676]">Instant real-time auto-upload to CMS</p>
+                <input type="file" id="file-hero-video" accept="video/*" class="hidden">
+              </div>
+              <input type="text" id="hero-video-url" class="input-field" value="assets/videos/hero_cinematic.mp4">
+              <!-- Live Video Preview Player -->
+              <div id="preview-container-hero-video" class="rounded-xl overflow-hidden shadow-md max-h-48 bg-black">
+                <video id="video-preview-hero" src="./assets/hero_cinematic-DNtOQZt5.mp4" autoplay loop muted class="w-full h-48 object-cover"></video>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Primary CTA Button Label</label>
+              <input type="text" id="hero-cta-label" class="input-field" value="EXPLORE MONOGRAPH">
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 02: STUDIO MONOGRAPH & ABOUT -->
+        <!-- =================================================================== -->
+        <section id="tab-about" class="tab-content hidden space-y-6">
+          <div class="clay-card-pink p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#4A1B1A]/80">MODULE 02</span>
+              <h2 class="font-cinzel text-2xl font-bold">Studio Monograph &amp; Founder Profile</h2>
+            </div>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Founder Name &amp; Title</label>
+                <input type="text" id="about-founder-name" class="input-field" value="Archit Rathi — Founder &amp; Principal Civil Engineer">
+              </div>
+              <div class="space-y-3">
+                <label class="block text-xs font-mono font-bold text-[#6B7676]">Founder Portrait Image URL or Drag &amp; Drop Image</label>
+                <div id="dropzone-about-founder" class="clay-dropzone flex flex-col items-center justify-center space-y-1">
+                  <p class="text-xs font-bold text-[#232B2B]">Drag &amp; Drop Founder Portrait Image</p>
+                  <input type="file" id="file-about-founder" accept="image/*" class="hidden">
+                </div>
+                <input type="text" id="about-founder-img" class="input-field" value="assets/images/archit_rathi.png">
+                <div class="flex items-center gap-4">
+                  <img id="img-preview-about-founder" src="./assets/archit_rathi-DOanD3XK.png" class="w-16 h-16 rounded-full object-cover shadow-md border-2 border-[#C5A059]">
+                  <span class="text-xs font-mono text-[#6B7676]">Live Portrait Preview</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Studio Architectural Philosophy</label>
+              <textarea id="about-philosophy" class="textarea-field">We view architecture not as decorative embellishment, but as the rigorous orchestration of space, shadow, natural illumination, and raw materiality. Every wall reveal, recessed linear channel, and travertine joint is executed under direct structural engineering supervision.</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Stat 1: Delivered Volume</label>
+                <input type="text" id="about-stat-1" class="input-field" value="120,000+ Sq. Ft.">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Stat 2: Precision Engineering</label>
+                <input type="text" id="about-stat-2" class="input-field" value="100% In-House Structural Execution">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Stat 3: Handover Rate</label>
+                <input type="text" id="about-stat-3" class="input-field" value="0.5mm Tolerance Standard">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 03: SELECTED PROJECTS SHOWCASE -->
+        <!-- =================================================================== -->
+        <section id="tab-projects" class="tab-content hidden space-y-6">
+          <div class="clay-card-sage p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#123629]/80">MODULE 03</span>
+              <h2 class="font-cinzel text-2xl font-bold">Selected Architectural Works (4 Projects)</h2>
+            </div>
+          </div>
+
+          <div id="projects-editor-list" class="space-y-6">
+            <!-- Dynamically populated via admin.js with Drag & Drop Dropzones -->
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 04: SERVICES & EXECUTION -->
+        <!-- =================================================================== -->
+        <section id="tab-services" class="tab-content hidden space-y-6">
+          <div class="clay-card-blue p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#102838]/80">MODULE 04</span>
+              <h2 class="font-cinzel text-2xl font-bold">Services &amp; Civil Execution Pillars</h2>
+            </div>
+          </div>
+
+          <div id="services-editor-list" class="space-y-6">
+            <!-- Dynamically populated via admin.js -->
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 05: SPEC DECK -->
+        <!-- =================================================================== -->
+        <section id="tab-specdeck" class="tab-content hidden space-y-6">
+          <div class="clay-card-pink p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#4A1B1A]/80">MODULE 05</span>
+              <h2 class="font-cinzel text-2xl font-bold">Spec Deck (Technical Engineering Pillars)</h2>
+            </div>
+          </div>
+
+          <div id="specdeck-editor-list" class="space-y-6">
+            <!-- Dynamically populated via admin.js with Drag & Drop Blueprints -->
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 06: TURNKEY MILESTONES -->
+        <!-- =================================================================== -->
+        <section id="tab-milestones" class="tab-content hidden space-y-6">
+          <div class="clay-card-sage p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#123629]/80">MODULE 06</span>
+              <h2 class="font-cinzel text-2xl font-bold">Turnkey Project Milestones &amp; Calculator</h2>
+            </div>
+          </div>
+
+          <div id="milestones-editor-list" class="space-y-6">
+            <!-- Dynamically populated via admin.js -->
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 07: MATERIALS & PARTNERS (20 BRANDS) -->
+        <!-- =================================================================== -->
+        <section id="tab-partners" class="tab-content hidden space-y-6">
+          <div class="clay-card-gold p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#38270A]/80">MODULE 07</span>
+              <h2 class="font-cinzel text-2xl font-bold text-[#38270A]">Materials &amp; 20 Luxury Partner Brands</h2>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="text" id="partner-search-input" placeholder="Search brand..." class="input-field !py-1.5 !text-xs w-52 bg-white/80">
+            </div>
+          </div>
+
+          <div id="partners-editor-list" class="space-y-6">
+            <!-- Dynamically populated via admin.js -->
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 08: JOURNAL & ARTICLES -->
+        <!-- =================================================================== -->
+        <section id="tab-articles" class="tab-content hidden space-y-6">
+          <div class="clay-card-pink p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#4A1B1A]/80">MODULE 08</span>
+              <h2 class="font-cinzel text-2xl font-bold">Journal Essays &amp; Case Studies</h2>
+            </div>
+          </div>
+
+          <div id="articles-editor-list" class="space-y-6">
+            <!-- Dynamically populated via admin.js -->
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 09: CONTACT & CONSULTATION LOG -->
+        <!-- =================================================================== -->
+        <section id="tab-contact" class="tab-content hidden space-y-6">
+          <div class="clay-card-sage p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#123629]/80">MODULE 09</span>
+              <h2 class="font-cinzel text-2xl font-bold">Contact Details &amp; Form Inquiries</h2>
+            </div>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Studio Physical Address</label>
+                <input type="text" id="contact-address" class="input-field" value="Vaastvik Design Group, Greater Noida, Delhi NCR, India">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Contact Phone Number</label>
+                <input type="text" id="contact-phone" class="input-field" value="+91 98765 43210">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Contact Email Address</label>
+                <input type="text" id="contact-email" class="input-field" value="contact@vaastvikdesign.com">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Working Hours</label>
+                <input type="text" id="contact-hours" class="input-field" value="Mon – Sat: 09:30 AM – 07:00 PM IST">
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM SUBMISSIONS LOG TABLE -->
+          <div class="clay-card p-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Saved Consultation Submissions</h3>
+              <button id="btn-clear-inquiries" class="clay-btn text-xs font-mono py-1 px-3.5">Clear Log</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono text-[#232B2B]">
+                <thead class="bg-[#E6E0D5] border-b border-[#D7CDC0] text-[#8F7032] uppercase font-bold">
+                  <tr>
+                    <th class="p-3.5">Time</th>
+                    <th class="p-3.5">Client Name</th>
+                    <th class="p-3.5">Email</th>
+                    <th class="p-3.5">Phone</th>
+                    <th class="p-3.5">Service Scope</th>
+                  </tr>
+                </thead>
+                <tbody id="inquiry-table-body" class="divide-y divide-[#E6E0D5]">
+                  <tr>
+                    <td colspan="5" class="p-4 text-center text-[#6B7676] font-medium">No consultation form submissions recorded yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 10: SEO & TECHNICAL META -->
+        <!-- =================================================================== -->
+        <section id="tab-seo" class="tab-content hidden space-y-6">
+          <div class="clay-card-blue p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#102838]/80">MODULE 10</span>
+              <h2 class="font-cinzel text-2xl font-bold">SEO Metadata &amp; Social OpenGraph</h2>
+            </div>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Website Meta Title</label>
+              <input type="text" id="seo-meta-title" class="input-field" value="Vaastvik Design Group — Architecture &amp; Interior Design Studio">
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Website Meta Description</label>
+              <textarea id="seo-meta-description" class="textarea-field">Vaastvik Design Group is an ultra-premium architecture, luxury interior design, and turnkey civil construction studio based in Greater Noida, Delhi NCR, founded by civil engineer Archit Rathi.</textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">SEO Keywords (Comma separated)</label>
+              <input type="text" id="seo-keywords" class="input-field" value="Vaastvik Design Group, Architecture, Interior Design, Construction, Greater Noida, Delhi NCR, Luxury Interiors, Archit Rathi">
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 11: HOME INTERIOR GUIDE -->
+        <!-- =================================================================== -->
+        <section id="tab-guide" class="tab-content hidden space-y-6">
+          <div class="clay-card-gold p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#453413]/80">MODULE 11</span>
+              <h2 class="font-cinzel text-2xl font-bold">Home Interior Guide (PDF Publication)</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#453413]">Enable Section</span>
+              <input type="checkbox" id="guide-enabled" class="w-5 h-5 accent-[#C5A059] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Subtitle</label>
+                <input type="text" id="guide-subtitle" class="input-field" value="12 / ARCHITECTURAL PUBLICATION">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Guide Title</label>
+                <input type="text" id="guide-title" class="input-field" value="HOME INTERIOR GUIDE">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Publication Description Narrative</label>
+              <textarea id="guide-description" class="textarea-field">Gain direct insight into our interior execution framework. Explore curated project summaries, imported European material palettes, bespoke joinery details, and turnkey space planning standards across Delhi NCR.</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="block text-xs font-mono text-[#6B7676] font-bold">PDF Document URL or Drag &amp; Drop PDF File</label>
+                <input type="text" id="guide-pdf-url" class="input-field" value="https://vaastvikdesigngroup.com/wp-content/uploads/2024/10/VAASTVIK-DESIGN-GROUP-pdf.pdf">
+                <div id="dropzone-guide-pdf" class="clay-dropzone !py-2 text-xs">
+                  <span class="font-bold">Drag &amp; Drop PDF File</span>
+                  <input type="file" id="file-guide-pdf" accept=".pdf" class="hidden">
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-xs font-mono text-[#6B7676] font-bold">Cover Image URL or Drag &amp; Drop</label>
+                <div class="flex items-center gap-4">
+                  <input type="text" id="guide-cover-img" class="input-field flex-1" value="assets/images/bespoke_oak_joinery.png">
+                  <img src="assets/images/bespoke_oak_joinery.png" id="guide-cover-preview" class="w-16 h-12 rounded-lg object-cover shadow border border-white">
+                </div>
+                <div id="dropzone-guide-cover" class="clay-dropzone !py-2 text-xs">
+                  <span class="font-bold">Drag &amp; Drop Cover Image</span>
+                  <input type="file" id="file-guide-cover" accept="image/*" class="hidden">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Download Button CTA Label</label>
+              <input type="text" id="guide-button-text" class="input-field" value="DOWNLOAD THE GUIDE">
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 12: BEAUTIFUL INTERIOR VIDEO -->
+        <!-- =================================================================== -->
+        <section id="tab-video-section" class="tab-content hidden space-y-6">
+          <div class="clay-card-blue p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#102838]/80">MODULE 12</span>
+              <h2 class="font-cinzel text-2xl font-bold">Beautiful Interior (Cinematic Video Reel)</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#102838]">Enable Section</span>
+              <input type="checkbox" id="video-enabled" class="w-5 h-5 accent-[#4B7693] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Subtitle</label>
+                <input type="text" id="video-subtitle" class="input-field" value="13 / CINEMATIC ARCHITECTURE">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Heading</label>
+                <input type="text" id="video-heading" class="input-field" value="BEAUTIFUL INTERIOR">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Description Narrative</label>
+              <textarea id="video-description" class="textarea-field">Watch the video of our beautiful interiors designed by Archit Rathi. This captivating video encapsulates our design philosophy and showcases our exceptional interior design projects.</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="block text-xs font-mono text-[#6B7676] font-bold">Video File URL or Drag &amp; Drop MP4</label>
+                <input type="text" id="video-url" class="input-field" value="assets/hero_cinematic.mp4">
+                <div id="dropzone-video-file" class="clay-dropzone !py-2 text-xs">
+                  <span class="font-bold">Drag &amp; Drop Video MP4</span>
+                  <input type="file" id="file-video-file" accept="video/*" class="hidden">
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-xs font-mono text-[#6B7676] font-bold">Poster Image URL or Drag &amp; Drop</label>
+                <div class="flex items-center gap-4">
+                  <input type="text" id="video-poster" class="input-field flex-1" value="assets/images/aravali_main.png">
+                  <img src="./assets/aravali_main-Ca6tWFWA.png" id="video-poster-preview" class="w-16 h-12 rounded-lg object-cover shadow border border-white">
+                </div>
+                <div id="dropzone-video-poster" class="clay-dropzone !py-2 text-xs">
+                  <span class="font-bold">Drag &amp; Drop Poster Image</span>
+                  <input type="file" id="file-video-poster" accept="image/*" class="hidden">
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">YouTube Full Film URL</label>
+                <input type="text" id="video-yt-link" class="input-field" value="https://www.youtube.com/watch?v=1da073vLGJ0">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Button Text</label>
+                <input type="text" id="video-btn-text" class="input-field" value="WATCH FULL FILM">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 13: HOW IT WORKS -->
+        <!-- =================================================================== -->
+        <section id="tab-process-framework" class="tab-content hidden space-y-6">
+          <div class="clay-card-sage p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#123629]/80">MODULE 13</span>
+              <h2 class="font-cinzel text-2xl font-bold">How It Works (6-Stage Execution Process)</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#123629]">Enable Section</span>
+              <input type="checkbox" id="how-enabled" class="w-5 h-5 accent-[#4D7A6D] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Heading</label>
+                <input type="text" id="how-heading" class="input-field" value="HOW IT WORKS">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">CTA Button Text</label>
+                <input type="text" id="how-cta-text" class="input-field" value="BOOK FREE CONSULTATION">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#E6DEC6]/70">
+              <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Process Stages</h3>
+              <button id="btn-add-how-step" type="button" class="clay-btn clay-btn-sage text-xs py-1.5 px-4">+ Add New Stage</button>
+            </div>
+
+            <div id="how-steps-editor-list" class="space-y-4">
+              <!-- Dynamic Step Cards rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 14: CLIENT TESTIMONIALS -->
+        <!-- =================================================================== -->
+        <section id="tab-testimonials" class="tab-content hidden space-y-6">
+          <div class="clay-card-pink p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#4A1B1A]/80">MODULE 14</span>
+              <h2 class="font-cinzel text-2xl font-bold">Client Testimonials &amp; Patron Reflections</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#4A1B1A]">Enable Section</span>
+              <input type="checkbox" id="testimonials-enabled" class="w-5 h-5 accent-[#A35A55] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Heading</label>
+                <input type="text" id="testimonials-heading" class="input-field" value="CLIENT SAYS">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Subtitle</label>
+                <input type="text" id="testimonials-subtitle" class="input-field" value="15 / PATRON REFLECTIONS">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#E6DEC6]/70">
+              <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Patron Testimonials</h3>
+              <button id="btn-add-testimonial" type="button" class="clay-btn text-xs py-1.5 px-4">+ Add Testimonial</button>
+            </div>
+
+            <div id="testimonials-editor-list" class="space-y-4">
+              <!-- Dynamic Testimonial Cards rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 15: TRUSTED PARTNERS BRANDS -->
+        <!-- =================================================================== -->
+        <section id="tab-partner-brands" class="tab-content hidden space-y-6">
+          <div class="clay-card-gold p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#453413]/80">MODULE 15</span>
+              <h2 class="font-cinzel text-2xl font-bold">Trusted Partners &amp; Brand Specification</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#453413]">Enable Section</span>
+              <input type="checkbox" id="trusted-enabled" class="w-5 h-5 accent-[#C5A059] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Heading</label>
+                <input type="text" id="trusted-heading" class="input-field" value="OUR TRUSTED PARTNERS">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Subtitle</label>
+                <input type="text" id="trusted-subtitle" class="input-field" value="16 / MATERIAL SPECIFICATION">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Specification Description</label>
+              <textarea id="trusted-description" class="textarea-field">We specify exclusively from internationally recognized luxury manufacturers and heritage brands to ensure structural longevity, precision engineering, and timeless spatial beauty across every project.</textarea>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#E6DEC6]/70">
+              <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Partner Brand Catalog</h3>
+              <button id="btn-add-partner-brand" type="button" class="clay-btn clay-btn-gold text-xs py-1.5 px-4">+ Add Partner Brand</button>
+            </div>
+
+            <div id="trusted-brands-editor-list" class="space-y-4">
+              <!-- Dynamic Partner Brand Cards rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 16: MONOGRAPH JOURNAL ARTICLES -->
+        <!-- =================================================================== -->
+        <section id="tab-journal-articles" class="tab-content hidden space-y-6">
+          <div class="clay-card-blue p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#102838]/80">MODULE 16</span>
+              <h2 class="font-cinzel text-2xl font-bold">Monograph Journal &amp; Blog Articles</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#102838]">Enable Section</span>
+              <input type="checkbox" id="journal-enabled" class="w-5 h-5 accent-[#4B7693] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Heading</label>
+                <input type="text" id="journal-heading" class="input-field" value="MONOGRAPH JOURNAL">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Subtitle</label>
+                <input type="text" id="journal-subtitle" class="input-field" value="10 / JOURNAL & RECENT BLOG">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#E6DEC6]/70">
+              <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Articles &amp; Blog Essays</h3>
+              <button id="btn-add-journal-article" type="button" class="clay-btn clay-btn-blue text-xs py-1.5 px-4">+ Add Article</button>
+            </div>
+
+            <div id="journal-articles-editor-list" class="space-y-4">
+              <!-- Dynamic Article Cards rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 17: NEWSLETTER & SUBSCRIBERS -->
+        <!-- =================================================================== -->
+        <section id="tab-newsletter" class="tab-content hidden space-y-6">
+          <div class="clay-card-sage p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#123629]/80">MODULE 17</span>
+              <h2 class="font-cinzel text-2xl font-bold">Newsletter &amp; Subscriber Compendium</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#123629]">Enable Section</span>
+              <input type="checkbox" id="newsletter-enabled" class="w-5 h-5 accent-[#4D7A6D] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Heading</label>
+                <input type="text" id="newsletter-heading" class="input-field" value="STAY INSPIRED">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Button Text</label>
+                <input type="text" id="newsletter-btn-text" class="input-field" value="SUBSCRIBE">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Description</label>
+              <textarea id="newsletter-description" class="textarea-field">Receive curated architectural monographs, material discourses, and completed project updates from Vaastvik Design Group directly to your inbox.</textarea>
+            </div>
+
+            <div class="pt-4 space-y-4 border-t border-[#E6DEC6]/70">
+              <div class="flex items-center justify-between">
+                <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Saved Newsletter Subscribers</h3>
+                <div class="flex gap-2">
+                  <button id="btn-export-subscribers" type="button" class="clay-btn text-xs font-mono py-1 px-3">Export CSV</button>
+                  <button id="btn-clear-subscribers" type="button" class="clay-btn text-xs font-mono py-1 px-3">Clear Log</button>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs font-mono text-[#232B2B]">
+                  <thead class="bg-[#E6E0D5] border-b border-[#D7CDC0] text-[#8F7032] uppercase font-bold">
+                    <tr>
+                      <th class="p-3.5">#</th>
+                      <th class="p-3.5">Subscriber Email</th>
+                      <th class="p-3.5">Date Subscribed</th>
+                    </tr>
+                  </thead>
+                  <tbody id="subscribers-table-body" class="divide-y divide-[#E6E0D5]">
+                    <tr>
+                      <td colspan="3" class="p-4 text-center text-[#6B7676] font-medium">No newsletter subscribers recorded yet.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 18: START A PROJECT & CONTACT -->
+        <!-- =================================================================== -->
+        <section id="tab-start-project" class="tab-content hidden space-y-6">
+          <div class="clay-card-gold p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#453413]/80">MODULE 18</span>
+              <h2 class="font-cinzel text-2xl font-bold">Start a Project &amp; Studio Inquiries</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#453413]">Enable Section</span>
+              <input type="checkbox" id="startproject-enabled" class="w-5 h-5 accent-[#C5A059] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Heading</label>
+                <input type="text" id="startproject-heading" class="input-field" value="START A PROJECT">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Editorial Quote</label>
+                <input type="text" id="startproject-quote" class="input-field" value="“Tell us about the space you want to create.”">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Studio Description Narrative</label>
+              <textarea id="startproject-description" class="textarea-field">An Interior And Construction Company based in Greater Noida, Uttar Pradesh, India. We specialize in luxury turn-key civil architecture, villa design, and bespoke interior spaces across Delhi NCR.</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Phone Number</label>
+                <input type="text" id="startproject-phone" class="input-field" value="+91 77019 39902">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Email Address</label>
+                <input type="text" id="startproject-email" class="input-field" value="info@vaastvikdesigngroup.com">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Coordinates / GPS</label>
+                <input type="text" id="startproject-coordinates" class="input-field" value="28.4744° N, 77.5040° E">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Final CTA Line 1</label>
+                <input type="text" id="startproject-cta-line1" class="input-field" value="LET'S CREATE">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Final CTA Line 2</label>
+                <input type="text" id="startproject-cta-line2" class="input-field" value="SOMETHING">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Final CTA Line 3 (Italic)</label>
+                <input type="text" id="startproject-cta-line3" class="input-field" value="WORTH COMING HOME TO.">
+              </div>
+            </div>
+
+            <div class="pt-4 space-y-4 border-t border-[#E6DEC6]/70">
+              <div class="flex items-center justify-between">
+                <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Recorded Project Submissions</h3>
+                <div class="flex gap-2">
+                  <button id="btn-export-enquiries" type="button" class="clay-btn text-xs font-mono py-1 px-3">Export CSV</button>
+                  <button id="btn-clear-enquiries-log" type="button" class="clay-btn text-xs font-mono py-1 px-3">Clear Log</button>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs font-mono text-[#232B2B]">
+                  <thead class="bg-[#E6E0D5] border-b border-[#D7CDC0] text-[#8F7032] uppercase font-bold">
+                    <tr>
+                      <th class="p-3.5">Date</th>
+                      <th class="p-3.5">Client Name</th>
+                      <th class="p-3.5">Email</th>
+                      <th class="p-3.5">Phone</th>
+                      <th class="p-3.5">Location</th>
+                      <th class="p-3.5">Discipline</th>
+                    </tr>
+                  </thead>
+                  <tbody id="enquiries-table-body" class="divide-y divide-[#E6E0D5]">
+                    <tr>
+                      <td colspan="6" class="p-4 text-center text-[#6B7676] font-medium">No project enquiries recorded yet.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 19: STUDIO TEAM & LEADERSHIP -->
+        <!-- =================================================================== -->
+        <section id="tab-studio-team" class="tab-content hidden space-y-6">
+          <div class="clay-card-pink p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#4A1B1A]/80">MODULE 19</span>
+              <h2 class="font-cinzel text-2xl font-bold">Studio Profile &amp; Leadership Team</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#4A1B1A]">Enable Section</span>
+              <input type="checkbox" id="team-enabled" class="w-5 h-5 accent-[#A35A55] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Heading</label>
+                <input type="text" id="team-heading" class="input-field" value="THE STUDIO / OUR TEAM">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Subtitle</label>
+                <input type="text" id="team-subtitle" class="input-field" value="19 / STUDIO PROFILE & TEAM">
+              </div>
+            </div>
+
+            <div class="space-y-4 pt-4 border-t border-[#E6DEC6]/70">
+              <h3 class="font-cinzel text-lg text-[#232B2B] font-bold">Founder &amp; Principal Architect</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Founder Name</label>
+                  <input type="text" id="team-lead-name" class="input-field" value="Archit Rathi">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Designation Role</label>
+                  <input type="text" id="team-lead-role" class="input-field" value="Founder & Principal Architect">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Degree / Qualification</label>
+                  <input type="text" id="team-lead-degree" class="input-field" value="B.Tech Civil Engineering">
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-xs font-mono text-[#6B7676] font-bold">Founder Portrait URL or Drag &amp; Drop</label>
+                <div class="flex items-center gap-4">
+                  <input type="text" id="team-lead-img" class="input-field flex-1" value="assets/images/archit_rathi.png">
+                  <img src="./assets/archit_rathi-DOanD3XK.png" id="team-lead-img-preview" class="w-16 h-12 rounded-lg object-cover shadow border border-white">
+                </div>
+                <div id="dropzone-team-lead" class="clay-dropzone !py-2 text-xs">
+                  <span class="font-bold">Drag &amp; Drop Portrait Photo</span>
+                  <input type="file" id="file-team-lead" accept="image/*" class="hidden">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Biography Paragraph 1</label>
+                <textarea id="team-lead-bio1" class="textarea-field">Welcome to Vaastvik Design Group, a leading interior design and construction firm founded by Archit Rathi, a visionary entrepreneur with a Civil Engineering degree. With a passion for spatial design and an unyielding commitment to structural precision, Archit combines civil engineering rigor with an unparalleled eye for quiet luxury aesthetics.</textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Biography Paragraph 2</label>
+                <textarea id="team-lead-bio2" class="textarea-field">His heightened sense of spatial proportions creates elegant and timeless interiors across both contemporary villas and urban penthouse residences in Greater Noida, Gurugram, and the wider Delhi NCR.</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 20: FOOTER & GLOBAL LINKS -->
+        <!-- =================================================================== -->
+        <section id="tab-footer-config" class="tab-content hidden space-y-6">
+          <div class="clay-card-gold p-6 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest block font-bold text-[#453413]/80">MODULE 20</span>
+              <h2 class="font-cinzel text-2xl font-bold">Footer Monograph &amp; Copyright</h2>
+            </div>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <span class="text-xs font-mono font-bold text-[#453413]">Enable Section</span>
+              <input type="checkbox" id="footer-enabled" class="w-5 h-5 accent-[#C5A059] cursor-pointer" checked>
+            </label>
+          </div>
+
+          <div class="clay-card p-7 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Brand Title</label>
+                <input type="text" id="footer-brand-title" class="input-field" value="Vaastvik Design Group">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Brand Subtitle</label>
+                <input type="text" id="footer-brand-subtitle" class="input-field" value="TURNKEY CIVIL & INTERIOR ARCHITECTURE STUDIO">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Brand Description</label>
+              <textarea id="footer-brand-desc" class="textarea-field">Founded by Civil Engineer Archit Rathi. Delivering bespoke architectural villas, penthouse spatial design, and turn-key civil construction across Greater Noida, Gurugram, and Delhi NCR.</textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Practice Disciplines Line</label>
+              <input type="text" id="footer-disciplines" class="input-field" value="Architectural Design • Interior Architecture • Turnkey Civil Construction">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Copyright Statement</label>
+                <input type="text" id="footer-copyright" class="input-field" value="© 2026 VAASTVIK DESIGN GROUP. ALL RIGHTS RESERVED.">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Privacy Policy URL</label>
+                <input type="text" id="footer-privacy-url" class="input-field" value="https://www.termsfeed.com/live/8c2c31f7-74a6-4484-a248-8c1ac6843a23">
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+        <!-- MODULE 23: TURNKEY CONSTRUCTION & INTERIOR INVESTMENT CALCULATOR -->
+        <section id="tab-calculator-config" class="tab-panel hidden space-y-6">
+          <div class="clay-card p-6 border-l-4 border-[#DB2777] space-y-4">
+            <div class="flex items-center justify-between border-b border-[#E6DEC6] pb-4">
+              <div>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-[#8F7032]">ADVANCED EXPERIENCE 23</span>
+                <h2 class="text-xl font-serif font-bold text-[#232B2B]">Turnkey Investment Calculator Pricing Engine</h2>
+              </div>
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-mono">
+                <input type="checkbox" id="calc-enabled" class="accent-[#C5A059]" checked>
+                <span class="font-bold text-[#232B2B]">Enable Calculator Section</span>
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Tag</label>
+                <input type="text" id="calc-tag" class="input-field" value="10 / INVESTMENT ESTIMATOR">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Title</label>
+                <input type="text" id="calc-title" class="input-field" value="PROJECT COST CALCULATOR">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Currency Symbol</label>
+                <input type="text" id="calc-currency" class="input-field" value="₹">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Min Plot Area (Sq. Ft.)</label>
+                <input type="number" id="calc-min-area" class="input-field" value="2000">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Max Plot Area (Sq. Ft.)</label>
+                <input type="number" id="calc-max-area" class="input-field" value="20000">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Slider Step (Sq. Ft.)</label>
+                <input type="number" id="calc-step-area" class="input-field" value="500">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Default Selected Area</label>
+                <input type="number" id="calc-default-area" class="input-field" value="5000">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Consultation CTA Button Text</label>
+                <input type="text" id="calc-cta-text" class="input-field" value="BOOK CONSULTATION FOR THIS BUDGET ↗">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Pricing Disclaimer Text</label>
+                <input type="text" id="calc-disclaimer" class="input-field" value="*All estimates are baseline indicative costs for turnkey civil construction, architectural engineering, and interior fitout across Greater Noida &amp; Delhi NCR.">
+              </div>
+            </div>
+
+            <div class="border-t border-[#E6DEC6] pt-4 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-mono font-bold text-[#232B2B]">1. Structural Civil Framing Tiers &amp; Pricing</h3>
+                <button id="btn-add-structural-tier" class="clay-btn text-xs font-mono py-1.5 px-3">+ Add Structural Tier</button>
+              </div>
+              <div id="calc-structural-tiers-editor-list" class="space-y-4">
+                <!-- Rendered dynamically by renderCalculatorConfigModule() -->
+              </div>
+            </div>
+
+            <div class="border-t border-[#E6DEC6] pt-4 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-mono font-bold text-[#232B2B]">2. Interior Joinery &amp; Surface Fitout Packages</h3>
+                <button id="btn-add-joinery-package" class="clay-btn text-xs font-mono py-1.5 px-3">+ Add Joinery Package</button>
+              </div>
+              <div id="calc-joinery-packages-editor-list" class="space-y-4">
+                <!-- Rendered dynamically by renderCalculatorConfigModule() -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+        <!-- MODULE 26: WHATSAPP 1-CLICK ARCHITECTURAL CONSULTATION ENGINE -->
+        <section id="tab-whatsapp-engine" class="tab-panel hidden space-y-6">
+          <div class="clay-card p-6 border-l-4 border-[#16A34A] space-y-4">
+            <div class="flex items-center justify-between border-b border-[#E6DEC6] pb-4">
+              <div>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-[#8F7032]">ADVANCED EXPERIENCE 26</span>
+                <h2 class="text-xl font-serif font-bold text-[#232B2B]">WhatsApp 1-Click Architectural Consultation Engine</h2>
+              </div>
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-mono">
+                <input type="checkbox" id="wa-enabled" class="accent-[#C5A059]" checked>
+                <span class="font-bold text-[#232B2B]">Enable WhatsApp Engine</span>
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Destination WhatsApp Number</label>
+                <input type="text" id="wa-phone" class="input-field" value="+91 77019 39902">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">CTA Button Label</label>
+                <input type="text" id="wa-cta-text" class="input-field" value="GENERATE CONSULTATION WHATSAPP ↗">
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Section Tag</label>
+                <input type="text" id="wa-tag" class="input-field" value="22 / 1-CLICK CONSULTATION">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Default Message Prefix / Salutation</label>
+              <textarea id="wa-default-msg" rows="2" class="input-field">Hello Archit,
+I would like to discuss an architectural/interior project with Vaastvik Design Group.</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-[#E6DEC6] pt-4">
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Project Type Options (Comma-Separated)</label>
+                <textarea id="wa-project-types" rows="4" class="input-field">Turnkey Architectural Villa, Penthouse Interior Architecture, Civil Construction & Structural Contracting, Luxury Residential Renovation</textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Plot Size Options (Comma-Separated)</label>
+                <textarea id="wa-plot-sizes" rows="4" class="input-field">2,500 – 5,000 Sq. Ft., 5,000 – 10,000 Sq. Ft., 10,000 – 20,000 Sq. Ft., 20,000+ Sq. Ft.</textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold text-[#6B7676] mb-2">Budget Range Options (Comma-Separated)</label>
+                <textarea id="wa-budget-ranges" rows="4" class="input-field">₹ 1.5 Cr – ₹ 3.0 Cr, ₹ 3.0 Cr – ₹ 6.0 Cr, ₹ 6.0 Cr – ₹ 10.0 Cr, ₹ 10.0 Cr+</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- RIGHT SPLIT-VIEW LIVE PREVIEW IFRAME DRAWER -->
+    <div id="preview-drawer" class="w-1/2 clay-surface flex flex-col shrink-0 overflow-hidden relative border-l-2 border-white/80">
+      <div class="h-13 bg-[#E7E0D5] border-b border-[#D7CDC0] flex items-center justify-between px-5 py-2.5 text-xs font-mono text-[#6B7676]">
+        <div class="flex items-center gap-2.5">
+          <span class="clay-sphere-gold animate-pulse"></span>
+          <span class="font-bold text-[#232B2B]">LIVE IFRAME PREVIEW</span>
+        </div>
+        <button id="btn-close-preview" class="clay-btn py-1 px-3 text-xs">✕ Close Drawer</button>
+      </div>
+      <iframe id="live-preview-iframe" src="./index.html" class="flex-1 w-full h-full border-none"></iframe>
+    </div>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast clay-card p-4 flex items-center gap-3 border-2 border-[#C5A059]">
+    <span class="clay-sphere-gold"></span>
+    <span id="toast-message" class="text-xs font-mono font-bold text-[#232B2B]">Real-time changes auto-synced!</span>
+  </div>
+
+  <!-- ADMIN ENGINE JAVASCRIPT -->
+</body>
+</html>

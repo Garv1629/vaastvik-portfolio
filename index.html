@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAastvik Design Group — Architecture & Interior Design Studio</title>
+  <meta name="description" content="Vaastvik Design Group is an ultra-premium architecture, luxury interior design, and turnkey civil construction studio based in Greater Noida, Delhi NCR, founded by civil engineer Archit Rathi.">
+  <meta name="keywords" content="Vaastvik Design Group, Architecture, Interior Design, Construction, Greater Noida, Delhi NCR, Luxury Interiors, Archit Rathi">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>V</text></svg>">
+
+  <!-- Google Fonts: Bodoni Moda, Instrument Serif, Cinzel, Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#F4F1EA',
+            stone: '#DDD6CA',
+            charcoal: '#171614',
+            muted: '#6D665D',
+            bronze: '#7B684F',
+          },
+          fontFamily: {
+            serif: ['Instrument Serif', 'Cormorant Garamond', 'Georgia', 'serif'],
+            display: ['Bodoni Moda', 'Cinzel', 'serif'],
+            cinzel: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Animation Libraries: GSAP, ScrollTrigger, Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+  <script type="module" crossorigin src="./assets/main-C_WjO_ml.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="./assets/main-CTL9eOHT.css">
+</head>
+<body class="bg-ivory text-charcoal antialiased selection:bg-bronze selection:text-ivory">
+
+  <!-- 00 — CURTAIN LOADER -->
+  <div id="loader" class="fixed inset-0 z-50 flex flex-col justify-between bg-charcoal text-ivory p-8 md:p-12 transition-opacity duration-1000">
+    <div class="flex justify-between items-center text-xs tracking-widest uppercase text-stone opacity-70">
+      <span>VAastvik Design Group</span>
+      <span>01 — 06 Monograph</span>
+    </div>
+    <div class="my-auto max-w-xl">
+      <h1 class="font-serif text-3xl md:text-5xl font-light tracking-tight mb-4">Architecture &amp; Interior Architecture</h1>
+      <p class="text-xs uppercase tracking-widest text-stone/60">Greater Noida — Delhi NCR</p>
+    </div>
+    <div class="w-full bg-stone/20 h-px relative overflow-hidden">
+      <div id="loader-progress" class="absolute top-0 left-0 bottom-0 bg-bronze w-0 transition-all duration-300"></div>
+    </div>
+  </div>
+
+  <!-- REFINED ARCHITECTURAL NAVIGATION HEADER -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-40 px-6 md:px-12 py-8 md:py-10 flex justify-between items-center header-hero border-b border-transparent">
+    
+    <!-- Logo (2-line stacked minimal editorial typography) -->
+    <a href="#" id="header-logo" class="group flex flex-col font-sans uppercase tracking-[0.25em] leading-tight opacity-0 gpu-layer">
+      <span class="text-xs font-semibold text-current tracking-[0.25em]">VAASTVIK</span>
+      <span class="text-[9px] tracking-[0.2em] opacity-70 group-hover:text-bronze transition-colors">Design Group</span>
+    </a>
+
+    <!-- Desktop Minimal Navigation -->
+    <nav id="header-nav-links" class="hidden md:flex items-center gap-12 text-[11px] uppercase tracking-[0.2em] font-medium text-current opacity-0 gpu-layer">
+      <a href="#projects" class="nav-link hover:text-bronze transition-colors">Projects</a>
+      <a href="#studio" class="nav-link hover:text-bronze transition-colors">Studio</a>
+      <a href="#services" class="nav-link hover:text-bronze transition-colors">Services</a>
+      <a href="#journal" class="nav-link hover:text-bronze transition-colors">Journal</a>
+    </nav>
+
+    <!-- Right Action Button & Mobile Index Trigger -->
+    <div id="header-cta-wrap" class="flex items-center gap-6 opacity-0 gpu-layer">
+      <button id="open-inquiry-btn" class="nav-cta text-[10px] uppercase tracking-[0.2em] border px-4 py-2 hover:bg-charcoal hover:text-ivory hover:border-charcoal transition-all duration-400 font-medium hidden md:inline-flex items-center gap-2">
+        <span>Start a Project</span>
+        <span class="text-xs">↗</span>
+      </button>
+
+      <!-- Mobile Index Toggle -->
+      <button id="mobile-menu-btn" class="md:hidden text-[10px] uppercase tracking-[0.2em] font-mono p-1 focus:outline-none flex items-center gap-2 text-current" aria-label="Toggle Publication Index">
+        <span id="menu-btn-label">INDEX</span>
+        <span id="menu-btn-icon" class="text-xs font-mono text-bronze">[+]</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE FULL-SCREEN PUBLICATION INDEX OVERLAY -->
+  <div id="mobile-nav" class="fixed inset-0 z-50 bg-charcoal text-ivory flex flex-col justify-between p-8 pt-24 opacity-0 pointer-events-none transition-all duration-500 ease-out">
+    <div class="flex justify-between items-center border-b border-ivory/10 pb-6">
+      <span class="text-[10px] uppercase tracking-[0.25em] text-stone/60 font-mono">PUBLICATION INDEX — 2026</span>
+      <button id="mobile-nav-close" class="text-[10px] uppercase tracking-[0.2em] text-stone hover:text-ivory flex items-center gap-2 font-mono">
+        CLOSE [ESC]
+      </button>
+    </div>
+
+    <div class="my-auto flex flex-col gap-6">
+      <a href="#projects" class="mobile-nav-item group flex justify-between items-baseline border-b border-ivory/10 pb-4">
+        <span class="font-mono text-xs text-bronze">01</span>
+        <span class="font-serif text-3xl font-light italic group-hover:text-bronze transition-colors">Selected Projects</span>
+        <span class="text-xs font-mono opacity-50">↗</span>
+      </a>
+      <a href="#studio" class="mobile-nav-item group flex justify-between items-baseline border-b border-ivory/10 pb-4">
+        <span class="font-mono text-xs text-bronze">02</span>
+        <span class="font-serif text-3xl font-light italic group-hover:text-bronze transition-colors">The Studio</span>
+        <span class="text-xs font-mono opacity-50">↗</span>
+      </a>
+      <a href="#services" class="mobile-nav-item group flex justify-between items-baseline border-b border-ivory/10 pb-4">
+        <span class="font-mono text-xs text-bronze">03</span>
+        <span class="font-serif text-3xl font-light italic group-hover:text-bronze transition-colors">Disciplines &amp; Services</span>
+        <span class="text-xs font-mono opacity-50">↗</span>
+      </a>
+      <a href="#matter" class="mobile-nav-item group flex justify-between items-baseline border-b border-ivory/10 pb-4">
+        <span class="font-mono text-xs text-bronze">04</span>
+        <span class="font-serif text-3xl font-light italic group-hover:text-bronze transition-colors">Materiality &amp; Spec</span>
+        <span class="text-xs font-mono opacity-50">↗</span>
+      </a>
+      <a href="#journal" class="mobile-nav-item group flex justify-between items-baseline border-b border-ivory/10 pb-4">
+        <span class="font-mono text-xs text-bronze">05</span>
+        <span class="font-serif text-3xl font-light italic group-hover:text-bronze transition-colors">Monograph Journal</span>
+        <span class="text-xs font-mono opacity-50">↗</span>
+      </a>
+    </div>
+
+    <div class="border-t border-ivory/10 pt-6 flex flex-col gap-2 text-[10px] uppercase tracking-[0.2em] text-stone/70 font-mono">
+      <div class="flex justify-between">
+        <span>Architectural Studio</span>
+        <span>Greater Noida / NCR</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Civil Lead: Archit Rathi</span>
+        <span class="text-bronze">+91 77019 39902</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- 09 — CINEMATIC SCROLL-REVEAL HERO SECTION -->
+      <section id="hero-pinned-wrap" class="relative w-full h-[220vh] bg-ivory text-charcoal">
+        <div id="hero" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 z-10 bg-ivory pt-24 md:pt-28">
+
+          <!-- Top Monograph Metadata (Initial State) -->
+          <div id="hero-top-meta" class="relative z-20 flex justify-between items-start text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono opacity-80 text-current">
+            <div class="flex flex-col gap-0.5">
+              <span class="font-semibold text-bronze">VAASTVIK DESIGN GROUP</span>
+              <span class="opacity-60">NOIDA / INDIA</span>
+            </div>
+            <div class="text-right">
+              <span>MONOGRAPH — 2026</span>
+            </div>
+          </div>
+
+          <!-- Architectural Photo Canvas Mask Layer (Scrubbed clip-path & scale reveal) -->
+          <div id="hero-canvas-wrap" class="absolute inset-0 z-10 overflow-hidden pointer-events-none flex items-center justify-center transition-all duration-300" style="clip-path: inset(12% 33% 12% 33%);">
+            <video id="hero-video" class="w-full h-full object-cover scale-[1.08] gpu-layer" autoplay loop muted playsinline poster="./assets/hero_architecture-RjXw3hnP.png">
+              <source src="./assets/hero_cinematic-DNtOQZt5.mp4" type="video/mp4">
+              <img src="./assets/hero_architecture-RjXw3hnP.png" alt="Vaastvik Architectural Villa" class="w-full h-full object-cover">
+            </video>
+            <!-- Contrast Gradient Overlay for Typography -->
+            <div id="hero-image-overlay" class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-charcoal/20 opacity-85"></div>
+          </div>
+
+          <!-- Center Viewport Headline Layer (Reveals at ~30% scroll) -->
+          <div id="hero-title-wrap" class="relative z-20 my-auto max-w-6xl opacity-0 translate-y-10 gpu-layer">
+            <div class="flex items-center gap-4 text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-stone mb-4">
+              <span class="w-1.5 h-1.5 bg-bronze"></span>
+              <span>ARCHITECTURE &bull; INTERIORS &bull; CONSTRUCTION</span>
+            </div>
+            <h1 id="hero-title" class="font-serif text-4xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.92] text-ivory">
+              SPACES,<br>
+              <span class="italic font-normal text-ivory/90">THOUGHTFULLY IMAGINED.</span>
+            </h1>
+          </div>
+
+          <!-- Side / Initial Sub-Metadata (Visible at 0% scroll) -->
+          <div id="hero-initial-meta" class="relative z-20 flex justify-between items-end border-t border-charcoal/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono">
+            <div class="flex gap-6 md:gap-8 text-stone/80 font-medium">
+              <span>ARCHITECTURE</span>
+              <span>INTERIORS</span>
+              <span>CONSTRUCTION</span>
+            </div>
+            <div id="hero-scroll-hint" class="flex items-center gap-2 text-bronze animate-pulse">
+              <span>SCROLL TO ENTER</span>
+              <span>↓</span>
+            </div>
+          </div>
+
+          <!-- Project Sub-Metadata (Reveals at ~60% scroll) -->
+          <div id="hero-scrolled-meta" class="absolute bottom-6 md:bottom-12 left-6 md:left-12 right-6 md:right-12 z-20 flex justify-between items-end border-t border-ivory/20 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-ivory opacity-0 translate-y-4 gpu-layer pointer-events-none">
+            <div class="flex flex-col gap-1">
+              <span class="font-semibold text-bronze">CIVIL LEAD: ARCHIT RATHI</span>
+              <span class="opacity-70">TURNKEY PRECISION &amp; MATERIAL INTELLIGENCE</span>
+            </div>
+            <span class="opacity-60 font-serif italic text-sm">Monograph 01</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 10 — EDITORIAL ARCHITECTURAL MANIFESTO (PINNED 200vh SECTION) -->
+      <section id="pinned-philosophy-wrap" class="relative w-full h-[200vh] bg-ivory text-charcoal border-t border-charcoal/10">
+        <div id="pinned-philosophy" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-ivory z-10 pt-24 md:pt-28">
+
+          <!-- Top Monograph Metadata -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-muted border-b border-charcoal/10 pb-4">
+            <span class="text-bronze font-semibold">THE STUDIO</span>
+            <span>ARCHITECTURAL MANIFESTO</span>
+          </div>
+
+          <!-- Central Masked Line-by-Line Enormous Typography -->
+          <div class="my-auto max-w-7xl w-full">
+            
+            <!-- Line 1: SPACE -->
+            <div class="manifesto-line-wrap overflow-hidden py-1">
+              <h2 id="manifesto-line-1" class="manifesto-line font-serif text-5xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.95] text-charcoal">
+                SPACE
+              </h2>
+            </div>
+
+            <!-- Line 2: IS -->
+            <div class="manifesto-line-wrap overflow-hidden py-1">
+              <h2 id="manifesto-line-2" class="manifesto-line font-serif text-5xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.95] text-charcoal">
+                IS
+              </h2>
+            </div>
+
+            <!-- Line 3: EXPERIENCE. -->
+            <div class="manifesto-line-wrap overflow-hidden py-1">
+              <h2 id="manifesto-line-3" class="manifesto-line font-serif text-5xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.95] text-charcoal italic">
+                EXPERIENCE.
+              </h2>
+            </div>
+
+            <!-- Line 4: AND EXPERIENCE IS PERSONAL. -->
+            <div class="manifesto-line-wrap overflow-hidden py-1 mt-4 md:mt-8">
+              <p id="manifesto-line-4" class="manifesto-line font-sans text-xs md:text-sm uppercase tracking-[0.25em] font-medium text-bronze">
+                AND EXPERIENCE IS PERSONAL.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Extending Thin Architectural Rule -->
+          <div class="w-full relative h-[1px] bg-charcoal/10 my-4 overflow-hidden">
+            <div id="manifesto-line" class="absolute top-0 left-0 bottom-0 bg-bronze w-0 transition-all duration-100"></div>
+          </div>
+
+          <!-- Bottom Studio Rigor Details -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-muted gap-4">
+            <div class="max-w-md text-stone/80">
+              <span>ARCHIT RATHI &bull; TURNKEY CIVIL RIGOR &bull; MATERIAL INTELLIGENCE</span>
+            </div>
+            <div class="flex gap-8 text-charcoal">
+              <span>150+ PROJECTS DELIVERED</span>
+              <span>GREATER NOIDA / NCR</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 11 — STUDIO PHILOSOPHY DETAILS -->
+      <section id="studio" class="w-full py-32 md:py-44 px-6 md:px-12 bg-ivory border-t border-charcoal/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto space-y-16">
+          
+          <!-- Monograph Section Label -->
+          <div class="flex justify-between items-end border-b border-charcoal/10 pb-6">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-muted block mb-2">THE PRACTICE</span>
+              <h2 class="font-mono text-xs uppercase tracking-[0.25em] text-charcoal font-semibold">VAASTVIK DESIGN GROUP</h2>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] font-mono text-muted hidden md:block">28.4744° N, 77.5040° E &bull; GREATER NOIDA</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div class="lg:col-span-8 space-y-8">
+              <h3 class="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.15] text-charcoal tracking-tight">
+                We create spaces where architecture, raw material, and everyday human life meet in quiet harmony.
+              </h3>
+              
+              <!-- Subtle Architectural Line Detail -->
+              <div class="flex items-center gap-6 pt-4 text-xs font-mono text-muted uppercase tracking-[0.2em]">
+                <span class="w-12 h-[1px] bg-bronze"></span>
+                <span>STRUCTURAL ENGINEERING &bull; INTERIOR ARCHITECTURE</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col justify-between gap-8 border-l border-charcoal/10 pl-6 lg:pl-10 text-sm leading-relaxed text-muted font-sans font-light">
+              <div class="space-y-4">
+                <p>
+                  Founded by Civil Engineer and Designer Archit Rathi, Vaastvik Design Group operates at the intersection of technical structural rigor and high-end editorial aesthetics.
+                </p>
+                <p>
+                  We do not decorate rooms. We engineer complete spatial environments—from raw structural reinforced concrete to bespoke joinery, stone selection, and lighting control.
+                </p>
+              </div>
+              
+              <div class="pt-6 border-t border-charcoal/10 grid grid-cols-2 gap-6 text-xs tracking-widest uppercase text-charcoal font-medium">
+                <div>
+                  <span class="block font-serif text-3xl text-bronze font-light">150+</span>
+                  <span class="text-[10px] text-muted font-mono tracking-[0.15em] mt-1 block">Commissions</span>
+                </div>
+                <div>
+                  <span class="block font-serif text-3xl text-bronze font-light">12+</span>
+                  <span class="text-[10px] text-muted font-mono tracking-[0.15em] mt-1 block">Years Rigor</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 12 — CINEMATIC SCROLL REVEAL FEATURED PROJECT (220vh PINNED SECTION) -->
+      <section id="projects" class="relative w-full h-[220vh] bg-ivory text-charcoal border-t border-charcoal/10">
+        <div id="featured-project-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-ivory z-10 pt-24 md:pt-28">
+
+          <!-- Top Asymmetric Section & Project Number Metadata -->
+          <div class="relative z-20 flex justify-between items-start text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-muted border-b border-charcoal/10 pb-4">
+            <div id="aravali-num-meta" class="opacity-0 translate-y-4 gpu-layer">
+              <span class="text-bronze font-semibold">SELECTED WORK</span>
+              <span class="ml-4 opacity-60">MONOGRAPH 01</span>
+            </div>
+            <div id="aravali-loc-meta" class="text-right opacity-0 translate-y-4 gpu-layer">
+              <span>GREATER NOIDA</span>
+              <span class="block text-bronze text-[9px]">RESIDENTIAL / INTERIOR ARCHITECTURE</span>
+            </div>
+          </div>
+
+          <!-- Pinned Expanding Image Layer (Off-Center 55vw -> Full-Bleed 100vw) -->
+          <div id="aravali-image-mask" class="absolute inset-0 z-10 overflow-hidden flex items-center justify-end pr-[5vw] md:pr-[8vw] pointer-events-none" style="clip-path: inset(12% 8% 12% 36%);">
+            <img id="aravali-img-inner" src="./assets/aravali_main-Ca6tWFWA.png" alt="The Aravali Residence" class="w-full h-full object-cover scale-[1.15] translate-y-[-5%] gpu-layer" loading="eager" decoding="async">
+            <!-- Dark gradient overlay for text readability when expanded -->
+            <div id="aravali-img-overlay" class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/30 to-transparent opacity-75"></div>
+          </div>
+
+          <!-- Asymmetric Main Title Layer -->
+          <div id="aravali-title-wrap" class="relative z-20 my-auto max-w-5xl opacity-0 translate-y-8 gpu-layer pointer-events-none">
+            <span class="text-[10px] uppercase tracking-[0.25em] font-mono text-stone mb-2 block">FEATURED MONOGRAPH</span>
+            <h2 class="font-serif text-5xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.92] text-ivory drop-shadow-sm">
+              THE ARAVALI<br>
+              <span class="italic font-normal text-ivory/90">RESIDENCE.</span>
+            </h2>
+          </div>
+
+          <!-- Asymmetric Bottom Metadata & Modal Trigger -->
+          <div id="aravali-bottom-meta" class="relative z-20 flex justify-between items-end border-t border-ivory/20 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-ivory opacity-0 translate-y-4 gpu-layer">
+            <div class="flex flex-col gap-1 max-w-md">
+              <span class="font-semibold text-bronze">GREATER NOIDA &bull; 8,500 SQ. FT.</span>
+              <span class="opacity-70">BEIGE TRAVERTINE &bull; SMOKED OAK &bull; FLUTED PLASTER</span>
+            </div>
+            <button class="open-project-modal-btn pointer-events-auto border-b border-ivory pb-1 hover:text-bronze hover:border-bronze transition-colors flex items-center gap-2 font-medium" data-project="aravali">
+              <span>READ CASE STUDY</span>
+              <span>↗</span>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 13 — EDITORIAL PROJECT STORYTELLING (TWO-COLUMN ARCHITECTURAL MONOGRAPH) -->
+      <section id="featured-project-story" class="w-full py-32 px-6 md:px-12 bg-ivory border-t border-charcoal/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+          <!-- LEFT COLUMN: STICKY PROJECT METADATA -->
+          <div class="lg:col-span-4 sticky top-28 self-start space-y-8 font-mono text-xs uppercase tracking-[0.2em]">
+            <div>
+              <span class="text-bronze font-semibold block mb-2">PROJECT MONOGRAPH</span>
+              <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-charcoal tracking-tight leading-none">
+                THE ARAVALI<br>RESIDENCE
+              </h3>
+            </div>
+
+            <div class="text-2xl font-serif text-charcoal/40 font-light border-t border-b border-charcoal/10 py-3">
+              01 / 05
+            </div>
+
+            <div class="space-y-3 text-muted">
+              <div class="flex justify-between border-b border-charcoal/5 pb-2">
+                <span>LOCATION</span>
+                <span class="text-charcoal font-medium">GREATER NOIDA</span>
+              </div>
+              <div class="flex justify-between border-b border-charcoal/5 pb-2">
+                <span>TYPOLOGY</span>
+                <span class="text-charcoal font-medium">RESIDENTIAL</span>
+              </div>
+              <div class="flex justify-between border-b border-charcoal/5 pb-2">
+                <span>BUILT AREA</span>
+                <span class="text-charcoal font-medium">4,800 SQ FT</span>
+              </div>
+              <div class="flex justify-between border-b border-charcoal/5 pb-2">
+                <span>COMPLETION</span>
+                <span class="text-charcoal font-medium">2026</span>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button class="open-project-modal-btn w-full py-3 text-center border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-ivory transition-all font-mono text-[10px] tracking-[0.25em]" data-project="aravali">
+                EXPLORE COMPLETE SPECIFICATION ↗
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: LARGE SCROLLING CONTENT -->
+          <div class="lg:col-span-8 space-y-24">
+
+            <!-- Large Image 1 -->
+            <div class="story-img-reveal overflow-hidden relative group">
+              <div class="story-img-mask overflow-hidden" style="clip-path: inset(0% 0% 0% 0%);">
+                <img src="./assets/after_finished-BewrY9ai.png" alt="The Aravali Residence Finished Living View" class="story-img w-full h-[60vh] md:h-[70vh] object-cover scale-[1.04] transition-transform duration-1000 ease-out" loading="eager" decoding="async">
+              </div>
+              <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-muted mt-2 block">FIG. 01 — DOUBLE HEIGHT LIVING HALL &amp; TRAVERTINE FIREPLACE</span>
+            </div>
+
+            <!-- Section: THE BRIEF -->
+            <div class="story-text-block space-y-6">
+              <div class="border-b border-charcoal/10 pb-3">
+                <span class="text-xs font-mono uppercase tracking-[0.25em] text-bronze font-semibold">01 &bull; ARCHITECTURAL COMMISSION</span>
+                <h4 class="font-serif text-3xl md:text-4xl font-light text-charcoal mt-1">THE BRIEF</h4>
+              </div>
+              <div class="story-line-wrap overflow-hidden">
+                <p class="font-serif text-xl md:text-2xl text-charcoal leading-relaxed font-light">
+                  Conceived for a multi-generational family in Greater Noida, the client sought a serene sanctuary that shields living spaces from intense North Indian summer radiation while inviting ambient natural daylight deep into the interior floorplan.
+                </p>
+              </div>
+              <p class="text-sm leading-relaxed text-muted font-sans font-light">
+                The structural solution eliminates typical partition walls in favor of double-height spatial volumes anchored by a central monolithic travertine spine. Private suites hover above the living sanctuary, connected via cantilevered steel and smoked oak galleries.
+              </p>
+            </div>
+
+            <!-- Large Image 2 -->
+            <div class="story-img-reveal overflow-hidden relative group">
+              <div class="story-img-mask overflow-hidden">
+                <img src="./assets/aravali_drawing-iSAz7sdR.png" alt="Structural Architectural Drawing" class="story-img w-full h-[50vh] md:h-[65vh] object-cover scale-[1.04] transition-transform duration-1000 ease-out bg-stone/20" loading="eager" decoding="async">
+              </div>
+              <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-muted mt-2 block">FIG. 02 — STRUCTURAL AXONOMETRIC &amp; SOLAR AXIS DIAGRAM</span>
+            </div>
+
+            <!-- Section: DESIGN APPROACH -->
+            <div class="story-text-block space-y-6">
+              <div class="border-b border-charcoal/10 pb-3">
+                <span class="text-xs font-mono uppercase tracking-[0.25em] text-bronze font-semibold">02 &bull; SPATIAL RIGOR</span>
+                <h4 class="font-serif text-3xl md:text-4xl font-light text-charcoal mt-1">DESIGN APPROACH</h4>
+              </div>
+              <div class="story-line-wrap overflow-hidden">
+                <p class="font-serif text-xl md:text-2xl text-charcoal leading-relaxed font-light">
+                  Rather than applying decorative surface finishes, we engineered passive thermal insulation directly into the building envelope using monolithic lime-washed masonry and custom fluted oak acoustic louvers.
+                </p>
+              </div>
+              <p class="text-sm leading-relaxed text-muted font-sans font-light">
+                Daylight is sculpted through rhythmic vertical fins that cast slowly shifting linear shadows across the natural stone floor throughout the day. Acoustic dampening is seamlessly integrated into wall cavities behind micro-perforated smoked oak timber panels.
+              </p>
+            </div>
+
+            <!-- Section: MATERIAL LANGUAGE -->
+            <div class="story-text-block space-y-8">
+              <div class="border-b border-charcoal/10 pb-3">
+                <span class="text-xs font-mono uppercase tracking-[0.25em] text-bronze font-semibold">03 &bull; TACTILE SPECS</span>
+                <h4 class="font-serif text-3xl md:text-4xl font-light text-charcoal mt-1">MATERIAL LANGUAGE</h4>
+              </div>
+              
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6 font-mono text-xs uppercase tracking-[0.2em]">
+                <div class="p-4 border-l border-bronze/40 space-y-1">
+                  <span class="text-stone block">PRIMARY STONE</span>
+                  <span class="text-charcoal font-semibold block">STONE</span>
+                  <span class="text-[10px] text-muted normal-case block">Beige Travertine</span>
+                </div>
+                <div class="p-4 border-l border-bronze/40 space-y-1">
+                  <span class="text-stone block">TIMBER FINISH</span>
+                  <span class="text-charcoal font-semibold block">OAK</span>
+                  <span class="text-[10px] text-muted normal-case block">Smoked Architectural Timber</span>
+                </div>
+                <div class="p-4 border-l border-bronze/40 space-y-1">
+                  <span class="text-stone block">HARDWARE</span>
+                  <span class="text-charcoal font-semibold block">METAL</span>
+                  <span class="text-[10px] text-muted normal-case block">Patinated Gunmetal Brass</span>
+                </div>
+                <div class="p-4 border-l border-bronze/40 space-y-1">
+                  <span class="text-stone block">SOFT TEXTILES</span>
+                  <span class="text-charcoal font-semibold block">LINEN</span>
+                  <span class="text-[10px] text-muted normal-case block">Natural Unbleached Weave</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Image 3 -->
+            <div class="story-img-reveal overflow-hidden relative group">
+              <div class="story-img-mask overflow-hidden">
+                <img src="./assets/material_travertine-D4WcNmgf.png" alt="Beige Travertine Texture Detail" loading="eager" decoding="async" class="story-img w-full h-[60vh] md:h-[70vh] object-cover scale-[1.04] transition-transform duration-1000 ease-out">
+              </div>
+              <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-muted mt-2 block">FIG. 03 — MACRO TACTILE DETAIL: UNFILLED BEIGE TRAVERTINE POROSITY</span>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 15 — ASYMMETRIC EDITORIAL GALLERY -->
+      <section class="w-full py-16 px-6 md:px-12 bg-ivory overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Image 1 -->
+          <div class="md:col-span-8 relative overflow-hidden group">
+            <img src="./assets/villa_serene-DUxvJU7a.png" alt="Villa Serene Exterior" loading="eager" decoding="async" class="w-full h-[550px] object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute bottom-6 left-6 bg-ivory/90 text-charcoal backdrop-blur-md px-4 py-2 text-xs uppercase tracking-widest">
+              Villa Serene — Facade &amp; Water Mirror
+            </div>
+          </div>
+
+          <!-- Image 2 -->
+          <div class="md:col-span-4 relative overflow-hidden group">
+            <img src="./assets/penthouse_sky-Cots6mug.png" alt="Sky Penthouse Interior" loading="eager" decoding="async" class="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute bottom-6 left-6 bg-ivory/90 text-charcoal backdrop-blur-md px-4 py-2 text-xs uppercase tracking-widest">
+              Sky Penthouse — Smoked Glass &amp; Marble
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 — CINEMATIC HORIZONTAL PROJECT ARCHIVE (350vh PINNED SECTION) -->
+      <section id="archive-wrap" class="relative w-full h-[350vh] bg-ivory text-charcoal border-t border-charcoal/10">
+        <div id="archive-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-ivory z-10 pt-24 md:pt-28">
+
+          <!-- Top Monograph Archive Header -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-muted border-b border-charcoal/10 pb-4 z-20">
+            <div>
+              <span class="text-bronze font-semibold">SELECTED WORK</span>
+              <span class="ml-4 opacity-60">PROJECT ARCHIVE</span>
+            </div>
+            <div id="archive-active-num" class="font-serif text-lg text-charcoal font-light">
+              01 <span class="text-xs font-mono text-muted">/ 05</span>
+            </div>
+          </div>
+
+          <!-- Horizontal Track Container -->
+          <div class="my-auto w-full overflow-hidden relative z-10 py-4">
+            <div id="archive-track" class="flex gap-16 md:gap-24 items-center w-max pl-4 pr-[35vw] will-change-transform">
+
+              <!-- PROJECT 01: Large Landscape Image -->
+              <div class="archive-item group flex-none flex flex-col justify-center cursor-pointer" data-index="01" data-title="THE ARAVALI RESIDENCE" data-meta="GREATER NOIDA &bull; RESIDENTIAL &bull; 8,500 SQ FT" data-project="aravali">
+                <div class="overflow-hidden relative w-[68vw] md:w-[50vw] h-[55vh] md:h-[65vh] bg-stone/20">
+                  <img src="./assets/aravali_main-Ca6tWFWA.png" alt="The Aravali Residence" loading="lazy" decoding="async" class="archive-img w-full h-full object-cover scale-[1.06] transition-transform duration-700">
+                  <div class="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                <div class="mt-4 flex justify-between items-baseline font-mono text-xs uppercase tracking-[0.2em]">
+                  <span class="font-serif text-2xl md:text-3xl text-charcoal font-light group-hover:text-bronze transition-colors">THE ARAVALI RESIDENCE</span>
+                  <span class="text-stone">01 / 05</span>
+                </div>
+              </div>
+
+              <!-- PROJECT 02: Tall Portrait Image -->
+              <div class="archive-item group flex-none flex flex-col justify-center cursor-pointer" data-index="02" data-title="VILLA SERENE" data-meta="DELHI NCR &bull; MODERN VILLA &bull; 12,000 SQ FT" data-project="serene">
+                <div class="overflow-hidden relative w-[48vw] md:w-[32vw] h-[72vh] md:h-[80vh] bg-stone/20">
+                  <img src="./assets/villa_serene-DUxvJU7a.png" alt="Villa Serene" loading="lazy" decoding="async" class="archive-img w-full h-full object-cover scale-[1.06] transition-transform duration-700">
+                  <div class="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                <div class="mt-4 flex justify-between items-baseline font-mono text-xs uppercase tracking-[0.2em]">
+                  <span class="font-serif text-2xl md:text-3xl text-charcoal font-light group-hover:text-bronze transition-colors">VILLA SERENE</span>
+                  <span class="text-stone">02 / 05</span>
+                </div>
+              </div>
+
+              <!-- PROJECT 03: Wide Architectural Photograph -->
+              <div class="archive-item group flex-none flex flex-col justify-center cursor-pointer" data-index="03" data-title="SKY PENTHOUSE" data-meta="GURUGRAM &bull; PENTHOUSE INTERIOR &bull; 6,200 SQ FT" data-project="sky">
+                <div class="overflow-hidden relative w-[78vw] md:w-[60vw] h-[50vh] md:h-[60vh] bg-stone/20">
+                  <img src="./assets/penthouse_sky-Cots6mug.png" alt="Sky Penthouse" loading="lazy" decoding="async" class="archive-img w-full h-full object-cover scale-[1.06] transition-transform duration-700">
+                  <div class="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                <div class="mt-4 flex justify-between items-baseline font-mono text-xs uppercase tracking-[0.2em]">
+                  <span class="font-serif text-2xl md:text-3xl text-charcoal font-light group-hover:text-bronze transition-colors">SKY PENTHOUSE</span>
+                  <span class="text-stone">03 / 05</span>
+                </div>
+              </div>
+
+              <!-- PROJECT 04: Detail Photograph -->
+              <div class="archive-item group flex-none flex flex-col justify-center cursor-pointer" data-index="04" data-title="THE COURTYARD HOUSE" data-meta="NOIDA &bull; COURTYARD RESIDENCE &bull; 9,800 SQ FT" data-project="courtyard">
+                <div class="overflow-hidden relative w-[54vw] md:w-[38vw] h-[60vh] md:h-[70vh] bg-stone/20">
+                  <img src="./assets/courtyard_house-CD8o97SH.png" alt="The Courtyard House" loading="lazy" decoding="async" class="archive-img w-full h-full object-cover scale-[1.06] transition-transform duration-700">
+                  <div class="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                <div class="mt-4 flex justify-between items-baseline font-mono text-xs uppercase tracking-[0.2em]">
+                  <span class="font-serif text-2xl md:text-3xl text-charcoal font-light group-hover:text-bronze transition-colors">THE COURTYARD HOUSE</span>
+                  <span class="text-stone">04 / 05</span>
+                </div>
+              </div>
+
+              <!-- PROJECT 05: Full-Height Image -->
+              <div class="archive-item group flex-none flex flex-col justify-center cursor-pointer" data-index="05" data-title="MONOLITHIC PAVILION" data-meta="NCR ARCHIVE &bull; MONOLITHIC STRUCTURAL &bull; 14,500 SQ FT" data-project="aravali">
+                <div class="overflow-hidden relative w-[62vw] md:w-[48vw] h-[80vh] md:h-[86vh] bg-stone/20">
+                  <img src="./assets/after_finished-BewrY9ai.png" alt="The Monolithic Pavilion" loading="lazy" decoding="async" class="archive-img w-full h-full object-cover scale-[1.06] transition-transform duration-700">
+                  <div class="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                <div class="mt-4 flex justify-between items-baseline font-mono text-xs uppercase tracking-[0.2em]">
+                  <span class="font-serif text-2xl md:text-3xl text-charcoal font-light group-hover:text-bronze transition-colors">MONOLITHIC PAVILION</span>
+                  <span class="text-stone">05 / 05</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Dynamic Archive Metadata Bar -->
+          <div class="flex justify-between items-end border-t border-charcoal/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-muted z-20">
+            <div id="archive-active-meta">
+              <span class="font-semibold text-bronze block">ACTIVE COMMISSION</span>
+              <span id="archive-meta-text" class="text-charcoal">GREATER NOIDA &bull; RESIDENTIAL &bull; 8,500 SQ FT</span>
+            </div>
+            <div class="text-right hidden md:block text-stone">
+              <span>SCROLL DOWN TO TRAVERSE ARCHIVE &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 15 — PINNED TACTILE MATERIAL STUDY ("MATTER" — 350vh SECTION) -->
+      <section id="matter" class="relative w-full h-[350vh] bg-charcoal text-ivory border-t border-ivory/10">
+        <!-- Subtle Noise/Grain Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-25 pointer-events-none z-0"></div>
+
+        <div id="matter-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-charcoal z-10 pt-24 md:pt-28">
+
+          <!-- Top Monograph Header & Progress Line -->
+          <div class="w-full z-20 space-y-4">
+            <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-stone border-b border-ivory/10 pb-4">
+              <div>
+                <span class="text-bronze font-semibold">MATTER</span>
+                <span class="ml-4 opacity-60">MATERIAL STUDY</span>
+              </div>
+              <div id="matter-active-num" class="font-serif text-lg text-ivory font-light">
+                01 <span class="text-xs font-mono text-stone">/ 06</span>
+              </div>
+            </div>
+            <!-- Thin Architectural Progress Line -->
+            <div class="w-full h-[1px] bg-ivory/10 relative overflow-hidden">
+              <div id="matter-progress-line" class="h-full bg-bronze w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Center Stage: Large Material Photography & Title Mask -->
+          <div class="my-auto w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 py-2">
+            
+            <!-- Left Material Title & Monograph Notes -->
+            <div class="lg:col-span-5 space-y-4">
+              <div class="font-mono text-xs text-bronze uppercase tracking-[0.25em]" id="matter-tag">01 &bull; NATURAL STONE</div>
+              <h2 id="matter-title" class="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-ivory tracking-tight leading-none">
+                TRAVERTINE
+              </h2>
+              <p id="matter-desc" class="text-xs md:text-sm text-stone font-sans font-light leading-relaxed max-w-md pt-2">
+                Unfilled beige travertine stone with natural porous surfaces. Sourced for monolithic fireplace spines, cantilevered steps, and quiet bathroom vanities.
+              </p>
+            </div>
+
+            <!-- Right Viewport-Dominant Material Image Canvas -->
+            <div class="lg:col-span-7 relative h-[50vh] md:h-[68vh] w-full overflow-hidden border border-ivory/10 bg-stone/10">
+              <div id="matter-img-container" class="relative w-full h-full overflow-hidden">
+
+                <!-- Slide 01: Travertine -->
+                <div class="matter-slide absolute inset-0 opacity-100 transition-opacity duration-700 pointer-events-auto" data-index="01" data-title="TRAVERTINE" data-tag="01 &bull; NATURAL STONE" data-desc="Unfilled beige travertine stone with natural porous surfaces. Sourced for monolithic fireplace spines, cantilevered steps, and quiet bathroom vanities.">
+                  <img src="./assets/material_travertine-D4WcNmgf.png" alt="Beige Travertine Macro Texture" loading="lazy" decoding="async" class="matter-img w-full h-full object-cover scale-[1.05] transition-transform duration-1000">
+                </div>
+
+                <!-- Slide 02: Oak -->
+                <div class="matter-slide absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none" data-index="02" data-title="OAK" data-tag="02 &bull; ARCHITECTURAL TIMBER" data-desc="Smoked dark oak timber with deeply exposed open grain. Used for precision vertical louvers, acoustic wall joinery, and concealed cabinetry.">
+                  <img src="./assets/material_smoked_oak-DR2wQq24.png" alt="Smoked Oak Macro Texture" loading="lazy" decoding="async" class="matter-img w-full h-full object-cover scale-[1.05] transition-transform duration-1000">
+                </div>
+
+                <!-- Slide 03: Brass -->
+                <div class="matter-slide absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none" data-index="03" data-title="BRASS" data-tag="03 &bull; PATINATED METAL" data-desc="Hand-patinated gunmetal brass with a muted satin finish. Applied to custom door pulls, linear cove light trims, and structural accents.">
+                  <img src="./assets/material_brass-DRDHnPUp.png" alt="Patinated Brass Macro Texture" loading="lazy" decoding="async" class="matter-img w-full h-full object-cover scale-[1.05] transition-transform duration-1000">
+                </div>
+
+                <!-- Slide 04: Marble -->
+                <div class="matter-slide absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none" data-index="04" data-title="MARBLE" data-tag="04 &bull; HONED STONE" data-desc="Calacatta Viola marble with soft grey veining over warm white ground. Selected for kitchen islands, accent niches, and bathroom portals.">
+                  <img src="./assets/penthouse_sky-Cots6mug.png" alt="Calacatta Marble Texture" loading="lazy" decoding="async" class="matter-img w-full h-full object-cover scale-[1.05] transition-transform duration-1000">
+                </div>
+
+                <!-- Slide 05: Linen -->
+                <div class="matter-slide absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none" data-index="05" data-title="LINEN" data-tag="05 &bull; TACTILE WEAVE" data-desc="Natural unbleached Belgian linen weaves for acoustic drapes, custom headboards, and soft architectural partitions.">
+                  <img src="./assets/after_finished-BewrY9ai.png" alt="Natural Linen Soft Texture" loading="lazy" decoding="async" class="matter-img w-full h-full object-cover scale-[1.05] transition-transform duration-1000">
+                </div>
+
+                <!-- Slide 06: Plaster -->
+                <div class="matter-slide absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none" data-index="06" data-title="PLASTER" data-tag="06 &bull; HAND-TROWELLED LIME" data-desc="Warm ivory lime plaster finished by master artisans. Seamlessly coats walls and ceilings to absorb and diffuse ambient daylight without glare.">
+                  <img src="./assets/aravali_main-Ca6tWFWA.png" alt="Monolithic Lime Plaster Wall" loading="lazy" decoding="async" class="matter-img w-full h-full object-cover scale-[1.05] transition-transform duration-1000">
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Dynamic Materiality Bar -->
+          <div class="flex justify-between items-end border-t border-ivory/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-stone z-20">
+            <div>
+              <span class="font-semibold text-bronze block">SURFACE TACTILITY STUDY</span>
+              <span class="text-ivory/70">6 ESSENTIAL MONOGRAPH MATERIALS</span>
+            </div>
+            <div class="text-right hidden md:block text-stone">
+              <span>SCROLL DOWN TO PROGRESS STUDY &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 16 — SIGNATURE SCROLL TRANSFORMATION: FROM DRAWING TO SPACE (350vh PINNED SECTION) -->
+      <section id="drawing-space-wrap" class="relative w-full h-[350vh] bg-ivory text-charcoal border-t border-charcoal/10">
+        <div id="drawing-space-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-ivory z-10 pt-24 md:pt-28">
+
+          <!-- Top Section Header & Stage Tracker -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-muted border-b border-charcoal/10 pb-4 z-20">
+            <div>
+              <span class="text-bronze font-semibold">FROM DRAWING TO SPACE</span>
+              <span class="ml-4 opacity-60">SYNTHESIS OF DISCIPLINE</span>
+            </div>
+            <div id="d2s-stage-num" class="font-serif text-lg text-charcoal font-light">
+              STAGE 01 <span class="text-xs font-mono text-muted">/ 04</span>
+            </div>
+          </div>
+
+          <!-- Central Interactive Transformation Canvas -->
+          <div class="my-auto w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 py-2">
+
+            <!-- Left Stage Title & Narrative Description -->
+            <div class="lg:col-span-5 space-y-4">
+              <div id="d2s-stage-badge" class="font-mono text-xs text-bronze uppercase tracking-[0.25em]">STAGE 01 &bull; ARCHITECTURAL CAD</div>
+              <h2 id="d2s-stage-title" class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-charcoal tracking-tight leading-none">
+                ARCHITECTURAL DRAWING
+              </h2>
+              <p id="d2s-stage-desc" class="text-xs md:text-sm text-muted font-sans font-light leading-relaxed max-w-md pt-2">
+                Precise 2D CAD floorplan mapping structural axes, load-bearing columns, and daylight angles to 1mm tolerances.
+              </p>
+
+              <!-- Dynamic Real Space Tag (Reveals in Stage 04) -->
+              <div id="d2s-real-tag" class="opacity-0 translate-y-3 transition-all duration-500 pt-4 border-t border-charcoal/10">
+                <span class="font-mono text-[10px] text-bronze uppercase tracking-[0.25em] font-semibold block">COMPLETED SANCTUARY</span>
+                <span class="font-serif text-2xl text-charcoal block mt-1">THE ARAVALI RESIDENCE</span>
+                <span class="font-mono text-xs text-muted block mt-1">GREATER NOIDA &bull; 2026</span>
+              </div>
+            </div>
+
+            <!-- Right Layered Transformation Viewport -->
+            <div class="lg:col-span-7 relative h-[50vh] md:h-[68vh] w-full overflow-hidden border border-charcoal/10 bg-stone/20">
+
+              <!-- Layer 01: Drawing (Base layer) -->
+              <div id="d2s-layer-1" class="absolute inset-0 z-10 overflow-hidden">
+                <img src="./assets/aravali_drawing-iSAz7sdR.png" alt="Architectural Drawing Stage" loading="lazy" decoding="async" class="w-full h-full object-cover scale-[1.04] will-change-transform">
+              </div>
+
+              <!-- Layer 02: Form (Raw structural frame) -->
+              <div id="d2s-layer-2" class="absolute inset-0 z-20 overflow-hidden" style="clip-path: circle(0% at 50% 50%);">
+                <img src="./assets/construction_raw-DQ5f39Jv.png" alt="Structural Form Stage" loading="lazy" decoding="async" class="w-full h-full object-cover scale-[1.04] will-change-transform">
+              </div>
+
+              <!-- Layer 03: Material (Tactile material layer) -->
+              <div id="d2s-layer-3" class="absolute inset-0 z-30 overflow-hidden" style="clip-path: circle(0% at 50% 50%);">
+                <img src="./assets/material_travertine-D4WcNmgf.png" alt="Material Surface Stage" loading="lazy" decoding="async" class="w-full h-full object-cover scale-[1.04] will-change-transform">
+              </div>
+
+              <!-- Layer 04: Real Space (Final finished photograph) -->
+              <div id="d2s-layer-4" class="absolute inset-0 z-40 overflow-hidden" style="clip-path: circle(0% at 50% 50%);">
+                <img src="./assets/after_finished-BewrY9ai.png" alt="Finished Real Space Sanctuary" loading="lazy" decoding="async" class="w-full h-full object-cover scale-[1.04] will-change-transform">
+              </div>
+
+              <!-- Stage Progress Indicator Badge -->
+              <div class="absolute bottom-6 left-6 z-50 bg-charcoal/90 text-ivory px-4 py-2 border border-ivory/20 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-md">
+                <span id="d2s-canvas-badge">01 / ARCHITECTURAL CAD</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Metadata Bar -->
+          <div class="flex justify-between items-end border-t border-charcoal/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-muted z-20">
+            <div>
+              <span class="font-semibold text-bronze block">TRANSFORMATION ARC</span>
+              <span class="text-charcoal/70">CONCEPT &rarr; FORM &rarr; MATERIAL &rarr; REAL SPACE</span>
+            </div>
+            <div class="text-right hidden md:block text-stone">
+              <span>SCROLL DOWN TO REVEAL TRANSFORMATION &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 17 — TURNKEY CONSTRUCTION TRANSFORMATION: FROM GROUND TO HOME (300vh PINNED SECTION) -->
+      <section id="ground-home-wrap" class="relative w-full h-[300vh] bg-charcoal text-ivory border-t border-ivory/10">
+        <!-- Subtle Noise Texture Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div id="ground-home-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-charcoal z-10 pt-24 md:pt-28">
+
+          <!-- Top Monograph Header & Stage Counter -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-stone border-b border-ivory/10 pb-4 z-20">
+            <div>
+              <span class="text-bronze font-semibold">FROM GROUND TO HOME</span>
+              <span class="ml-4 opacity-60">TURNKEY EXCELLENCE</span>
+            </div>
+            <div id="g2h-stage-num" class="font-serif text-lg text-ivory font-light">
+              01 <span class="text-xs font-mono text-stone">/ 03</span>
+            </div>
+          </div>
+
+          <!-- Center Stage: Layered Time-Lapse Viewport Canvas & Narrative -->
+          <div class="my-auto w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 py-2">
+            
+            <!-- Left Narrative Text Block -->
+            <div class="lg:col-span-5 space-y-4">
+              <div id="g2h-stage-badge" class="font-mono text-xs text-bronze uppercase tracking-[0.25em]">STAGE 01 &bull; CIVIL EXCAVATION</div>
+              <h2 id="g2h-stage-title" class="font-serif text-4xl md:text-6xl font-light text-ivory tracking-tight leading-none">
+                RAW
+              </h2>
+              <div id="g2h-keywords" class="font-mono text-xs text-stone uppercase tracking-widest border-l-2 border-bronze pl-3 py-1">
+                Construction site. Concrete. Steel. Dust. Drawings.
+              </div>
+              <p id="g2h-stage-desc" class="text-xs md:text-sm text-stone font-sans font-light leading-relaxed max-w-md pt-2">
+                Civil excavation, reinforced concrete framework, structural steel erection, and site utility layout executed under strict engineering supervision.
+              </p>
+            </div>
+
+            <!-- Right Time-Lapse Transformation Canvas -->
+            <div class="lg:col-span-7 relative h-[50vh] md:h-[68vh] w-full overflow-hidden border border-ivory/10 bg-stone/10">
+
+              <!-- Stage 01: RAW Layer -->
+              <div id="g2h-layer-1" class="absolute inset-0 z-10 overflow-hidden">
+                <img src="./assets/construction_raw-DQ5f39Jv.png" alt="Raw Construction Site" loading="lazy" decoding="async" class="g2h-img w-full h-full object-cover scale-[1.10]">
+              </div>
+
+              <!-- Stage 02: FORM Layer (Sweeps in from top/left) -->
+              <div id="g2h-layer-2" class="absolute inset-0 z-20 overflow-hidden" style="clip-path: inset(100% 0 0 0);">
+                <img src="./assets/before_raw-CEit4_RF.png" alt="Form Framework Installation" loading="lazy" decoding="async" class="g2h-img w-full h-full object-cover scale-[1.10]">
+              </div>
+
+              <!-- Stage 03: LIFE Layer (Sweeps in from top/left) -->
+              <div id="g2h-layer-3" class="absolute inset-0 z-30 overflow-hidden" style="clip-path: inset(100% 0 0 0);">
+                <img src="./assets/after_finished-BewrY9ai.png" alt="Completed Inhabited Home" loading="lazy" decoding="async" class="g2h-img w-full h-full object-cover scale-[1.10]">
+              </div>
+
+              <!-- Canvas Floating Tag -->
+              <div class="absolute bottom-6 left-6 z-40 bg-charcoal/90 text-ivory px-4 py-2 border border-ivory/20 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-md">
+                <span id="g2h-canvas-badge">01 / STRUCTURAL RAW SHELL</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Monograph Status Bar -->
+          <div class="flex justify-between items-end border-t border-ivory/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-stone z-20">
+            <div>
+              <span class="font-semibold text-bronze block">EXECUTION CHRONOLOGY</span>
+              <span class="text-ivory/70">RAW CIVIL &rarr; INTERIOR FORM &rarr; LIVED SPACE</span>
+            </div>
+            <div class="text-right hidden md:block text-stone">
+              <span>SCROLL DOWN TO PROGRESS TIME-LAPSE &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 21 — DARK CINEMATIC SECTION (CINEMATIC TYPOGRAPHY) -->
+      <section id="dark-cinematic" class="w-full py-40 md:py-56 px-6 md:px-12 bg-charcoal text-ivory text-center flex flex-col justify-center items-center overflow-hidden relative">
+        <div class="max-w-4xl mx-auto space-y-8">
+          <p class="text-xs uppercase tracking-[0.25em] text-stone font-mono">Editorial Reflection</p>
+          <h2 id="dark-line-1" class="font-serif text-4xl md:text-7xl lg:text-8xl font-light leading-tight">
+            Good design<br>
+            <span class="italic text-stone font-normal">doesn’t shout.</span>
+          </h2>
+          <p id="dark-line-2" class="font-serif text-3xl md:text-5xl font-light text-bronze tracking-wide">
+            It stays.
+          </p>
+          <p id="dark-line-3" class="text-xs uppercase tracking-[0.2em] text-stone/80 max-w-md mx-auto leading-relaxed font-mono">
+            Every line drawn in our Greater Noida studio is meant to endure for decades with quiet grace and structural permanence.
+          </p>
+        </div>
+      </section>
+
+      <!-- 22 — EDITORIAL SERVICES SECTION ("THE STUDIO") -->
+      <section id="services" class="relative w-full py-32 px-6 md:px-12 bg-ivory text-charcoal overflow-hidden">
+        
+        <!-- Subtle Cursor Image Preview Canvas (Desktop) -->
+        <div id="service-preview-wrap" class="fixed pointer-events-none z-50 overflow-hidden border border-charcoal/20 shadow-2xl opacity-0 scale-95 transition-all duration-500 hidden md:block w-[340px] h-[220px] bg-charcoal">
+          <img id="service-preview-img" src="./assets/hero_architecture-RjXw3hnP.png" alt="Service Preview" loading="lazy" decoding="async" class="w-full h-full object-cover scale-100 transition-transform duration-700">
+        </div>
+
+        <div class="max-w-7xl mx-auto space-y-16">
+          
+          <!-- Monograph Section Header -->
+          <div class="flex justify-between items-end border-b border-charcoal/10 pb-6">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-muted block mb-2">THE STUDIO</span>
+              <h2 class="font-serif text-4xl md:text-6xl font-light">DISCIPLINES</h2>
+            </div>
+            <p class="text-xs uppercase tracking-[0.25em] font-mono text-muted hidden md:block max-w-xs text-right">
+              End-to-End Architectural Rigor &amp; Turnkey Execution
+            </p>
+          </div>
+
+          <!-- 3 Large Horizontal Editorial Rows -->
+          <div class="flex flex-col space-y-0 border-b border-charcoal/10">
+
+            <!-- Row 01: ARCHITECTURE -->
+            <div class="editorial-service-row group py-12 md:py-16 border-t border-charcoal/10 cursor-pointer transition-colors duration-500 hover:bg-stone/10 px-4 md:px-8" data-img="assets/images/hero_architecture.png">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <span class="lg:col-span-2 font-mono text-xs text-muted uppercase tracking-[0.2em]">01 &bull; DISCIPLINE</span>
+                <div class="lg:col-span-6">
+                  <h3 class="font-serif text-3xl md:text-5xl lg:text-6xl font-light tracking-tight group-hover:text-bronze transition-colors duration-300">
+                    ARCHITECTURE
+                  </h3>
+                </div>
+                <div class="lg:col-span-3">
+                  <p class="text-xs md:text-sm text-muted font-sans font-light leading-relaxed">
+                    Site-responsive structural design, facade articulation, double-height spatial volumes, and environmental daylight orientation.
+                  </p>
+                </div>
+                <div class="lg:col-span-1 text-right">
+                  <span class="font-serif text-3xl md:text-4xl text-stone group-hover:text-bronze group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300 inline-block">↗</span>
+                </div>
+              </div>
+              <!-- Mobile Inline Image Reveal -->
+              <div class="mt-6 overflow-hidden max-h-0 group-hover:max-h-64 transition-all duration-500 md:hidden border border-charcoal/10">
+                <img src="./assets/hero_architecture-RjXw3hnP.png" alt="Architecture Discipline" loading="lazy" decoding="async" class="w-full h-48 object-cover">
+              </div>
+            </div>
+
+            <!-- Row 02: INTERIOR ARCHITECTURE -->
+            <div class="editorial-service-row group py-12 md:py-16 border-t border-charcoal/10 cursor-pointer transition-colors duration-500 hover:bg-stone/10 px-4 md:px-8" data-img="assets/images/penthouse_sky.png">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <span class="lg:col-span-2 font-mono text-xs text-muted uppercase tracking-[0.2em]">02 &bull; DISCIPLINE</span>
+                <div class="lg:col-span-6">
+                  <h3 class="font-serif text-3xl md:text-5xl lg:text-6xl font-light tracking-tight group-hover:text-bronze transition-colors duration-300">
+                    INTERIOR ARCHITECTURE
+                  </h3>
+                </div>
+                <div class="lg:col-span-3">
+                  <p class="text-xs md:text-sm text-muted font-sans font-light leading-relaxed">
+                    Monolithic stone joinery, custom timber millwork, acoustic fabric integration, and bespoke furniture curation.
+                  </p>
+                </div>
+                <div class="lg:col-span-1 text-right">
+                  <span class="font-serif text-3xl md:text-4xl text-stone group-hover:text-bronze group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300 inline-block">↗</span>
+                </div>
+              </div>
+              <!-- Mobile Inline Image Reveal -->
+              <div class="mt-6 overflow-hidden max-h-0 group-hover:max-h-64 transition-all duration-500 md:hidden border border-charcoal/10">
+                <img src="./assets/penthouse_sky-Cots6mug.png" alt="Interior Architecture Discipline" loading="lazy" decoding="async" class="w-full h-48 object-cover">
+              </div>
+            </div>
+
+            <!-- Row 03: CONSTRUCTION -->
+            <div class="editorial-service-row group py-12 md:py-16 border-t border-charcoal/10 cursor-pointer transition-colors duration-500 hover:bg-stone/10 px-4 md:px-8" data-img="assets/images/construction_raw.png">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <span class="lg:col-span-2 font-mono text-xs text-muted uppercase tracking-[0.2em]">03 &bull; DISCIPLINE</span>
+                <div class="lg:col-span-6">
+                  <h3 class="font-serif text-3xl md:text-5xl lg:text-6xl font-light tracking-tight group-hover:text-bronze transition-colors duration-300">
+                    CONSTRUCTION
+                  </h3>
+                </div>
+                <div class="lg:col-span-3">
+                  <p class="text-xs md:text-sm text-muted font-sans font-light leading-relaxed">
+                    Turnkey civil execution, 1mm engineering tolerances, direct material procurement, and white-glove project delivery.
+                  </p>
+                </div>
+                <div class="lg:col-span-1 text-right">
+                  <span class="font-serif text-3xl md:text-4xl text-stone group-hover:text-bronze group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300 inline-block">↗</span>
+                </div>
+              </div>
+              <!-- Mobile Inline Image Reveal -->
+              <div class="mt-6 overflow-hidden max-h-0 group-hover:max-h-64 transition-all duration-500 md:hidden border border-charcoal/10">
+                <img src="./assets/construction_raw-DQ5f39Jv.png" alt="Construction Discipline" loading="lazy" decoding="async" class="w-full h-48 object-cover">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+      <!-- 23 — EDITORIAL FOUNDER SECTION (06 / THE MIND) -->
+      <section id="founder-editorial" class="relative w-full py-32 md:py-48 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+          
+          <!-- Monograph Section Label & Header -->
+          <div class="mb-16 md:mb-24 border-b border-charcoal/10 pb-6 flex justify-between items-end">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-muted block mb-2">THE MIND</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight">ARCHIT RATHI</h2>
+            </div>
+            <span class="text-xs uppercase tracking-[0.25em] font-mono text-muted hidden md:block">
+              FOUNDER / CIVIL ENGINEER / DESIGNER
+            </span>
+          </div>
+
+          <!-- Asymmetrical 12-Column Editorial Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+            
+            <!-- Left Portrait Mask Viewport (Asymmetrical 5 columns) -->
+            <div class="lg:col-span-5 relative">
+              <div id="founder-portrait-wrap" class="relative w-full h-[520px] md:h-[680px] overflow-hidden bg-stone/20 border border-charcoal/10 will-change-transform" style="clip-path: inset(18% 0 18% 0);">
+                <img id="founder-portrait-img" src="./assets/archit_rathi-DOanD3XK.png" alt="Archit Rathi — Founder &amp; Civil Engineer" loading="lazy" decoding="async" class="w-full h-[120%] object-cover object-center scale-[1.08] -translate-y-[8%] will-change-transform">
+                
+                <!-- Discrete Floating Portrait Tag -->
+                <div class="absolute bottom-6 left-6 bg-charcoal/90 text-ivory px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-md border border-ivory/20">
+                  ARCHIT RATHI &bull; NOIDA / 2026
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Editorial Content Column (7 columns with generous whitespace) -->
+            <div class="lg:col-span-7 space-y-12 lg:pl-6 pt-4">
+              
+              <!-- Large Editorial Quote -->
+              <blockquote class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-charcoal leading-[1.15] tracking-tight border-l-2 border-bronze pl-6 md:pl-8 py-2">
+                “Every space begins with understanding how people live.”
+              </blockquote>
+
+              <!-- Magazine Profile Text Block -->
+              <div class="space-y-6 max-w-xl text-muted font-sans font-light text-sm md:text-base leading-relaxed pt-4">
+                <p class="text-charcoal font-medium text-base md:text-lg">
+                  Bridging the historical divide between architectural abstraction and real-world structural engineering.
+                </p>
+                <p>
+                  Holding a degree in Civil Engineering, Archit Rathi established Vaastvik Design Group in Greater Noida to elevate residential and commercial interior architecture through uncompromising technical rigor.
+                </p>
+                <p>
+                  Under his leadership, every monograph is executed with 1mm engineering tolerances, transparent material procurement, and a commitment to timeless, quiet luxury.
+                </p>
+              </div>
+
+              <!-- Monograph Signature Block -->
+              <div class="pt-8 border-t border-charcoal/10 flex items-center justify-between">
+                <div>
+                  <span class="font-serif italic text-2xl md:text-3xl text-charcoal block">Archit Rathi</span>
+                  <span class="text-[10px] uppercase tracking-[0.25em] font-mono text-muted block mt-1">Founder / Civil Engineer / Designer</span>
+                </div>
+                <div class="font-mono text-xs text-bronze uppercase tracking-[0.2em]">
+                  VAASTVIK STUDIO
+                </div>
+              </div>
+
+              <!-- VOICE OF THE ARCHITECT AUDIO PLAYER -->
+              <div id="architect-voice" class="mt-8 p-6 bg-charcoal text-ivory border border-bronze/30 space-y-4">
+                <div class="flex items-center justify-between font-mono text-xs">
+                  <span class="text-bronze uppercase tracking-[0.2em] flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-bronze animate-ping"></span>
+                    VOICE OF THE ARCHITECT &bull; AUDIO MONOGRAPH
+                  </span>
+                  <span class="text-stone/60">ARCHIT RATHI</span>
+                </div>
+
+                <div class="flex items-center gap-6">
+                  <button id="voice-play-btn" class="w-12 h-12 rounded-full bg-bronze text-ivory flex items-center justify-center text-lg hover:scale-105 transition-transform cursor-pointer">
+                    ▶
+                  </button>
+                  <div class="flex-1 space-y-2">
+                    <div class="font-serif text-lg text-ivory" id="voice-track-title">Track 01: On Quiet Luxury &amp; Spatial Honesty</div>
+                    
+                    <!-- Audio Waveform Visualization Bars -->
+                    <div class="flex items-center gap-1.5 h-6" id="voice-bars">
+                      <div class="w-1 bg-bronze h-2"></div>
+                      <div class="w-1 bg-bronze h-4"></div>
+                      <div class="w-1 bg-bronze h-6"></div>
+                      <div class="w-1 bg-bronze h-3"></div>
+                      <div class="w-1 bg-bronze h-5"></div>
+                      <div class="w-1 bg-bronze h-2"></div>
+                      <div class="w-1 bg-bronze h-4"></div>
+                      <div class="w-1 bg-bronze h-6"></div>
+                      <div class="w-1 bg-bronze h-3"></div>
+                      <div class="w-1 bg-bronze h-5"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 24 — SOPHISTICATED MATERIALS & PARTNERS CREDIBILITY SECTION -->
+      <section id="partnerships-editorial" class="relative w-full py-32 md:py-40 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto space-y-16">
+          
+          <!-- Monograph Section Header & Supporting Narrative -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-muted block mb-2">MATERIALS &amp; PARTNERS</span>
+              <h2 class="font-serif text-4xl md:text-6xl font-light">MATERIALITY NETWORK</h2>
+            </div>
+            <p class="text-xs md:text-sm text-muted font-sans font-light max-w-md leading-relaxed">
+              A considered network of global brands and specialists supporting every stage of the architectural project.
+            </p>
+          </div>
+
+          <!-- Quiet Monochrome Grid Grouped by Category -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 pt-4">
+
+            <!-- Category 01: KITCHEN -->
+            <div class="partner-group space-y-6 border-t-2 border-bronze/30 pt-6">
+              <span class="font-mono text-sm text-bronze uppercase tracking-[0.25em] font-semibold block">01 &bull; KITCHEN</span>
+              <ul class="space-y-3.5 font-serif text-xl md:text-2xl text-charcoal">
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="boffi">
+                  <span>Boffi</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="poliform">
+                  <span>Poliform</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="dada">
+                  <span>Dada / Molteni</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="gaggenau">
+                  <span>Gaggenau</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category 02: BATH -->
+            <div class="partner-group space-y-6 border-t-2 border-bronze/30 pt-6">
+              <span class="font-mono text-sm text-bronze uppercase tracking-[0.25em] font-semibold block">02 &bull; BATH</span>
+              <ul class="space-y-3.5 font-serif text-xl md:text-2xl text-charcoal">
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="dornbracht">
+                  <span>Dornbracht</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="agape">
+                  <span>Agape</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="gessi">
+                  <span>Gessi</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="kallista">
+                  <span>Kohler Kallista</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category 03: HARDWARE -->
+            <div class="partner-group space-y-6 border-t-2 border-bronze/30 pt-6">
+              <span class="font-mono text-sm text-bronze uppercase tracking-[0.25em] font-semibold block">03 &bull; HARDWARE</span>
+              <ul class="space-y-3.5 font-serif text-xl md:text-2xl text-charcoal">
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="buster_punch">
+                  <span>Buster + Punch</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="formani">
+                  <span>Formani</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="ogro">
+                  <span>Ogro</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="fsb">
+                  <span>FSB Architectural</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category 04: LIGHTING -->
+            <div class="partner-group space-y-6 border-t-2 border-bronze/30 pt-6">
+              <span class="font-mono text-sm text-bronze uppercase tracking-[0.25em] font-semibold block">04 &bull; LIGHTING</span>
+              <ul class="space-y-3.5 font-serif text-xl md:text-2xl text-charcoal">
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="flos">
+                  <span>Flos</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="viabizzuno">
+                  <span>Viabizzuno</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="occhio">
+                  <span>Occhio</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="deltalight">
+                  <span>Delta Light</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category 05: SURFACES -->
+            <div class="partner-group space-y-6 border-t-2 border-bronze/30 pt-6">
+              <span class="font-mono text-sm text-bronze uppercase tracking-[0.25em] font-semibold block">05 &bull; SURFACES</span>
+              <ul class="space-y-3.5 font-serif text-xl md:text-2xl text-charcoal">
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="salvatori">
+                  <span>Salvatori Stone</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="mutina">
+                  <span>Mutina Ceramica</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="dekton">
+                  <span>Cosentino Dekton</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+                <li class="partner-item transition-all duration-300 hover:text-bronze cursor-pointer py-1.5 flex items-center justify-between group border-b border-charcoal/5" data-brand="marazzi">
+                  <span>Marazzi Italia</span>
+                  <span class="partner-arrow opacity-0 group-hover:opacity-100 transition-opacity font-mono text-sm text-bronze font-semibold">↗</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- INTERACTIVE BRAND SPECIFICATION DETAIL VIEW CONTAINER -->
+          <div id="partner-detail-container" class="mt-12 pt-12 border-t border-charcoal/10 transition-all duration-500 min-h-[400px]">
+            <!-- Rendered dynamically by initPartnerDetails() -->
+          </div>
+
+          <!-- Editorial Bottom Note -->
+          <div class="pt-8 border-t border-charcoal/10 flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-muted">
+            <span>DIRECT FACTORY &amp; ORIGINAL SPECIFICATION ASSURANCE</span>
+            <span class="hidden md:block">VAASTVIK SUPPLY CHAIN NETWORK</span>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <!-- 27 — BESPOKE TURNKEY INVESTMENT CALCULATOR -->
+      <section id="cost-calculator" class="relative w-full py-32 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto space-y-12">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze block mb-2">INVESTMENT ESTIMATOR</span>
+              <h2 class="font-serif text-4xl md:text-6xl font-light">PROJECT COST CALCULATOR</h2>
+            </div>
+            <p class="text-xs md:text-sm text-muted font-sans font-light max-w-md leading-relaxed">
+              Estimate turnkey architectural, interior, and civil construction investments for your bespoke residence.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <!-- Input Controls (7 Columns) -->
+            <div class="lg:col-span-7 space-y-8 bg-stone/10 p-8 border border-charcoal/10">
+              
+              <!-- Slider 1: Area -->
+              <div class="space-y-3">
+                <div class="flex justify-between font-mono text-xs uppercase tracking-[0.15em]">
+                  <span class="text-charcoal font-semibold">1. Built-Up Area (Sq. Ft.)</span>
+                  <span id="calc-area-val" class="text-bronze font-bold">5,000 Sq. Ft.</span>
+                </div>
+                <input type="range" id="calc-area-slider" min="2000" max="20000" step="500" value="5000" class="w-full accent-bronze cursor-pointer">
+              </div>
+
+              <!-- Choice 2: Construction Tier -->
+              <div class="space-y-3">
+                <span class="font-mono text-xs uppercase tracking-[0.15em] text-charcoal font-semibold block">2. Engineering &amp; Structural Tier</span>
+                <div class="grid grid-cols-2 gap-4 font-mono text-xs">
+                  <button class="calc-tier-btn active p-4 border border-bronze text-left bg-bronze/10 text-charcoal font-medium cursor-pointer" data-rate="4200">
+                    <div class="font-serif text-base text-charcoal">Structural RCC</div>
+                    <div class="text-[10px] text-muted">₹4,200 / sq. ft.</div>
+                  </button>
+                  <button class="calc-tier-btn p-4 border border-charcoal/20 text-left hover:border-bronze text-muted cursor-pointer" data-rate="6800">
+                    <div class="font-serif text-base text-charcoal">Monolithic Cantilever</div>
+                    <div class="text-[10px] text-muted">₹6,800 / sq. ft.</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Choice 3: Interior Fitout Package -->
+              <div class="space-y-3">
+                <span class="font-mono text-xs uppercase tracking-[0.15em] text-charcoal font-semibold block">3. Interior Joinery &amp; Surface Finishes</span>
+                <div class="grid grid-cols-2 gap-4 font-mono text-xs">
+                  <button class="calc-finish-btn active p-4 border border-bronze text-left bg-bronze/10 text-charcoal font-medium cursor-pointer" data-rate="3500">
+                    <div class="font-serif text-base text-charcoal">Bespoke Studio Teak</div>
+                    <div class="text-[10px] text-muted">₹3,500 / sq. ft.</div>
+                  </button>
+                  <button class="calc-finish-btn p-4 border border-charcoal/20 text-left hover:border-bronze text-muted cursor-pointer" data-rate="6500">
+                    <div class="font-serif text-base text-charcoal">Imported Italian Boffi</div>
+                    <div class="text-[10px] text-muted">₹6,500 / sq. ft.</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Output Summary Panel (5 Columns) -->
+            <div class="lg:col-span-5 bg-charcoal text-ivory p-8 border border-bronze/40 space-y-8">
+              <div class="border-b border-ivory/10 pb-4">
+                <span class="text-[10px] uppercase font-mono tracking-[0.2em] text-bronze block mb-1">ESTIMATED INVESTMENT RANGE</span>
+                <div id="calc-total-display" class="font-serif text-4xl md:text-5xl font-light text-ivory">₹ 3.85 Cr</div>
+                <span class="text-[10px] font-mono text-stone/60">Turnkey Architecture, Structural &amp; Interior Delivery</span>
+              </div>
+
+              <div class="space-y-3 font-mono text-xs border-b border-ivory/10 pb-6 text-stone/80">
+                <div class="flex justify-between">
+                  <span>Civil Structural Cost:</span>
+                  <span id="calc-civil-val" class="text-ivory">₹ 2.10 Cr</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Interior Fitout Cost:</span>
+                  <span id="calc-interior-val" class="text-ivory">₹ 1.75 Cr</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Estimated Timeline:</span>
+                  <span id="calc-timeline-val" class="text-bronze">14 - 16 Months</span>
+                </div>
+              </div>
+
+              <button id="calc-inquiry-btn" class="w-full py-4 border border-bronze bg-bronze text-ivory hover:bg-ivory hover:text-charcoal transition-all font-mono text-xs uppercase tracking-[0.2em] cursor-pointer">
+                BOOK CONSULTATION FOR THIS BUDGET ↗
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- 29 — PINNED SCROLL-DRIVEN BEFORE / AFTER TRANSFORMATION ENGINE (09 / TRANSFORMATION — 300vh PINNED SECTION) -->
+      <section id="before-after-pinned-wrap" class="relative w-full h-[300vh] bg-charcoal text-ivory border-t border-ivory/10">
+        <!-- Subtle Noise Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div id="before-after-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-charcoal z-10 pt-24 md:pt-28">
+
+          <!-- Top Monograph Header & Status Indicator -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-stone border-b border-ivory/10 pb-4 z-20">
+            <div>
+              <span class="text-bronze font-semibold">TRANSFORMATION</span>
+              <span class="ml-4 opacity-60">SPATIAL EVOLUTION</span>
+            </div>
+            <div id="ba-percentage" class="font-mono text-xs text-ivory font-light">
+              PROGRESS: <span id="ba-percent-num" class="text-bronze font-semibold">0%</span>
+            </div>
+          </div>
+
+          <!-- Center Interactive Transformation Canvas (Full Viewport Frame) -->
+          <div id="ba-canvas-container" class="my-auto relative w-full h-[55vh] md:h-[65vh] max-w-6xl mx-auto overflow-hidden border border-ivory/10 bg-stone/10 select-none cursor-ew-resize">
+            
+            <!-- Base Layer: BEFORE (RAW SPACE IMAGE) -->
+            <div class="absolute inset-0 z-10 overflow-hidden">
+              <img src="./assets/before_raw-CEit4_RF.png" alt="Raw Space Construction Shell" loading="lazy" decoding="async" class="w-full h-full object-cover">
+              <div class="absolute top-6 left-6 bg-charcoal/90 text-ivory px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-md border border-ivory/20 z-20">
+                BEFORE &bull; RAW SPACE / CONCRETE SHELL
+              </div>
+            </div>
+
+            <!-- Overlaid Mask Layer: AFTER (FINISHED SPACE IMAGE) -->
+            <div id="ba-after-mask" class="absolute inset-0 z-20 overflow-hidden" style="clip-path: inset(0 100% 0 0);">
+              <img src="./assets/after_finished-BewrY9ai.png" alt="Finished Luxury Architectural Interior" loading="lazy" decoding="async" class="w-full h-full object-cover">
+              <div class="absolute top-6 right-6 bg-bronze/90 text-charcoal font-semibold px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-md z-20">
+                AFTER &bull; FINISHED SANCTUARY
+              </div>
+            </div>
+
+            <!-- Interactive Vertical Drag Divider Handle -->
+            <div id="ba-divider-handle" class="absolute top-0 bottom-0 left-0 z-30 w-1 bg-ivory flex justify-center items-center pointer-events-none transform -translate-x-1/2 shadow-2xl">
+              <div class="w-10 h-10 rounded-full bg-charcoal text-ivory border border-ivory/40 flex items-center justify-center text-xs font-mono shadow-2xl backdrop-blur-md">
+                ↔
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Monograph Metadata Bar -->
+          <div id="ba-metadata-bar" class="flex flex-col md:flex-row justify-between items-start md:items-end border-t border-ivory/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-stone z-20 gap-2">
+            <div class="space-y-1">
+              <span class="font-serif text-lg md:text-xl text-ivory font-light block normal-case tracking-tight" id="ba-project-title">THE ARAVALI RESIDENCE</span>
+              <div class="flex gap-4 text-stone/80">
+                <span>LOCATION: <strong class="text-ivory">GREATER NOIDA</strong></span>
+                <span>TYPE: <strong class="text-ivory">TURNKEY CIVIL &amp; INTERIOR ARCHITECTURE</strong></span>
+              </div>
+            </div>
+            <div class="text-right text-stone text-[10px]">
+              <span>SCROLL OR DRAG HANDLE TO CONTROL REVEAL &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 26 — SINGLE-FOCUS CLIENT TESTIMONIAL EXPERIENCE: WORDS FROM CLIENTS (300vh PINNED SECTION) -->
+      <section id="client-words-wrap" class="relative w-full h-[300vh] bg-charcoal text-ivory border-t border-ivory/10">
+        <!-- Subtle Noise Texture Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div id="client-words-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-charcoal z-10 pt-24 md:pt-28">
+
+          <!-- Subtle Multi-Layer Background Parallax Images (GPU Accelerated) -->
+          <div class="absolute inset-0 z-0 opacity-25 overflow-hidden pointer-events-none">
+            <img id="client-bg-1" src="./assets/aravali_main-Ca6tWFWA.png" alt="Aravali Residence Sanctuary" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover scale-[1.05] transition-opacity duration-700 ease-out opacity-100 will-change-[opacity,transform]">
+            <img id="client-bg-2" src="./assets/penthouse_sky-Cots6mug.png" alt="Sky Penthouse Sanctuary" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover scale-[1.05] transition-opacity duration-700 ease-out opacity-0 will-change-[opacity,transform]">
+            <img id="client-bg-3" src="./assets/courtyard_house-CD8o97SH.png" alt="Courtyard Villa Sanctuary" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover scale-[1.05] transition-opacity duration-700 ease-out opacity-0 will-change-[opacity,transform]">
+            <div class="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/80 to-charcoal"></div>
+          </div>
+
+          <!-- Top Monograph Header & Stage Counter -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-stone border-b border-ivory/10 pb-4 z-20">
+            <div>
+              <span class="text-bronze font-semibold">WORDS FROM CLIENTS</span>
+              <span class="ml-4 opacity-60">PATRON REFLECTIONS</span>
+            </div>
+            <div id="cw-stage-num" class="font-serif text-lg text-ivory font-light">
+              01 <span class="text-xs font-mono text-stone">/ 03</span>
+            </div>
+          </div>
+
+          <!-- Center Viewport: Single Visually Dominant Quote Container -->
+          <div class="my-auto w-full max-w-5xl mx-auto z-10 py-6 min-h-[320px] flex items-center justify-center relative overflow-hidden">
+            
+            <!-- Quote Slide 01 -->
+            <div id="cw-slide-1" class="cw-slide w-full flex flex-col space-y-8 items-center text-center will-change-[transform,opacity]">
+              <blockquote class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-ivory leading-snug tracking-tight max-w-4xl">
+                “Archit and his team transformed our site into a sanctuary of quiet luxury. Their civil engineering background brought an unmatched sense of structural confidence to every detail.”
+              </blockquote>
+              <div class="space-y-1 font-mono text-xs uppercase tracking-[0.2em] text-stone">
+                <span class="text-bronze font-semibold block text-sm font-serif italic uppercase tracking-wider">Vikram &amp; Ananya Sharma</span>
+                <span class="text-ivory/80 block">THE ARAVALI RESIDENCE &bull; GREATER NOIDA</span>
+              </div>
+            </div>
+
+            <!-- Quote Slide 02 (Absolute Overlay) -->
+            <div id="cw-slide-2" class="cw-slide absolute inset-0 w-full flex flex-col space-y-8 items-center text-center justify-center opacity-0 translate-y-full will-change-[transform,opacity]">
+              <blockquote class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-ivory leading-snug tracking-tight max-w-4xl">
+                “From the travertine stone joinery to the acoustic louver details, the spatial proportions exceed anything we envisioned. Execution tolerances were held to absolute perfection.”
+              </blockquote>
+              <div class="space-y-1 font-mono text-xs uppercase tracking-[0.2em] text-stone">
+                <span class="text-bronze font-semibold block text-sm font-serif italic uppercase tracking-wider">Rajesh Singhania</span>
+                <span class="text-ivory/80 block">PENTHOUSE SKY RESIDENCE &bull; NOIDA EXPRESSWAY</span>
+              </div>
+            </div>
+
+            <!-- Quote Slide 03 (Absolute Overlay) -->
+            <div id="cw-slide-3" class="cw-slide absolute inset-0 w-full flex flex-col space-y-8 items-center text-center justify-center opacity-0 translate-y-full will-change-[transform,opacity]">
+              <blockquote class="font-serif text-3xl md:text-5xl lg:text-6xl font-light text-ivory leading-snug tracking-tight max-w-4xl">
+                “A truly editorial architectural experience. Vaastvik bridged technical civil construction and refined interior architecture seamlessly under one roof.”
+              </blockquote>
+              <div class="space-y-1 font-mono text-xs uppercase tracking-[0.2em] text-stone">
+                <span class="text-bronze font-semibold block text-sm font-serif italic uppercase tracking-wider">Dr. Devendra Mehta</span>
+                <span class="text-ivory/80 block">COURTYARD VILLA &bull; JAYPEE GREENS</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Monograph Status Bar -->
+          <div class="flex justify-between items-end border-t border-ivory/10 pt-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono text-stone z-20">
+            <div>
+              <span class="font-semibold text-bronze block">VERIFIED PATRON REFLECTIONS</span>
+              <span class="text-ivory/70">RESIDENTIAL &amp; COMMERCIAL MONOGRAPHS</span>
+            </div>
+            <div class="text-right hidden md:block text-stone">
+              <span>SCROLL DOWN TO REVEAL NEXT REFLECTION &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 30 — EDITORIAL RESOURCE: HOME INTERIOR GUIDE (12 / PUBLICATION — MONOGRAPH GUIDE) -->
+      <section id="home-interior-guide" class="w-full py-32 md:py-48 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden relative reveal-on-scroll">
+        <div class="max-w-7xl mx-auto space-y-16">
+          
+          <!-- Monograph Section Header with subtle fade-in -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">ARCHITECTURAL PUBLICATION</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-charcoal">HOME INTERIOR GUIDE</h2>
+            </div>
+            <span class="text-xs uppercase tracking-[0.2em] font-mono text-muted hidden md:block text-right">
+              ARCHITECTURAL COMPENDIUM &bull; PDF EDITION
+            </span>
+          </div>
+
+          <!-- Editorial Grid: Large Interior Visual (6 cols / 50%) & Guide Content (6 cols / 50%) -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <!-- Left: Large Premium Architectural Interior Visual (6 columns ~ 50% width) -->
+            <div class="lg:col-span-6 relative group reveal-clip-up">
+              <div class="relative overflow-hidden border border-charcoal/20 bg-charcoal aspect-[4/5] lg:aspect-[3/4] shadow-2xl">
+                <!-- High-Resolution Interior Architectural Photograph -->
+                <img src="./assets/penthouse_sky-Cots6mug.png" alt="Vaastvik Home Interior Guide — Luxury Penthouse Suite Design" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
+                
+                <!-- Subtle Gradient Vignette Overlay for Editorial Depth -->
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent"></div>
+
+                <!-- Monograph Book Badge Content Overlay -->
+                <div class="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-10 pointer-events-none">
+                  <div class="flex justify-between items-center text-[10px] font-mono uppercase tracking-[0.25em] text-bronze border-b border-ivory/20 pb-3 bg-charcoal/60 backdrop-blur-sm px-4 py-2">
+                    <span>VAASTVIK DESIGN GROUP</span>
+                    <span>OFFICIAL PDF EDITION</span>
+                  </div>
+
+                  <div class="space-y-3 bg-charcoal/70 backdrop-blur-md p-6 border border-ivory/15">
+                    <span class="text-[10px] uppercase font-mono tracking-[0.3em] text-bronze block font-semibold">MONOGRAPH VOL. 01</span>
+                    <h3 class="font-serif text-2xl md:text-4xl font-light text-ivory leading-tight tracking-tight">
+                      HOME INTERIOR GUIDE
+                    </h3>
+                    <p class="text-[11px] font-mono text-stone/80 tracking-wide uppercase">
+                      CURATED BY ARCHIT RATHI &bull; CIVIL ENGINEER &amp; PRINCIPAL ARCHITECT
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Decorative Editorial Tag -->
+              <div class="absolute -bottom-4 -right-4 bg-bronze text-ivory px-4 py-2 text-[10px] font-mono uppercase tracking-[0.2em] shadow-xl border border-ivory/20 hidden md:block z-20">
+                OFFICIAL PDF GUIDE &bull; DIRECT DOWNLOAD
+              </div>
+            </div>
+
+            <!-- Right: Existing Guide Content (6 columns ~ 50% width) -->
+            <div class="lg:col-span-6 space-y-8 lg:pl-4">
+              
+              <!-- Text Block (opacity 0->1, translateY(20px)->0, delay: 100ms) -->
+              <div class="space-y-4 reveal-fade-up" style="transition-delay: 100ms;">
+                <span class="text-xs font-mono uppercase tracking-[0.2em] text-bronze font-semibold block">DOWNLOAD OUR HOME INTERIOR GUIDE</span>
+                <p class="font-serif text-2xl md:text-3xl font-light text-charcoal leading-snug">
+                  “In this PDF you will get detailed summary of our interior projects.”
+                </p>
+                <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed pt-2">
+                  Gain direct insight into our interior execution framework. Explore curated project summaries, imported European material palettes, bespoke joinery details, and turnkey space planning standards across Delhi NCR.
+                </p>
+              </div>
+
+              <!-- Publication Details Table (opacity 0->1, translateY(20px)->0, delay: 140ms) -->
+              <div class="space-y-3 font-mono text-xs text-muted border-t border-b border-charcoal/10 py-6 reveal-fade-up" style="transition-delay: 140ms;">
+                <div class="flex justify-between">
+                  <span>Publication Format:</span>
+                  <span class="text-charcoal font-semibold">High-Resolution PDF</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Author &amp; Curation:</span>
+                  <span class="text-charcoal font-semibold">Archit Rathi (Vaastvik Design Group)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Project Summaries Included:</span>
+                  <span class="text-bronze font-semibold">Villas, Penthouse Duplexes &amp; Turnkey Suites</span>
+                </div>
+              </div>
+
+              <!-- CTA Button (opacity 0->1, translateY(10px)->0, delay: 180ms) -->
+              <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-6 reveal-fade-up" style="transition-delay: 180ms;">
+                <a href="https://vaastvikdesigngroup.com/wp-content/uploads/2024/10/VAASTVIK-DESIGN-GROUP-pdf.pdf" target="_blank" rel="noopener" download class="inline-flex items-center justify-center gap-3 px-8 py-5 bg-bronze text-ivory font-mono text-xs uppercase tracking-[0.2em] font-medium hover:bg-charcoal transition-all shadow-xl cursor-pointer text-center">
+                  <span>DOWNLOAD THE GUIDE</span>
+                  <span class="font-serif text-base">↗</span>
+                </a>
+
+                <a href="#projects" class="inline-flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted hover:text-bronze transition-colors py-3 cursor-pointer">
+                  <span>EXPLORE OUR PROJECTS</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 31 — CINEMATIC INTERIOR MONOGRAPH: BEAUTIFUL INTERIOR (13 / FILM & SPATIAL EXPERIENCE) -->
+      <section id="beautiful-interior" class="w-full py-32 md:py-48 px-6 md:px-12 bg-charcoal text-ivory border-t border-ivory/10 overflow-hidden relative reveal-on-scroll">
+        <!-- Subtle Noise Texture Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto space-y-16">
+          
+          <!-- Monograph Section Header with subtle fade-in -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-ivory/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">CINEMATIC ARCHITECTURE</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-ivory">BEAUTIFUL INTERIOR</h2>
+            </div>
+            <span class="text-xs uppercase tracking-[0.2em] font-mono text-stone/70 hidden md:block text-right">
+              FILM MONOGRAPH &bull; DIRECTED BY ARCHIT RATHI
+            </span>
+          </div>
+
+          <!-- Description Paragraph with fade-up and upward movement -->
+          <div class="max-w-3xl space-y-4 reveal-fade-up">
+            <p class="font-serif text-2xl md:text-3xl font-light text-ivory/90 leading-snug">
+              Watch the video of our beautiful interiors designed by Archit Rathi.
+            </p>
+            <p class="font-sans text-sm md:text-base font-light text-stone/80 leading-relaxed">
+              This captivating video encapsulates our design philosophy and showcases our exceptional interior design projects. It serves as a visual introduction to our brand, allowing potential patrons to experience our spatial aesthetics, material honesty, and refined proportions in motion.
+            </p>
+          </div>
+
+          <!-- Large Cinematic Video Container Frame with vertical clip-path reveal and 1.03 scale -->
+          <div class="relative aspect-[16/9] w-full max-w-6xl mx-auto border border-ivory/15 bg-black/80 overflow-hidden shadow-2xl group cursor-pointer reveal-clip-up">
+            <!-- Video Player (Autoplay looped background, muted, playsinline) -->
+            <video id="beautiful-interior-video" autoplay loop muted playsinline poster="./assets/aravali_main-Ca6tWFWA.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+              <source src="./assets/hero_cinematic-DNtOQZt5.mp4" type="video/mp4">
+            </video>
+
+            <!-- Gradient Dark Vignette Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent pointer-events-none"></div>
+
+            <!-- Top Monograph Video Meta Bar -->
+            <div class="absolute top-6 left-6 right-6 flex justify-between items-center text-[10px] font-mono uppercase tracking-[0.25em] text-ivory/80 z-20 pointer-events-none">
+              <span class="px-3 py-1 bg-charcoal/80 backdrop-blur-md border border-ivory/20 text-bronze font-semibold">
+                VAASTVIK ARCHITECTURAL REEL
+              </span>
+              <span class="hidden sm:inline px-3 py-1 bg-charcoal/80 backdrop-blur-md border border-ivory/20 text-stone">
+                4K CINEMATIC &bull; 02:45
+              </span>
+            </div>
+
+            <!-- Bottom Floating Action Bar with YouTube Original Video Link & Watch Action -->
+            <div class="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-20">
+              <div class="space-y-1">
+                <span class="font-serif text-lg md:text-2xl text-ivory font-light block">The Spatial Aesthetics of Vaastvik</span>
+                <span class="font-mono text-[10px] text-stone uppercase tracking-[0.2em]">CURATED BY ARCHIT RATHI &bull; CIVIL ENGINEER &amp; DESIGNER</span>
+              </div>
+
+              <a href="https://www.youtube.com/watch?v=1da073vLGJ0" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-6 py-3.5 bg-bronze text-ivory font-mono text-xs uppercase tracking-[0.2em] font-medium hover:bg-ivory hover:text-charcoal transition-all shadow-2xl cursor-pointer">
+                <span>WATCH FULL FILM</span>
+                <span class="font-serif text-sm">↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 32 — ARCHITECTURAL EXECUTION FRAMEWORK: HOW IT WORKS (14 / PROCESS & TURNKEY MILESTONES) -->
+      <section id="how-it-works" class="w-full py-32 md:py-48 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden relative reveal-on-scroll">
+        <div class="max-w-7xl mx-auto space-y-20">
+          
+          <!-- Monograph Section Header -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">EXECUTION FRAMEWORK</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-charcoal">HOW IT WORKS</h2>
+            </div>
+            <span class="text-xs uppercase tracking-[0.2em] font-mono text-muted hidden md:block text-right">
+              TURNKEY ARCHITECTURAL WORKFLOW &bull; 6 STAGES
+            </span>
+          </div>
+
+          <!-- Process Stage Matrix (3 columns x 2 rows Grid with Architectural Hairline Borders) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-charcoal/15">
+            
+            <!-- STAGE -->
+            <div class="p-8 md:p-12 border-b border-r border-charcoal/15 space-y-6 hover:bg-stone/10 transition-colors group reveal-fade-up">
+              <div class="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-muted">
+                <span class="text-bronze font-semibold">STAGE</span>
+                <span>INITIAL ALIGNMENT</span>
+              </div>
+              <div class="font-serif text-4xl md:text-5xl font-light text-bronze group-hover:translate-x-1 transition-transform duration-300">01</div>
+              <h3 class="font-serif text-2xl font-light text-charcoal tracking-tight group-hover:text-bronze transition-colors">
+                MEET DESIGNER
+              </h3>
+              <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed">
+                Meet the design team and discuss your requirements, spatial vision, plot orientation, and lifestyle parameters.
+              </p>
+            </div>
+
+            <!-- STAGE -->
+            <div class="p-8 md:p-12 border-b border-r border-charcoal/15 space-y-6 hover:bg-stone/10 transition-colors group reveal-fade-up">
+              <div class="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-muted">
+                <span class="text-bronze font-semibold">STAGE</span>
+                <span>COMMITTAL</span>
+              </div>
+              <div class="font-serif text-4xl md:text-5xl font-light text-bronze group-hover:translate-x-1 transition-transform duration-300">02</div>
+              <h3 class="font-serif text-2xl font-light text-charcoal tracking-tight group-hover:text-bronze transition-colors">
+                5% PAYMENT
+              </h3>
+              <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed">
+                Confirm the project and begin the formal interior design process, site measurements, and layout schematics.
+              </p>
+            </div>
+
+            <!-- STAGE -->
+            <div class="p-8 md:p-12 border-b border-r border-charcoal/15 space-y-6 hover:bg-stone/10 transition-colors group reveal-fade-up">
+              <div class="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-muted">
+                <span class="text-bronze font-semibold">STAGE</span>
+                <span>CONSTRUCTION</span>
+              </div>
+              <div class="font-serif text-4xl md:text-5xl font-light text-bronze group-hover:translate-x-1 transition-transform duration-300">03</div>
+              <h3 class="font-serif text-2xl font-light text-charcoal tracking-tight group-hover:text-bronze transition-colors">
+                EXECUTION
+              </h3>
+              <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed">
+                Design development, material selection, civil works, electrical mapping, joinery fabrication, and site execution.
+              </p>
+            </div>
+
+            <!-- STAGE -->
+            <div class="p-8 md:p-12 border-b border-r border-charcoal/15 space-y-6 hover:bg-stone/10 transition-colors group reveal-fade-up">
+              <div class="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-muted">
+                <span class="text-bronze font-semibold">STAGE</span>
+                <span>MILESTONE RECONCILIATION</span>
+              </div>
+              <div class="font-serif text-4xl md:text-5xl font-light text-bronze group-hover:translate-x-1 transition-transform duration-300">04</div>
+              <h3 class="font-serif text-2xl font-light text-charcoal tracking-tight group-hover:text-bronze transition-colors">
+                100% PAYMENT
+              </h3>
+              <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed">
+                Complete the final payment according to the agreed project terms and milestone handover audit.
+              </p>
+            </div>
+
+            <!-- STAGE -->
+            <div class="p-8 md:p-12 border-b border-r border-charcoal/15 space-y-6 hover:bg-stone/10 transition-colors group reveal-fade-up">
+              <div class="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-muted">
+                <span class="text-bronze font-semibold">STAGE</span>
+                <span>BESPOKE FITTING</span>
+              </div>
+              <div class="font-serif text-4xl md:text-5xl font-light text-bronze group-hover:translate-x-1 transition-transform duration-300">05</div>
+              <h3 class="font-serif text-2xl font-light text-charcoal tracking-tight group-hover:text-bronze transition-colors">
+                FINAL INSTALLATION
+              </h3>
+              <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed">
+                Bespoke furniture, architectural lighting, soft furnishings, stone finishes, and final details are installed.
+              </p>
+            </div>
+
+            <!-- STAGE -->
+            <div class="p-8 md:p-12 border-b border-r border-charcoal/15 space-y-6 hover:bg-stone/10 transition-colors group reveal-fade-up">
+              <div class="flex justify-between items-center text-xs font-mono uppercase tracking-[0.2em] text-muted">
+                <span class="text-bronze font-semibold">STAGE</span>
+                <span>HANDOVER SANCTUARY</span>
+              </div>
+              <div class="font-serif text-4xl md:text-5xl font-light text-bronze group-hover:translate-x-1 transition-transform duration-300">06</div>
+              <h3 class="font-serif text-2xl font-light text-charcoal tracking-tight group-hover:text-bronze transition-colors">
+                MOVE IN
+              </h3>
+              <p class="font-sans text-sm font-light text-charcoal/70 leading-relaxed">
+                The finished spatial sanctuary is fully audited, polished, and ready for the client to move in and enjoy.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Bottom Consultation Callout Bar -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-8 border-t border-charcoal/10 gap-6 reveal-fade-up">
+            <div class="space-y-1">
+              <span class="font-serif text-xl md:text-2xl text-charcoal font-light">Ready to begin your architectural journey?</span>
+              <p class="font-mono text-xs text-muted uppercase tracking-[0.2em]">DESIGNS &amp; ARCHITECTURAL CONSULTATION FOR EVERY BUDGET</p>
+            </div>
+            <a href="#cta-editorial" class="inline-flex items-center gap-3 px-8 py-4 bg-bronze text-ivory font-mono text-xs uppercase tracking-[0.2em] font-medium hover:bg-charcoal transition-all shadow-xl cursor-pointer">
+              <span>BOOK FREE CONSULTATION</span>
+              <span class="font-serif text-base">↗</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 33 — PATRON REFLECTIONS: CLIENT SAYS (15 / TESTIMONIAL MONOGRAPH & REVIEWS) -->
+      <section id="client-says" class="w-full py-32 md:py-48 px-6 md:px-12 bg-charcoal text-ivory border-t border-ivory/10 overflow-hidden relative reveal-on-scroll">
+        <!-- Subtle Background Noise Texture -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto space-y-16">
+          
+          <!-- Monograph Section Header -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-ivory/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">PATRON REFLECTIONS</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-ivory">CLIENT SAYS</h2>
+            </div>
+            <div class="flex items-center gap-6">
+              <span id="testimonial-counter" class="text-xs font-mono uppercase tracking-[0.25em] text-bronze font-semibold">
+                /
+              </span>
+              <div class="flex items-center gap-2">
+                <button id="testimonial-prev-btn" aria-label="Previous Testimonial" class="w-10 h-10 border border-ivory/20 flex items-center justify-center text-ivory hover:bg-bronze hover:border-bronze transition-all cursor-pointer font-mono text-xs">
+                  &larr;
+                </button>
+                <button id="testimonial-next-btn" aria-label="Next Testimonial" class="w-10 h-10 border border-ivory/20 flex items-center justify-center text-ivory hover:bg-bronze hover:border-bronze transition-all cursor-pointer font-mono text-xs">
+                  &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Single-Testimonial Monograph Layout Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[420px]">
+            
+            <!-- Left: Large Editorial Quote & Patron Details (7 columns) -->
+            <div class="lg:col-span-7 space-y-8 reveal-fade-up">
+              <div class="font-serif text-6xl text-bronze font-light leading-none select-none">“</div>
+              
+              <div class="min-h-[180px] flex items-center">
+                <blockquote id="testimonial-quote" class="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-ivory/95 leading-relaxed tracking-tight transition-opacity duration-500">
+                  “It has been a great experience with Vastvik Design Group, to have them built our home’s interior. They are a team of professionals, delivering good quality and on time service. They use material of good brands as promised which certainly increase life of your home interior.”
+                </blockquote>
+              </div>
+
+              <div class="border-t border-ivory/15 pt-6 space-y-2 reveal-fade-horizontal">
+                <div id="testimonial-client" class="font-mono text-xs uppercase tracking-[0.25em] text-bronze font-semibold">
+                  HOMEOWNER &amp; PATRON
+                </div>
+                <div id="testimonial-project" class="font-mono text-[10px] uppercase tracking-[0.2em] text-stone/70">
+                  THE ARAVALI RESIDENCE &bull; GREATER NOIDA
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Architectural Project Visual Frame (5 columns) -->
+            <div class="lg:col-span-5 relative reveal-fade-horizontal">
+              <div class="relative overflow-hidden border border-ivory/15 bg-black/60 aspect-[4/3] shadow-2xl group">
+                <img id="testimonial-image" src="./assets/aravali_main-Ca6tWFWA.png" alt="Vaastvik Client Project Interior Showcase" loading="lazy" decoding="async" class="w-full h-full object-cover transition-all duration-700 opacity-90 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-60"></div>
+                <div class="absolute bottom-4 left-4 bg-charcoal/80 backdrop-blur-md px-3 py-1.5 border border-ivory/20 text-[10px] font-mono text-stone uppercase tracking-[0.2em]">
+                  AUTHENTIC CLIENT RESIDENCE
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 34 — ARCHITECTURAL SPECIFICATION: TRUSTED PARTNERS (16 / BRANDS & MATERIAL PARTNERS) -->
+      <section id="trusted-partners" class="w-full py-32 md:py-48 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden relative reveal-on-scroll">
+        <div class="max-w-7xl mx-auto space-y-20">
+          
+          <!-- Monograph Section Header -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">MATERIAL SPECIFICATION</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-charcoal">OUR TRUSTED PARTNERS</h2>
+            </div>
+            <span class="text-xs uppercase tracking-[0.2em] font-mono text-muted hidden md:block text-right">
+              ONLY BEST PRODUCTS USED BY VAASTVIK DESIGN GROUP
+            </span>
+          </div>
+
+          <!-- Editorial Description Sub-header -->
+          <div class="max-w-3xl reveal-fade-up">
+            <p class="font-sans text-sm md:text-base font-light text-charcoal/80 leading-relaxed">
+              We specify exclusively from internationally recognized luxury manufacturers and heritage brands to ensure structural longevity, precision engineering, and timeless spatial beauty across every project.
+            </p>
+          </div>
+
+          <!-- Refined Architectural Specification Matrix Grid (4 Category Columns) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pt-4">
+            
+            <!-- Category: Kitchen Appliances -->
+            <div class="space-y-6 border-l border-charcoal/15 pl-6 reveal-partner-logo">
+              <div class="space-y-1">
+                <span class="text-bronze font-mono text-xs uppercase tracking-[0.2em] font-semibold block">KITCHEN</span>
+                <h3 class="font-serif text-xl font-light text-charcoal">Appliances &amp; Systems</h3>
+              </div>
+
+              <div class="space-y-6 pt-2 font-mono">
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">SIEMENS</div>
+                  <div class="text-[10px] text-muted tracking-wider">GERMANY &bull; INDUCTION &amp; STEAM EXTRACTION</div>
+                </div>
+
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">BOSCH</div>
+                  <div class="text-[10px] text-muted tracking-wider">GERMANY &bull; BUILT-IN KITCHEN ENGINEERING</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category: Sanitaryware & Bath -->
+            <div class="space-y-6 border-l border-charcoal/15 pl-6 reveal-partner-logo">
+              <div class="space-y-1">
+                <span class="text-bronze font-mono text-xs uppercase tracking-[0.2em] font-semibold block">BATH</span>
+                <h3 class="font-serif text-xl font-light text-charcoal">Sanitaryware &amp; Brassware</h3>
+              </div>
+
+              <div class="space-y-6 pt-2 font-mono">
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">KOHLER</div>
+                  <div class="text-[10px] text-muted tracking-wider">USA &bull; VITREOUS CHINA &amp; SMART FIXTURES</div>
+                </div>
+
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">JAQUAR</div>
+                  <div class="text-[10px] text-muted tracking-wider">INDIA &bull; LUXURY THERMOSTATIC SHOWERS</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category: Hardware & Lighting -->
+            <div class="space-y-6 border-l border-charcoal/15 pl-6 reveal-partner-logo">
+              <div class="space-y-1">
+                <span class="text-bronze font-mono text-xs uppercase tracking-[0.2em] font-semibold block">FITTINGS</span>
+                <h3 class="font-serif text-xl font-light text-charcoal">Hardware &amp; Lighting</h3>
+              </div>
+
+              <div class="space-y-6 pt-2 font-mono">
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">HETTICH</div>
+                  <div class="text-[10px] text-muted tracking-wider">GERMANY &bull; PRECISION CONCEALED MILLWORK</div>
+                </div>
+
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">PHILIPS</div>
+                  <div class="text-[10px] text-muted tracking-wider">NETHERLANDS &bull; ARCHITECTURAL LED COVES</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category: Surfaces & Paints -->
+            <div class="space-y-6 border-l border-charcoal/15 pl-6 reveal-partner-logo">
+              <div class="space-y-1">
+                <span class="text-bronze font-mono text-xs uppercase tracking-[0.2em] font-semibold block">SURFACES</span>
+                <h3 class="font-serif text-xl font-light text-charcoal">Paints &amp; Wall Finishes</h3>
+              </div>
+
+              <div class="space-y-6 pt-2 font-mono">
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">ASIAN PAINTS</div>
+                  <div class="text-[10px] text-muted tracking-wider">INDIA &bull; LUXURY ROYALE &amp; SPECIALTY TEXTURES</div>
+                </div>
+
+                <div class="space-y-1 group">
+                  <div class="text-base font-serif text-charcoal group-hover:text-bronze transition-colors">NEROLAC</div>
+                  <div class="text-[10px] text-muted tracking-wider">INDIA &bull; LOW-VOC ECO ARCHITECTURAL COATINGS</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Quality Commitment Statement -->
+          <div class="border-t border-charcoal/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-xs font-mono text-muted uppercase tracking-[0.2em] gap-4">
+            <div>SPECIFICATION ASSURANCE &bull; 100% GENUINE OEM MATERIAL GUARANTEE</div>
+            <div class="text-bronze font-semibold">CURATED BY VAASTVIK DESIGN GROUP</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 35 — EDITORIAL JOURNAL SECTION (10 / JOURNAL — RECENT BLOG & ARTICLES) -->
+      <section id="journal" class="w-full py-32 md:py-48 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden reveal-on-scroll">
+        <div class="max-w-7xl mx-auto space-y-20">
+          
+          <!-- Monograph Section Header -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">JOURNAL &amp; RECENT BLOG</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-charcoal">MONOGRAPH JOURNAL</h2>
+            </div>
+            <a href="https://vaastvikdesigngroup.com/blog/" target="_blank" rel="noopener" class="text-xs uppercase tracking-[0.2em] font-mono text-muted hover:text-bronze transition-colors flex items-center gap-2">
+              <span>VIEW ALL BLOGS ON ORIGINAL SITE</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          <!-- Asymmetric 4-Article Layout Grid -->
+          <div class="space-y-24">
+
+            <!-- Article (Featured Hero Article: 8 cols image + 4 cols details) -->
+            <article class="journal-editorial-card group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div class="lg:col-span-8 overflow-hidden bg-stone/20 border border-charcoal/10 journal-img-mask relative reveal-clip-up">
+                <img src="./assets/aravali_main-Ca6tWFWA.png" alt="Transform Your Home with Modern Interior Design in 2026" loading="lazy" decoding="async" class="w-full h-[440px] md:h-[520px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+              </div>
+              <div class="lg:col-span-4 space-y-6 lg:pl-4 reveal-fade-up">
+                <div class="flex items-center justify-between text-xs font-mono text-bronze">
+                  <span class="font-semibold">FEATURED</span>
+                  <span>JULY 17, 2026</span>
+                </div>
+                <h3 class="font-serif text-3xl md:text-4xl font-light text-charcoal group-hover:text-bronze transition-colors leading-tight">
+                  Transform Your Home with Modern Interior Design in 2026
+                </h3>
+                <div class="flex items-center gap-4 text-xs font-mono text-muted uppercase tracking-[0.2em] pt-2 border-t border-charcoal/10">
+                  <span>MODERN INTERIOR DESIGN</span>
+                  <span>&bull;</span>
+                  <span>ARCHIT RATHI</span>
+                </div>
+                <p class="text-xs text-muted font-sans font-light leading-relaxed">
+                  Exploring contemporary spatial proportions, open layout fluidity, micro-cement textures, and sustainable luxury interior architectures for modern residences.
+                </p>
+                <div class="pt-2">
+                  <a href="https://vaastvikdesigngroup.com/modern-interior-design-2/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-bronze hover:text-charcoal transition-colors font-medium">
+                    <span>READ ARTICLE</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article (Asymmetric Grid: 5 cols + 7 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pt-6">
+
+              <!-- Article (5 cols) -->
+              <article class="journal-editorial-card group space-y-6 lg:col-span-5 reveal-fade-up">
+                <div class="overflow-hidden bg-stone/20 border border-charcoal/10 journal-img-mask reveal-clip-up">
+                  <img src="assets/images/bespoke_oak_joinery.png" alt="Modern Interior Design That Blends Style, Comfort & Functionality" loading="lazy" decoding="async" class="w-full h-[460px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between text-xs font-mono text-bronze">
+                    <span class="font-semibold">SPATIAL ERGONOMICS</span>
+                    <span>JULY 10, 2026</span>
+                  </div>
+                  <h3 class="font-serif text-2xl md:text-3xl font-light text-charcoal group-hover:text-bronze transition-colors leading-tight">
+                    Modern Interior Design That Blends Style, Comfort &amp; Functionality
+                  </h3>
+                  <p class="text-xs text-muted font-sans font-light leading-relaxed">
+                    A detailed examination of bespoke Austrian joinery, material selection, acoustic dampening, and lighting layers for luxury family homes.
+                  </p>
+                  <div class="pt-2">
+                    <a href="https://vaastvikdesigngroup.com/modern-interior-design/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-bronze hover:text-charcoal transition-colors font-medium">
+                      <span>READ ARTICLE</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article (7 cols) -->
+              <article class="journal-editorial-card group space-y-6 lg:col-span-7 lg:pt-12 reveal-fade-up">
+                <div class="overflow-hidden bg-stone/20 border border-charcoal/10 journal-img-mask reveal-clip-up">
+                  <img src="./assets/courtyard_house-CD8o97SH.png" alt="Future-Ready Homes: 10 Interior Design Trends" loading="lazy" decoding="async" class="w-full h-[460px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between text-xs font-mono text-bronze">
+                    <span class="font-semibold">DESIGN TRENDS</span>
+                    <span>JULY 06, 2026</span>
+                  </div>
+                  <h3 class="font-serif text-2xl md:text-3xl font-light text-charcoal group-hover:text-bronze transition-colors leading-tight">
+                    Future-Ready Homes: 10 Interior Design Trends That Will Define Modern Living in 2026
+                  </h3>
+                  <p class="text-xs text-muted font-sans font-light leading-relaxed">
+                    Smart home integrations, tactile natural stones, concealed Austrian millwork, and warm ambient cove lighting defining modern architecture.
+                  </p>
+                  <div class="pt-2">
+                    <a href="https://vaastvikdesigngroup.com/future-ready-homes-10-interior-design-trends-that-will-define-modern-living-in-2026/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-bronze hover:text-charcoal transition-colors font-medium">
+                      <span>READ ARTICLE</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Article (Full-Width Banner Article) -->
+            <article class="journal-editorial-card group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center border-t border-charcoal/10 pt-16">
+              <div class="lg:col-span-5 space-y-6 reveal-fade-up">
+                <div class="flex items-center justify-between text-xs font-mono text-bronze">
+                  <span class="font-semibold">LUXURY LIVING</span>
+                  <span>JUNE 23, 2026</span>
+                </div>
+                <h3 class="font-serif text-3xl md:text-4xl font-light text-charcoal group-hover:text-bronze transition-colors leading-tight">
+                  Home Interior Design Trends 2026: Redefining Luxury Living
+                </h3>
+                <p class="text-xs text-muted font-sans font-light leading-relaxed">
+                  How bespoke smoked oak joinery and unfilled Roman travertine establish a calm, quiet luxury ambiance in urban sanctuaries.
+                </p>
+                <div class="pt-2">
+                  <a href="https://vaastvikdesigngroup.com/home-interior-design-trends-2026-redefining-luxury-living/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-bronze hover:text-charcoal transition-colors font-medium">
+                    <span>READ ARTICLE</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              </div>
+              <div class="lg:col-span-7 overflow-hidden bg-stone/20 border border-charcoal/10 journal-img-mask reveal-clip-up">
+                <img src="./assets/penthouse_sky-Cots6mug.png" alt="Home Interior Design Trends 2026: Redefining Luxury Living" loading="lazy" decoding="async" class="w-full h-[380px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 36 — EDITORIAL NEWSLETTER SECTION: STAY INSPIRED (17 / SUBSCRIBER COMPENDIUM) -->
+      <section id="newsletter" class="w-full py-28 md:py-36 px-6 md:px-12 bg-charcoal text-ivory border-t border-ivory/10 overflow-hidden relative reveal-on-scroll">
+        <!-- Subtle Background Noise Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto space-y-12 reveal-fade-up">
+          
+          <!-- Monograph Section Header -->
+          <div class="space-y-4 border-b border-ivory/10 pb-8 text-center md:text-left">
+            <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block">STAY INSPIRED</span>
+            <h2 class="font-serif text-4xl md:text-6xl font-light tracking-tight text-ivory">STAY INSPIRED</h2>
+            <p class="font-sans text-sm md:text-base font-light text-stone/80 max-w-2xl leading-relaxed">
+              Receive curated architectural monographs, material discourses, and completed project updates from Vaastvik Design Group directly to your inbox.
+            </p>
+          </div>
+
+          <!-- Minimal Newsletter Subscription Form -->
+          <form id="newsletter-form" class="space-y-6 max-w-3xl">
+            <div class="flex flex-col sm:flex-row items-stretch gap-4">
+              <input id="newsletter-email" type="email" required placeholder="ENTER YOUR EMAIL ADDRESS..." aria-label="Email address for newsletter" class="flex-1 bg-ivory/5 border border-ivory/20 px-6 py-4 font-mono text-xs text-ivory placeholder-stone/60 focus:outline-none focus:border-bronze transition-colors">
+              <button type="submit" class="px-8 py-4 bg-bronze text-ivory font-mono text-xs uppercase tracking-[0.2em] font-medium hover:bg-ivory hover:text-charcoal transition-all shadow-xl cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap">
+                <span>SUBSCRIBE</span>
+                <span class="font-serif text-base">↗</span>
+              </button>
+            </div>
+
+            <!-- Validation Feedback Messages -->
+            <div id="newsletter-success-msg" class="hidden text-xs font-mono text-bronze tracking-wider uppercase border border-bronze/30 bg-bronze/10 p-4">
+              ✓ THANK YOU FOR SUBSCRIBING TO VAASTVIK DESIGN GROUP. YOU WILL RECEIVE OUR NEXT ARCHITECTURAL MONOGRAPH.
+            </div>
+            <div id="newsletter-error-msg" class="hidden text-xs font-mono text-red-400 tracking-wider uppercase border border-red-400/30 bg-red-400/10 p-4">
+              ✕ PLEASE ENTER A VALID EMAIL ADDRESS (E.G. NAME@DOMAIN.COM).
+            </div>
+          </form>
+
+        </div>
+      </section>
+
+      <!-- 38 — STUDIO & LEADERSHIP SECTION: THE STUDIO / OUR TEAM (19 / STUDIO PROFILE & TEAM) -->
+      <section id="the-studio" class="w-full py-32 md:py-48 px-6 md:px-12 bg-charcoal text-ivory border-t border-ivory/10 overflow-hidden relative reveal-on-scroll">
+        <!-- Subtle Noise Texture Overlay -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto space-y-20">
+          
+          <!-- Monograph Section Header with scroll reveal fade-up -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-ivory/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">STUDIO PROFILE &amp; TEAM</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-ivory">THE STUDIO / OUR TEAM</h2>
+            </div>
+            <span class="text-xs uppercase tracking-[0.2em] font-mono text-stone/70 hidden md:block text-right">
+              THE PEOPLE &amp; ENGINEERING MASTERY BEHIND VAASTVIK
+            </span>
+          </div>
+
+          <!-- Asymmetric Team Composition Layout Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            
+            <!-- Left: Featured Principal Portrait & Studio Image Frame (5 columns) -->
+            <div class="lg:col-span-5 relative space-y-4 reveal-clip-up">
+              <div class="relative overflow-hidden border border-ivory/15 bg-black/60 aspect-[3/4] shadow-2xl group">
+                <img src="./assets/archit_rathi-DOanD3XK.png" alt="Archit Rathi — Founder & Principal Architect" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-50"></div>
+                <div class="absolute bottom-4 left-4 bg-charcoal/80 backdrop-blur-md px-3 py-1.5 border border-ivory/20 text-[10px] font-mono text-bronze uppercase tracking-[0.2em]">
+                  FOUNDER &amp; PRINCIPAL ARCHITECT
+                </div>
+              </div>
+              <div class="font-mono text-[11px] text-stone/70 uppercase tracking-[0.2em] flex justify-between items-center">
+                <span>ARCHIT RATHI</span>
+                <span>B.TECH CIVIL ENGINEERING</span>
+              </div>
+            </div>
+
+            <!-- Right: Principal Biography & Team Divisions (7 columns) -->
+            <div class="lg:col-span-7 space-y-12 reveal-fade-up">
+              
+              <!-- Lead Bio Card -->
+              <div class="space-y-6">
+                <div class="space-y-2">
+                  <span class="text-bronze font-mono text-xs uppercase tracking-[0.25em] font-semibold block">LEADERSHIP &amp; VISION</span>
+                  <h3 class="font-serif text-3xl md:text-4xl font-light text-ivory">Archit Rathi</h3>
+                  <p class="font-mono text-xs text-stone uppercase tracking-[0.2em]">Founder &amp; Principal Architect</p>
+                </div>
+
+                <p class="font-sans text-sm md:text-base font-light text-stone/90 leading-relaxed">
+                  Welcome to Vaastvik Design Group, a leading interior design and construction firm founded by Archit Rathi, a visionary entrepreneur with a Civil Engineering degree. With a passion for spatial design and an unyielding commitment to structural precision, Archit combines civil engineering rigor with an unparalleled eye for quiet luxury aesthetics.
+                </p>
+
+                <p class="font-sans text-sm md:text-base font-light text-stone/80 leading-relaxed">
+                  His heightened sense of spatial proportions creates elegant and timeless interiors across both contemporary villas and urban penthouse residences in Greater Noida, Gurugram, and the wider Delhi NCR.
+                </p>
+              </div>
+
+              <!-- Specialized Studio Divisions Grid -->
+              <div class="border-t border-ivory/15 pt-8 space-y-6 font-mono">
+                <span class="text-xs uppercase tracking-[0.25em] text-bronze font-semibold block">STUDIO SPECIALIST DIVISIONS</span>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-xs">
+                  
+                      Turnkey project directors ensuring 100% quality assurance, milestone adherence, and budget control.
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 35.5 — WHATSAPP 1-CLICK ARCHITECTURAL CONSULTATION ENGINE -->
+      <section id="whatsapp-consultation" class="relative w-full py-32 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden reveal-on-scroll">
+        <div class="max-w-7xl mx-auto space-y-12">
+          
+          <!-- Monograph Section Header with subtle fade-up -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span id="wa-tag-display" class="text-xs uppercase tracking-[0.25em] font-mono text-bronze block mb-2">1-CLICK CONSULTATION</span>
+              <h2 id="wa-title-display" class="font-serif text-4xl md:text-6xl font-light">WHATSAPP ARCHITECT CONSULTATION</h2>
+            </div>
+            <p id="wa-sub-display" class="text-xs md:text-sm text-muted font-sans font-light max-w-md leading-relaxed">
+              Generate a structured project brief and connect directly with Principal Architect Archit Rathi via WhatsApp.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-stone/10 p-8 md:p-12 border border-charcoal/10">
+            <!-- Step Selection Matrix & Architectural Project Visual (8 Columns) -->
+            <div class="lg:col-span-8 space-y-8 font-mono">
+              <!-- Step 1: Discipline -->
+              <div class="space-y-3 reveal-fade-up">
+                <span class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold block">1. Select Project Discipline</span>
+                <div id="wa-discipline-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Step 2: Plot Size -->
+              <div class="space-y-3 reveal-fade-up">
+                <span class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold block">2. Built-Up Area / Plot Size</span>
+                <div id="wa-plot-options" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Step 3: Investment Budget -->
+              <div class="space-y-3 reveal-fade-up">
+                <span class="text-xs uppercase tracking-[0.15em] text-charcoal font-semibold block">3. Estimated Investment Bracket</span>
+                <div id="wa-budget-options" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Premium Architectural Visual Frame (Fills Empty Area) -->
+              <div class="pt-4 reveal-clip-up">
+                <div class="relative overflow-hidden border border-charcoal/15 bg-charcoal aspect-[16/9] md:aspect-[21/9] shadow-lg group">
+                  <img src="./assets/hero_architecture-RjXw3hnP.png" alt="Vaastvik Architectural Project Portfolio Showcase" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
+                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-60"></div>
+                  <div class="absolute bottom-3 left-4 right-4 flex justify-between items-center text-[10px] font-mono text-ivory/90 uppercase tracking-[0.2em]">
+                    <span class="bg-charcoal/80 backdrop-blur-md px-2.5 py-1 border border-ivory/20 text-bronze font-semibold">VAASTVIK ARCHITECTURAL SUITE</span>
+                    <span class="hidden sm:inline text-stone">DIRECT CONSULTATION &bull; GREATER NOIDA</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Generated Preview & Launch Box (4 Columns) -->
+            <div class="lg:col-span-4 bg-charcoal text-ivory p-8 border border-bronze/40 space-y-6 reveal-fade-up">
+              <div class="border-b border-ivory/10 pb-4">
+                <span class="text-[10px] uppercase font-mono tracking-[0.2em] text-bronze block mb-1">GENERATED DIRECT BRIEF</span>
+                <div id="wa-brief-preview" class="font-mono text-xs text-stone/80 whitespace-pre-line leading-relaxed bg-black/40 p-4 border border-ivory/10 h-40 overflow-y-auto">
+                  Hello Archit,
+I would like to discuss an architectural/interior project with Vaastvik Design Group.
+                </div>
+              </div>
+
+              <a id="wa-direct-launch-btn" href="https://wa.me/917701939902" target="_blank" rel="noopener" class="w-full py-4 border border-bronze bg-bronze text-ivory hover:bg-ivory hover:text-charcoal transition-all font-mono text-xs uppercase tracking-[0.2em] cursor-pointer flex items-center justify-center gap-3 text-center reveal-fade-up">
+                <span id="wa-btn-label">GENERATE CONSULTATION WHATSAPP ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 37 — ARCHITECTURAL ENQUIRY SECTION: START A PROJECT (18 / CONTACT & PROJECT BRIEFING) -->
+      <section id="start-a-project" class="w-full py-32 md:py-48 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden relative reveal-on-scroll">
+        <div class="max-w-7xl mx-auto space-y-20">
+          
+          <!-- Monograph Section Header -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-charcoal/10 pb-8 gap-6 reveal-fade-up">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] font-mono text-bronze font-semibold block mb-2">CONTACT &amp; ENQUIRY</span>
+              <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-charcoal">START A PROJECT</h2>
+            </div>
+            <span class="font-serif italic text-lg md:text-xl text-bronze max-w-md">
+              “Tell us about the space you want to create.”
+            </span>
+          </div>
+
+          <!-- Two-Column Editorial Enquiry Layout Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+            
+            <!-- Left Column: Verified Studio Contact Details & Social Links (5 columns) -->
+            <div class="lg:col-span-5 space-y-12 border-l border-charcoal/15 pl-6 lg:pl-8 reveal-fade-horizontal">
+              
+              <div class="space-y-4">
+                <span class="text-bronze font-mono text-xs uppercase tracking-[0.25em] font-semibold block">VAASTVIK DESIGN GROUP</span>
+                <p class="font-sans text-sm font-light text-charcoal/80 leading-relaxed">
+                  An Interior And Construction Company based in Greater Noida, Uttar Pradesh, India. We specialize in luxury turn-key civil architecture, villa design, and bespoke interior spaces across Delhi NCR.
+                </p>
+              </div>
+
+              <!-- Contact Information Sheet -->
+              <div class="space-y-8 font-mono text-xs uppercase tracking-[0.2em]">
+                
+                <!-- Phone & WhatsApp -->
+                <div class="space-y-2 border-t border-charcoal/10 pt-4">
+                  <span class="text-muted text-[10px] block">DIRECT PHONE &amp; WHATSAPP</span>
+                  <a href="https://wa.me/917701939902" target="_blank" rel="noopener" class="text-sm font-serif text-charcoal hover:text-bronze transition-colors block normal-case font-medium">
+                    +91 77019 39902
+                  </a>
+                  <span class="text-[10px] text-bronze block">AVAILABLE FOR ARCHITECTURAL CONSULTATION</span>
+                </div>
+
+                <!-- Email Address -->
+                <div class="space-y-2 border-t border-charcoal/10 pt-4">
+                  <span class="text-muted text-[10px] block">STUDIO INQUIRIES</span>
+                  <a href="mailto:info@vaastvikdesigngroup.com" class="text-sm font-serif text-charcoal hover:text-bronze transition-colors block normal-case font-medium">
+                    info@vaastvikdesigngroup.com
+                  </a>
+                </div>
+
+                <!-- Studio Address -->
+                <div class="space-y-2 border-t border-charcoal/10 pt-4">
+                  <span class="text-muted text-[10px] block">STUDIO &amp; OFFICE LOCATION</span>
+                  <div class="text-xs font-sans text-charcoal/80 normal-case leading-relaxed font-light">
+                    Greater Noida, Uttar Pradesh 201310, India<br>
+                    Coordinates: 28.4744° N, 77.5040° E
+                  </div>
+                </div>
+
+                <!-- Verified Social Links -->
+                <div class="space-y-3 border-t border-charcoal/10 pt-4">
+                  <span class="text-muted text-[10px] block">STUDIO CHANNELS</span>
+                  <div class="flex items-center gap-6 text-[11px]">
+                    <a href="https://www.instagram.com/vaastvikdesigngroup2.0/" target="_blank" rel="noopener" class="text-charcoal hover:text-bronze transition-colors">INSTAGRAM ↗</a>
+                    <a href="https://vaastvikdesigngroup.com/" target="_blank" rel="noopener" class="text-charcoal hover:text-bronze transition-colors">LINKEDIN ↗</a>
+                    <a href="https://vaastvikdesigngroup.com/" target="_blank" rel="noopener" class="text-charcoal hover:text-bronze transition-colors">FACEBOOK ↗</a>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Right Column: Minimal Architectural Form (7 columns) -->
+            <div class="lg:col-span-7 space-y-8 reveal-fade-up">
+              
+              <form id="project-enquiry-form" class="space-y-8 font-mono">
+                
+                <!-- Row 1: Name & Email -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label for="enquiry-name" class="text-[10px] uppercase tracking-[0.2em] text-muted block">FULL NAME *</label>
+                    <input id="enquiry-name" type="text" required placeholder="ARCHIT RATHI" class="w-full bg-stone/10 border-b border-charcoal/30 px-4 py-3 text-xs text-charcoal placeholder-stone/60 focus:outline-none focus:border-bronze transition-colors">
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="enquiry-email" class="text-[10px] uppercase tracking-[0.2em] text-muted block">EMAIL ADDRESS *</label>
+                    <input id="enquiry-email" type="email" required placeholder="CLIENT@DOMAIN.COM" class="w-full bg-stone/10 border-b border-charcoal/30 px-4 py-3 text-xs text-charcoal placeholder-stone/60 focus:outline-none focus:border-bronze transition-colors">
+                  </div>
+                </div>
+
+                <!-- Row 2: Phone & Project Type -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label for="enquiry-phone" class="text-[10px] uppercase tracking-[0.2em] text-muted block">PHONE NUMBER *</label>
+                    <input id="enquiry-phone" type="tel" required placeholder="+91 98765 43210" class="w-full bg-stone/10 border-b border-charcoal/30 px-4 py-3 text-xs text-charcoal placeholder-stone/60 focus:outline-none focus:border-bronze transition-colors">
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="enquiry-type" class="text-[10px] uppercase tracking-[0.2em] text-muted block">PROJECT DISCIPLINE *</label>
+                    <select id="enquiry-type" required class="w-full bg-stone/10 border-b border-charcoal/30 px-4 py-3 text-xs text-charcoal focus:outline-none focus:border-bronze transition-colors cursor-pointer">
+                      <option value="Turnkey Interior Architecture">TURNKEY INTERIOR ARCHITECTURE</option>
+                      <option value="Luxury Villa Architecture">LUXURY VILLA ARCHITECTURE</option>
+                      <option value="Penthouse Spatial Design">PENTHOUSE SPATIAL DESIGN</option>
+                      <option value="Civil & Structural Construction">CIVIL &amp; STRUCTURAL CONSTRUCTION</option>
+                      <option value="Bespoke Millwork & Joinery">BESPOKE MILLWORK &amp; JOINERY</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Row 3: Location -->
+                <div class="space-y-2">
+                  <label for="enquiry-location" class="text-[10px] uppercase tracking-[0.2em] text-muted block">PROJECT LOCATION / CITY *</label>
+                  <input id="enquiry-location" type="text" required placeholder="E.G. GREATER NOIDA, GURUGRAM, NOIDA EXPRESSWAY, DELHI NCR..." class="w-full bg-stone/10 border-b border-charcoal/30 px-4 py-3 text-xs text-charcoal placeholder-stone/60 focus:outline-none focus:border-bronze transition-colors">
+                </div>
+
+                <!-- Row 4: Brief Requirements -->
+                <div class="space-y-2">
+                  <label for="enquiry-brief" class="text-[10px] uppercase tracking-[0.2em] text-muted block">BRIEF PROJECT REQUIREMENTS *</label>
+                  <textarea id="enquiry-brief" required rows="4" placeholder="TELL US ABOUT YOUR PLOT SIZE, ESTIMATED TIMELINE, MATERIAL PREFERENCES, AND SPATIAL ASPIRATIONS..." class="w-full bg-stone/10 border-b border-charcoal/30 px-4 py-3 text-xs text-charcoal placeholder-stone/60 focus:outline-none focus:border-bronze transition-colors resize-none"></textarea>
+                </div>
+
+                <!-- Action Button -->
+                <div class="pt-4">
+                  <button type="submit" class="w-full sm:w-auto px-10 py-5 bg-bronze text-ivory font-mono text-xs uppercase tracking-[0.25em] font-medium hover:bg-charcoal transition-all shadow-xl cursor-pointer flex items-center justify-center gap-3">
+                    <span>SEND ENQUIRY</span>
+                    <span class="font-serif text-base">↗</span>
+                  </button>
+                </div>
+
+                <!-- Feedback Messages -->
+                <div id="enquiry-success-msg" class="hidden text-xs font-mono text-bronze tracking-wider uppercase border border-bronze/30 bg-bronze/10 p-4">
+                  ✓ ENQUIRY TRANSMITTED SUCCESSFULLY. ARCHIT RATHI &amp; THE VAASTVIK TEAM WILL REVIEW YOUR BRIEF AND GET IN TOUCH SHORTLY.
+                </div>
+                <div id="enquiry-error-msg" class="hidden text-xs font-mono text-red-600 tracking-wider uppercase border border-red-600/30 bg-red-600/10 p-4">
+                  ✕ PLEASE FILL IN ALL REQUIRED FIELDS ACCURATELY BEFORE TRANSMITTING YOUR ENQUIRY.
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 29 — FINAL EDITORIAL CTA (11 / START A PROJECT) -->
+      <section id="cta-editorial" class="relative w-full py-48 md:py-64 lg:py-80 px-6 md:px-12 bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden flex flex-col justify-center items-center text-center">
+        <div class="max-w-6xl mx-auto space-y-16 w-full reveal-fade-up">
+          
+          <!-- Top Monograph Header Rule -->
+          <div class="flex justify-between items-center text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-muted w-full border-b border-charcoal/10 pb-6 mb-8">
+            <span class="text-bronze font-semibold">START A PROJECT</span>
+            <span class="hidden md:inline">COMMISSION &bull; ARCHITECTURAL CONSULTATION</span>
+            <span>NOIDA / DELHI NCR</span>
+          </div>
+
+          <!-- Extremely Large Editorial Typography (Stacked Lines) -->
+          <div id="cta-headline-wrap" class="space-y-4 md:space-y-6">
+            <h2 id="cta-line-1" class="font-serif text-5xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none text-charcoal will-change-transform">
+              LET'S CREATE
+            </h2>
+            <h2 id="cta-line-2" class="font-serif text-5xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none text-charcoal will-change-transform">
+              SOMETHING
+            </h2>
+            <h2 id="cta-line-3" class="font-serif text-5xl md:text-8xl lg:text-9xl font-light italic tracking-tight leading-none text-bronze opacity-0 translate-y-8 will-change-transform">
+              WORTH COMING HOME TO.
+            </h2>
+          </div>
+
+          <!-- Extremely Simple Text + Arrow Interaction CTA Button flanked by subtle architectural lines -->
+          <div class="pt-12 flex items-center justify-center gap-8">
+            <span class="w-16 h-[1px] bg-charcoal/20 hidden md:block"></span>
+            <button id="cta-inquiry-btn" class="group inline-flex items-center gap-4 text-xs md:text-sm uppercase tracking-[0.25em] font-mono font-medium text-charcoal hover:text-bronze transition-colors py-4 px-2 cursor-pointer">
+              <span>START A PROJECT</span>
+              <span class="font-serif text-xl md:text-2xl transition-transform duration-300 group-hover:translate-x-1.5 group-hover:-translate-y-1.5 inline-block">↗</span>
+            </button>
+            <span class="w-16 h-[1px] bg-charcoal/20 hidden md:block"></span>
+          </div>
+
+          <!-- Bottom Architectural Coordinate -->
+          <div class="pt-12 text-[10px] uppercase tracking-[0.25em] font-mono text-stone/60">
+            VAASTVIK DESIGN GROUP &bull; 28.4744° N, 77.5040° E
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 30 — FINAL ARCHITECTURAL COMPOSITION FOOTER (MAGAZINE BACK-PAGE COMPOSITION) -->
+      <footer id="footer-magazine" class="relative w-full pt-32 md:pt-44 pb-12 px-6 md:px-12 bg-charcoal text-ivory border-t border-ivory/10 overflow-hidden reveal-on-scroll">
+        <!-- Subtle Background Texture -->
+        <div class="absolute inset-0 bg-noise opacity-20 pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto space-y-24 reveal-fade-up">
+          
+          <!-- Top Editorial Columns Layout Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start font-mono text-xs uppercase tracking-[0.2em]">
+            
+            <!-- Column 1: Studio Brand & Practice Disciplines (5 columns) -->
+            <div class="md:col-span-5 space-y-8">
+              <div class="space-y-2">
+                <span class="font-serif text-4xl md:text-6xl text-ivory tracking-tight font-light block normal-case">Vaastvik Design Group</span>
+                <span class="text-stone text-xs md:text-sm block tracking-[0.25em]">TURNKEY CIVIL &amp; INTERIOR ARCHITECTURE STUDIO</span>
+              </div>
+
+              <p class="font-sans text-sm md:text-base text-stone/80 normal-case tracking-normal leading-relaxed font-light max-w-md">
+                Founded by Civil Engineer Archit Rathi. Delivering bespoke architectural villas, penthouse spatial design, and turn-key civil construction across Greater Noida, Gurugram, and Delhi NCR.
+              </p>
+
+              <div class="space-y-2 text-stone/80 font-mono text-sm normal-case tracking-normal border-l border-bronze/40 pl-4 py-1">
+                <span class="block text-bronze uppercase tracking-[0.2em] text-xs md:text-sm font-semibold mb-1">PRACTICE DISCIPLINES</span>
+                <span class="block text-ivory/90 text-sm md:text-base">Architectural Design &bull; Interior Architecture &bull; Turnkey Civil Construction</span>
+              </div>
+
+              <div class="text-stone text-xs md:text-sm">
+                STUDIO LOCATION: <strong class="text-ivory">GREATER NOIDA, UTTAR PRADESH 201310 (DELHI NCR)</strong>
+              </div>
+            </div>
+
+            <!-- Column 2: Index & Quick Navigation (3 columns) -->
+            <div class="md:col-span-3 space-y-5">
+              <span class="text-bronze text-xs md:text-sm font-semibold block border-b border-ivory/10 pb-2.5 tracking-widest">ARCHITECTURAL INDEX</span>
+              <ul class="space-y-3.5 text-stone/80 text-sm md:text-base font-sans font-light">
+                <li><a href="#projects" class="hover:text-ivory transition-colors">Projects Portfolio</a></li>
+                <li><a href="#the-studio" class="hover:text-ivory transition-colors">The Studio &amp; Team</a></li>
+                <li><a href="#services" class="hover:text-ivory transition-colors">Turnkey Services</a></li>
+                <li><a href="#home-interior-guide" class="hover:text-ivory transition-colors">Interior Guide PDF</a></li>
+                <li><a href="#how-it-works" class="hover:text-ivory transition-colors">Execution Process</a></li>
+                <li><a href="#trusted-partners" class="hover:text-ivory transition-colors">Material Specifications</a></li>
+                <li><a href="#journal" class="hover:text-ivory transition-colors">Monograph Journal</a></li>
+                <li><a href="#start-a-project" class="hover:text-ivory transition-colors">Contact &amp; Enquiry</a></li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Communication & Verified Channels (4 columns) -->
+            <div class="md:col-span-4 space-y-5">
+              <span class="text-bronze text-xs md:text-sm font-semibold block border-b border-ivory/10 pb-2.5 tracking-widest">DIRECT COMMUNICATION</span>
+              
+              <div class="space-y-4 text-stone/80 text-sm md:text-base">
+                <div>
+                  <span class="text-stone/60 text-xs block mb-1">PHONE / WHATSAPP</span>
+                  <a href="https://wa.me/917701939902" target="_blank" rel="noopener" class="text-ivory hover:text-bronze transition-colors normal-case font-serif text-base md:text-lg">
+                    +91 77019 39902
+                  </a>
+                </div>
+
+                <div>
+                  <span class="text-stone/60 text-xs block mb-1">STUDIO INQUIRIES</span>
+                  <a href="mailto:info@vaastvikdesigngroup.com" class="text-ivory hover:text-bronze transition-colors normal-case font-serif text-base md:text-lg">
+                    info@vaastvikdesigngroup.com
+                  </a>
+                </div>
+
+                <div class="pt-3 border-t border-ivory/10 space-y-2.5">
+                  <span class="text-stone/60 text-xs block mb-1">VERIFIED SOCIAL CHANNELS</span>
+                  <div class="flex flex-wrap gap-4 text-xs md:text-sm text-ivory font-mono">
+                    <a href="https://www.instagram.com/vaastvikdesigngroup2.0/" target="_blank" rel="noopener" class="hover:text-bronze transition-colors">INSTAGRAM ↗</a>
+                    <a href="https://www.facebook.com/profile.php?id=61566394831413" target="_blank" rel="noopener" class="hover:text-bronze transition-colors">FACEBOOK ↗</a>
+                    <a href="https://www.youtube.com/@vaastvikdesigngroup" target="_blank" rel="noopener" class="hover:text-bronze transition-colors">YOUTUBE ↗</a>
+                    <a href="https://www.linkedin.com/company/vaastvik-design-group/" target="_blank" rel="noopener" class="hover:text-bronze transition-colors">LINKEDIN ↗</a>
+                  </div>
+                </div>
+
+                <div class="pt-4">
+                  <a href="#start-a-project" class="group inline-flex items-center gap-3 px-7 py-3.5 border border-bronze text-bronze hover:bg-bronze hover:text-ivory transition-all text-xs md:text-sm tracking-widest font-mono">
+                    <span>START A PROJECT</span>
+                    <span class="font-serif text-sm transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Oversized Architectural Wordmark Banner -->
+          <div class="w-full border-t border-ivory/10 pt-12 pb-4 text-center overflow-hidden">
+            <h1 class="font-serif text-[15vw] md:text-[18vw] font-light text-ivory/10 hover:text-ivory/20 transition-colors duration-700 tracking-tighter leading-none select-none pointer-events-none">
+              Vaastvik
+            </h1>
+          </div>
+
+          <!-- Bottom Legal Bar -->
+          <div class="flex flex-col md:flex-row justify-between items-center border-t border-ivory/10 pt-8 text-[10px] uppercase tracking-[0.2em] font-mono text-stone/60 gap-4">
+            <div>
+              © 2026 VAASTVIK DESIGN GROUP. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex gap-8">
+              <a href="https://www.termsfeed.com/live/8c2c31f7-74a6-4484-a248-8c1ac6843a23" target="_blank" rel="noopener" class="hover:text-ivory transition-colors cursor-pointer uppercase font-mono text-[10px]">PRIVACY POLICY ↗</a>
+              <button class="hover:text-ivory transition-colors cursor-pointer uppercase font-mono text-[10px]" data-policy="terms">TERMS OF PRACTICE</button>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- MODAL: PROJECT DETAIL VIEW -->
+  <div id="project-modal" class="fixed inset-0 z-50 bg-charcoal/95 text-ivory backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-500 overflow-y-auto p-6 md:p-12">
+    <div class="max-w-5xl mx-auto relative pt-12 pb-24">
+      <button id="close-project-modal" class="absolute top-0 right-0 text-xs font-mono uppercase border border-ivory/20 px-4 py-2 hover:bg-ivory hover:text-charcoal transition-all">Close [ESC]</button>
+      
+      <div id="modal-project-content" class="flex flex-col gap-8">
+        <!-- Content inserted dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: START A PROJECT COMMISSION FORM -->
+  <div id="inquiry-modal" class="fixed inset-0 z-50 bg-charcoal/95 text-ivory backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-500 overflow-y-auto p-6 md:p-12">
+    <div class="max-w-3xl mx-auto relative pt-12 pb-24">
+      <button id="close-inquiry-modal" class="absolute top-0 right-0 text-xs font-mono uppercase border border-ivory/20 px-4 py-2 hover:bg-ivory hover:text-charcoal transition-all">Close [ESC]</button>
+
+      <span class="text-xs uppercase tracking-widest font-mono text-bronze block mb-4">COMMISSION AN ARCHITECTURAL PROJECT</span>
+      <h2 class="font-serif text-3xl md:text-5xl font-light mb-8">Start a Conversation</h2>
+      <p class="text-xs text-stone mb-12 leading-relaxed">
+        Whether you are planning a high-end luxury villa, penthouse interior, or complete turnkey civil construction in Delhi NCR, our team led by Civil Engineer Archit Rathi is ready to collaborate.
+      </p>
+
+      <form id="inquiry-form" class="flex flex-col gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="flex flex-col gap-2">
+            <label class="text-xs uppercase tracking-widest text-stone">Your Full Name *</label>
+            <input type="text" name="name" required placeholder="e.g. Vikramaditya Singh" class="bg-ivory/5 border-b border-ivory/20 px-4 py-3 text-sm focus:outline-none focus:border-bronze transition-colors text-ivory">
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="text-xs uppercase tracking-widest text-stone">Phone / WhatsApp Number *</label>
+            <input type="tel" name="phone" required placeholder="+91 98765 43210" class="bg-ivory/5 border-b border-ivory/20 px-4 py-3 text-sm focus:outline-none focus:border-bronze transition-colors text-ivory">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="flex flex-col gap-2">
+            <label class="text-xs uppercase tracking-widest text-stone">Email Address</label>
+            <input type="email" name="email" placeholder="vikram@domain.com" class="bg-ivory/5 border-b border-ivory/20 px-4 py-3 text-sm focus:outline-none focus:border-bronze transition-colors text-ivory">
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="text-xs uppercase tracking-widest text-stone">Project Location</label>
+            <input type="text" name="location" placeholder="e.g. Greater Noida, Gurugram, Delhi" class="bg-ivory/5 border-b border-ivory/20 px-4 py-3 text-sm focus:outline-none focus:border-bronze transition-colors text-ivory">
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs uppercase tracking-widest text-stone">Scope of Discipline</label>
+          <select name="scope" class="bg-ivory/5 border-b border-ivory/20 px-4 py-3 text-sm focus:outline-none focus:border-bronze transition-colors text-ivory">
+            <option value="Complete Architecture & Turnkey" class="bg-charcoal text-ivory">Complete Architecture &amp; Turnkey Execution</option>
+            <option value="Luxury Interior Architecture" class="bg-charcoal text-ivory">Luxury Interior Architecture</option>
+            <option value="Civil Contracting & Structural Construction" class="bg-charcoal text-ivory">Civil Contracting &amp; Structural Construction</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs uppercase tracking-widest text-stone">Brief Project Description</label>
+          <textarea name="notes" rows="4" placeholder="Tell us about your plot size, timeline, aesthetic aspirations, or spatial requirements..." class="bg-ivory/5 border-b border-ivory/20 px-4 py-3 text-sm focus:outline-none focus:border-bronze transition-colors text-ivory resize-none"></textarea>
+        </div>
+
+        <button type="submit" class="mt-4 py-4 bg-bronze text-ivory hover:bg-ivory hover:text-charcoal transition-all font-mono text-xs uppercase tracking-widest font-medium flex justify-center items-center gap-2">
+          <span>Submit Project Inquiry via WhatsApp Direct</span>
+          <span>↗</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PARTNER BRAND GALLERY LIGHTBOX (EXPANDED MULTI-IMAGE VIEW) -->
+  <div id="partner-gallery-modal" class="fixed inset-0 z-50 bg-charcoal/98 text-ivory backdrop-blur-2xl opacity-0 pointer-events-none transition-all duration-300 flex flex-col justify-between p-4 md:p-8 overflow-hidden select-none">
+    
+    <!-- Top Modal Header -->
+    <div class="flex justify-between items-center border-b border-ivory/15 pb-4 z-20">
+      <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+        <span id="pgm-category" class="font-mono text-xs text-bronze uppercase tracking-[0.25em] font-semibold">01 &bull; KITCHEN ARCHITECTURE</span>
+        <h3 id="pgm-title" class="font-serif text-2xl md:text-4xl font-light text-ivory tracking-wide">Boffi</h3>
+      </div>
+      <div class="flex items-center gap-6">
+        <span id="pgm-counter" class="font-mono text-xs text-stone tracking-widest">IMAGE 01 / 04</span>
+        <button id="close-partner-gallery-modal" class="text-xs font-mono uppercase border border-ivory/20 px-4 py-2 hover:bg-ivory hover:text-charcoal transition-all text-ivory flex items-center gap-2 cursor-pointer">
+          <span>CLOSE</span>
+          <span class="font-semibold">[ESC]</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Stage: Main High-Resolution Image Viewer & Controls -->
+    <div class="relative my-auto w-full max-w-6xl mx-auto flex items-center justify-center h-[55vh] md:h-[65vh] px-4 md:px-16 group">
+      
+      <!-- Previous Image Button -->
+      <button id="pgm-prev-btn" class="absolute left-0 md:left-4 z-30 w-12 h-12 rounded-full bg-charcoal/80 border border-ivory/30 text-ivory hover:bg-bronze hover:border-bronze flex items-center justify-center font-mono text-lg transition-all shadow-2xl cursor-pointer">
+        ‹
+      </button>
+
+      <!-- Main Displayed Image -->
+      <div class="relative w-full h-full flex items-center justify-center overflow-hidden border border-ivory/10 bg-black/40 rounded-sm shadow-2xl">
+        <img id="pgm-main-img" src="" alt="Partner Specification Gallery Detail" class="w-full h-full object-contain transition-all duration-300">
+        <div id="pgm-caption" class="absolute bottom-4 left-4 right-4 md:left-6 md:right-6 bg-charcoal/90 backdrop-blur-md p-3 md:p-4 border border-ivory/20 text-xs md:text-sm font-mono text-ivory uppercase tracking-[0.15em] flex justify-between items-center shadow-2xl">
+          <span id="pgm-figure-tag">FIG. 01 &bull; BOFFI ARCHITECTURAL SPECIFICATION</span>
+          <span class="hidden md:inline text-bronze font-semibold">VAASTVIK MATERIALITY NETWORK</span>
+        </div>
+      </div>
+
+      <!-- Next Image Button -->
+      <button id="pgm-next-btn" class="absolute right-0 md:right-4 z-30 w-12 h-12 rounded-full bg-charcoal/80 border border-ivory/30 text-ivory hover:bg-bronze hover:border-bronze flex items-center justify-center font-mono text-lg transition-all shadow-2xl cursor-pointer">
+        ›
+      </button>
+    </div>
+
+    <!-- Bottom Thumbnail Navigation Ribbon -->
+    <div class="border-t border-ivory/15 pt-4 z-20 max-w-6xl mx-auto w-full">
+      <div class="flex justify-between items-center mb-2 text-[10px] md:text-xs font-mono uppercase tracking-widest text-stone">
+        <span>SELECT DETAIL IMAGE</span>
+        <span class="hidden md:block">CLICK ANY THUMBNAIL TO EXPAND &bull; USE ARROW KEYS TO NAVIGATE</span>
+      </div>
+      <div id="pgm-thumbnails-container" class="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
