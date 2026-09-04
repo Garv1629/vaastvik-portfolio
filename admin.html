@@ -1666,16 +1666,51 @@ I would like to discuss an architectural/interior project with Vaastvik Design G
       </div>
     </main>
 
+    <!-- SPLIT SCREEN RESIZER BAR -->
+    <div id="split-resizer" class="w-3 shrink-0 flex items-center justify-center cursor-col-resize select-none hover:bg-[#C5A059]/30 active:bg-[#C5A059] rounded-full transition-colors group relative py-4 z-20 my-2" title="Drag to adjust split screen width">
+      <div class="w-1 h-12 bg-[#8F7032]/40 rounded-full group-hover:bg-[#8F7032] group-active:bg-[#8F7032] transition-colors"></div>
+    </div>
+
     <!-- RIGHT SPLIT-VIEW LIVE PREVIEW IFRAME DRAWER -->
-    <div id="preview-drawer" class="w-1/2 clay-surface flex flex-col shrink-0 overflow-hidden relative border-l-2 border-white/80">
-      <div class="h-13 bg-[#E7E0D5] border-b border-[#D7CDC0] flex items-center justify-between px-5 py-2.5 text-xs font-mono text-[#6B7676]">
-        <div class="flex items-center gap-2.5">
+    <div id="preview-drawer" class="w-1/2 clay-surface flex flex-col shrink-0 overflow-hidden relative border-l-2 border-white/80 transition-[width] duration-75">
+      <div class="bg-[#E7E0D5] border-b border-[#D7CDC0] flex items-center justify-between px-4 py-2.5 text-xs font-mono text-[#6B7676] gap-2 flex-wrap min-h-[52px]">
+        <div class="flex items-center gap-2">
           <span class="clay-sphere-gold animate-pulse"></span>
-          <span class="font-bold text-[#232B2B]">LIVE IFRAME PREVIEW</span>
+          <span class="font-bold text-[#232B2B] hidden xl:inline">LIVE PREVIEW</span>
         </div>
-        <button id="btn-close-preview" class="clay-btn py-1 px-3 text-xs">✕ Close Drawer</button>
+
+        <!-- DEVICE VIEWPORT & SPLIT WIDTH CONTROLS -->
+        <div class="flex items-center gap-1.5 bg-[#D7CDC0]/40 p-1 rounded-lg border border-[#D7CDC0]/80">
+          <div class="flex items-center gap-1">
+            <button id="device-btn-desktop" type="button" class="device-mode-btn active clay-btn !py-1 !px-2.5 text-[11px] font-bold flex items-center gap-1" title="Desktop View (100%)">
+              <span>💻</span> <span class="hidden sm:inline">Desktop</span>
+            </button>
+            <button id="device-btn-tablet" type="button" class="device-mode-btn clay-btn !py-1 !px-2.5 text-[11px] flex items-center gap-1" title="Tablet View (768px)">
+              <span>📱</span> <span class="hidden sm:inline">Tablet</span>
+            </button>
+            <button id="device-btn-mobile" type="button" class="device-mode-btn clay-btn !py-1 !px-2.5 text-[11px] flex items-center gap-1" title="Mobile View (375px)">
+              <span>📱</span> <span class="hidden sm:inline">Mobile</span>
+            </button>
+          </div>
+
+          <span class="w-[1px] h-4 bg-[#6B7676]/30 mx-0.5"></span>
+
+          <div class="flex items-center gap-1">
+            <button id="preset-width-30" type="button" class="preset-width-btn clay-btn !py-1 !px-2 text-[10px]" title="30% Split Width">30%</button>
+            <button id="preset-width-50" type="button" class="preset-width-btn active clay-btn !py-1 !px-2 text-[10px] font-bold" title="50% Split Width">50%</button>
+            <button id="preset-width-70" type="button" class="preset-width-btn clay-btn !py-1 !px-2 text-[10px]" title="70% Split Width">70%</button>
+          </div>
+        </div>
+
+        <button id="btn-close-preview" type="button" class="clay-btn py-1 px-3 text-xs">✕ Close Drawer</button>
       </div>
-      <iframe id="live-preview-iframe" src="./index.html" class="flex-1 w-full h-full border-none"></iframe>
+
+      <!-- DEVICE VIEWPORT CONTAINER WRAPPER -->
+      <div id="preview-viewport-container" class="flex-1 w-full h-full flex items-center justify-center bg-[#D0C5B4]/30 overflow-auto p-2 relative">
+        <div id="device-frame" class="w-full h-full flex items-center justify-center transition-all duration-300">
+          <iframe id="live-preview-iframe" src="./index.html" class="w-full h-full border-none transition-all duration-300 bg-white"></iframe>
+        </div>
+      </div>
     </div>
 
   </div>

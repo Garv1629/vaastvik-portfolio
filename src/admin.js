@@ -593,6 +593,10 @@ function initGlobalControls() {
   document.getElementById('btn-clear-subscribers')?.addEventListener('click', clearSubscribersLog);
   document.getElementById('btn-export-enquiries')?.addEventListener('click', exportEnquiriesCSV);
   document.getElementById('btn-clear-enquiries-log')?.addEventListener('click', clearEnquiriesLog);
+
+  // Split screen resizer & device viewport controls
+  initSplitScreenResizer();
+  initDeviceViewportControls();
 }
 
 function saveCmsData(showToastAlert = true) {
@@ -662,19 +666,126 @@ function importCmsJson(event) {
 
 function togglePreviewDrawer() {
   const drawer = document.getElementById('preview-drawer');
+  const resizer = document.getElementById('split-resizer');
   const btnText = document.getElementById('preview-btn-text');
   if (!drawer) return;
   if (drawer.classList.contains('hidden')) {
     drawer.classList.remove('hidden');
+    if (resizer) resizer.classList.remove('hidden');
     if (btnText) btnText.textContent = 'Hide Live Preview';
   } else {
     drawer.classList.add('hidden');
+    if (resizer) resizer.classList.add('hidden');
     if (btnText) btnText.textContent = 'Split Live Preview';
   }
 }
 
+// --------------------------------------------------------------------------
+// SPLIT SCREEN RESIZER & DEVICE VIEWPORT CONTROLS ENGINE
+// --------------------------------------------------------------------------
+function initSplitScreenResizer() {
+  const resizer = document.getElementById('split-resizer');
+  const drawer = document.getElementById('preview-drawer');
+  const iframe = document.getElementById('live-preview-iframe');
+  if (!resizer || !drawer) return;
+
+  let isDragging = false;
+
+  resizer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    if (iframe) iframe.style.pointerEvents = 'none';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const container = drawer.parentElement;
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const mouseX = e.clientX - containerRect.left;
+    const containerWidth = containerRect.width;
+
+    let previewWidthPct = ((containerWidth - mouseX) / containerWidth) * 100;
+    if (previewWidthPct < 15) previewWidthPct = 15;
+    if (previewWidthPct > 85) previewWidthPct = 85;
+
+    drawer.style.width = `${previewWidthPct}%`;
+
+    document.querySelectorAll('.preset-width-btn').forEach(btn => btn.classList.remove('active', 'font-bold'));
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      if (iframe) iframe.style.pointerEvents = 'auto';
+    }
+  });
+
+  const presets = [
+    { id: 'preset-width-30', width: '30%' },
+    { id: 'preset-width-50', width: '50%' },
+    { id: 'preset-width-70', width: '70%' }
+  ];
+
+  presets.forEach(p => {
+    const btn = document.getElementById(p.id);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        drawer.style.width = p.width;
+        document.querySelectorAll('.preset-width-btn').forEach(b => b.classList.remove('active', 'font-bold'));
+        btn.classList.add('active', 'font-bold');
+      });
+    }
+  });
+}
+
+function initDeviceViewportControls() {
+  const btnDesktop = document.getElementById('device-btn-desktop');
+  const btnTablet = document.getElementById('device-btn-tablet');
+  const btnMobile = document.getElementById('device-btn-mobile');
+  const container = document.getElementById('preview-viewport-container');
+  const deviceFrame = document.getElementById('device-frame');
+  const iframe = document.getElementById('live-preview-iframe');
+
+  if (!deviceFrame || !iframe) return;
+
+  const setDeviceMode = (mode) => {
+    [btnDesktop, btnTablet, btnMobile].forEach(btn => {
+      if (btn) btn.classList.remove('active', 'font-bold');
+    });
+
+    if (mode === 'desktop') {
+      btnDesktop?.classList.add('active', 'font-bold');
+      if (container) container.className = 'flex-1 w-full h-full flex items-center justify-center bg-[#D0C5B4]/30 overflow-auto p-0 relative';
+      deviceFrame.className = 'w-full h-full flex items-center justify-center transition-all duration-300';
+      iframe.className = 'w-full h-full border-none transition-all duration-300 bg-white';
+      showToast('Switched to Desktop View (100% responsive)');
+    } else if (mode === 'tablet') {
+      btnTablet?.classList.add('active', 'font-bold');
+      if (container) container.className = 'flex-1 w-full h-full flex items-center justify-center bg-[#1E2525]/15 overflow-auto p-4 relative';
+      deviceFrame.className = 'w-[768px] h-[920px] max-w-full max-h-full rounded-[24px] border-[10px] border-[#232B2B] shadow-2xl bg-[#232B2B] relative overflow-hidden my-auto flex flex-col transition-all duration-300';
+      iframe.className = 'w-full h-full rounded-[14px] bg-white border-none';
+      showToast('Switched to Tablet View (768px iPad layout)');
+    } else if (mode === 'mobile') {
+      btnMobile?.classList.add('active', 'font-bold');
+      if (container) container.className = 'flex-1 w-full h-full flex items-center justify-center bg-[#1E2525]/15 overflow-auto p-4 relative';
+      deviceFrame.className = 'w-[375px] h-[667px] max-w-full max-h-full rounded-[36px] border-[12px] border-[#232B2B] shadow-2xl bg-[#232B2B] relative overflow-hidden my-auto flex flex-col transition-all duration-300';
+      iframe.className = 'w-full h-full rounded-[24px] bg-white border-none';
+      showToast('Switched to Mobile View (375px iPhone layout)');
+    }
+  };
+
+  btnDesktop?.addEventListener('click', () => setDeviceMode('desktop'));
+  btnTablet?.addEventListener('click', () => setDeviceMode('tablet'));
+  btnMobile?.addEventListener('click', () => setDeviceMode('mobile'));
+}
+
 // Drag & Drop File Handler Engine
-function setupDropzone(dropzoneId, fileInputId, targetInputId, mediaType = 'image', previewImgId = null) {
+function setupDropzone(dropzoneId, fileInputId, targetInputId, mediaType = 'image', previewImgId = null, isMultiple = false) {
   const dropzone = document.getElementById(dropzoneId);
   const fileInput = document.getElementById(fileInputId);
   const targetInput = document.getElementById(targetInputId);
@@ -702,13 +813,21 @@ function setupDropzone(dropzoneId, fileInputId, targetInputId, mediaType = 'imag
     const dt = e.dataTransfer;
     const files = dt.files;
     if (files.length > 0) {
-      handleFileRead(files[0], targetInput, mediaType, previewImgId);
+      if (isMultiple) {
+        handleMultipleFilesRead(files, targetInput, previewImgId);
+      } else {
+        handleFileRead(files[0], targetInput, mediaType, previewImgId);
+      }
     }
   });
 
   fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
-      handleFileRead(e.target.files[0], targetInput, mediaType, previewImgId);
+      if (isMultiple) {
+        handleMultipleFilesRead(e.target.files, targetInput, previewImgId);
+      } else {
+        handleFileRead(e.target.files[0], targetInput, mediaType, previewImgId);
+      }
     }
   });
 }
@@ -729,6 +848,26 @@ function handleFileRead(file, targetInput, mediaType, previewImgId) {
     showToast(`Media auto-uploaded & synced in real-time!`);
   };
   reader.readAsDataURL(file);
+}
+
+function handleMultipleFilesRead(fileList, targetInput, previewImgId) {
+  const files = Array.from(fileList);
+  const readPromises = files.map(file => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.readAsDataURL(file);
+    });
+  });
+
+  Promise.all(readPromises).then((dataUrls) => {
+    const existingVal = targetInput.value ? targetInput.value.split(',').map(s => s.trim()).filter(Boolean) : [];
+    const updatedVal = [...existingVal, ...dataUrls];
+    targetInput.value = updatedVal.join(', ');
+
+    saveCmsData(false);
+    showToast(`${dataUrls.length} images added & synced in real-time!`);
+  });
 }
 
 function initDragAndDropDropzones() {
@@ -840,15 +979,41 @@ function renderProjectsForm() {
           </div>
         </div>
 
-        <div class="space-y-2">
-          <label class="block text-xs font-mono text-[#6B7676] font-bold">Hero Image URL or Drag &amp; Drop Image</label>
-          <div class="flex items-center gap-4">
-            <input type="text" data-field="heroImg" id="project-hero-input-${key}" class="input-field flex-1" value="${p.heroImg || ''}">
-            <img src="${p.heroImg || ''}" id="project-hero-preview-${key}" class="w-16 h-12 rounded-lg object-cover shadow border border-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="block text-xs font-mono text-[#6B7676] font-bold">Hero Image URL or Drag &amp; Drop Image</label>
+            <div class="flex items-center gap-4">
+              <input type="text" data-field="heroImg" id="project-hero-input-${key}" class="input-field flex-1" value="${p.heroImg || ''}">
+              <img src="${p.heroImg || ''}" id="project-hero-preview-${key}" class="w-16 h-12 rounded-lg object-cover shadow border border-white bg-white/50">
+            </div>
+            <div id="dropzone-project-${key}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+              <span class="font-bold">Drag &amp; Drop Hero Image for ${p.title}</span>
+              <input type="file" id="file-project-${key}" accept="image/*" class="hidden">
+            </div>
           </div>
-          <div id="dropzone-project-${key}" class="clay-dropzone !py-2 text-xs">
-            <span class="font-bold">Drag &amp; Drop Image for ${p.title}</span>
-            <input type="file" id="file-project-${key}" accept="image/*" class="hidden">
+
+          <div class="space-y-2">
+            <label class="block text-xs font-mono text-[#6B7676] font-bold">CAD Blueprint Image URL or Drag &amp; Drop</label>
+            <div class="flex items-center gap-4">
+              <input type="text" data-field="drawingImg" id="project-drawing-input-${key}" class="input-field flex-1" value="${p.drawingImg || ''}">
+              <img src="${p.drawingImg || ''}" id="project-drawing-preview-${key}" class="w-16 h-12 rounded-lg object-cover shadow border border-white bg-white/50">
+            </div>
+            <div id="dropzone-project-drawing-${key}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+              <span class="font-bold">Drag &amp; Drop Blueprint CAD</span>
+              <input type="file" id="file-project-drawing-${key}" accept="image/*" class="hidden">
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-xs font-mono text-[#6B7676] font-bold">Project Gallery Images (Comma-separated URLs or Drag &amp; Drop Multiple Photos)</label>
+          <input type="text" data-field="gallery" id="project-gallery-input-${key}" class="input-field" value="${Array.isArray(p.gallery) ? p.gallery.join(', ') : (p.gallery || '')}">
+          <div id="dropzone-project-gallery-${key}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            <span class="font-bold">Drag &amp; Drop Multiple Photos for ${p.title} Gallery</span>
+            <input type="file" id="file-project-gallery-${key}" accept="image/*" multiple class="hidden">
           </div>
         </div>
 
@@ -863,6 +1028,8 @@ function renderProjectsForm() {
 
   Object.keys(projects).forEach((key) => {
     setupDropzone(`dropzone-project-${key}`, `file-project-${key}`, `project-hero-input-${key}`, 'image', `project-hero-preview-${key}`);
+    setupDropzone(`dropzone-project-drawing-${key}`, `file-project-drawing-${key}`, `project-drawing-input-${key}`, 'image', `project-drawing-preview-${key}`);
+    setupDropzone(`dropzone-project-gallery-${key}`, `file-project-gallery-${key}`, `project-gallery-input-${key}`, 'image', null, true);
   });
 }
 
@@ -1015,14 +1182,24 @@ function renderPartnersForm() {
           <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Brand Editorial Description</label>
           <textarea data-field="description" class="textarea-field">${brand.description || ''}</textarea>
         </div>
-        <div>
-          <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Image Gallery URLs (Comma separated)</label>
-          <input type="text" data-field="images" class="input-field" value="${imgsStr}">
+
+        <div class="space-y-2">
+          <label class="block text-xs font-mono text-[#6B7676] font-bold">Image Gallery URLs (Comma separated or Drag &amp; Drop Images)</label>
+          <input type="text" data-field="images" id="partner-images-input-${key}" class="input-field" value="${imgsStr}">
+          <div id="dropzone-partner-${key}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            <span class="font-bold">Drag &amp; Drop Images to add to ${brand.title} Gallery</span>
+            <input type="file" id="file-partner-${key}" accept="image/*" multiple class="hidden">
+          </div>
         </div>
       </div>
     `;
   });
   container.innerHTML = html;
+
+  Object.keys(partners).forEach((key) => {
+    setupDropzone(`dropzone-partner-${key}`, `file-partner-${key}`, `partner-images-input-${key}`, 'image', null, true);
+  });
 }
 
 function filterPartnersList(query) {
@@ -1062,10 +1239,20 @@ function renderArticlesForm() {
             <input type="text" data-field="category" class="input-field" value="${art.category || ''}">
           </div>
         </div>
-        <div>
-          <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Hero Image URL</label>
-          <input type="text" data-field="heroImg" class="input-field" value="${art.heroImg || ''}">
+
+        <div class="space-y-2">
+          <label class="block text-xs font-mono text-[#6B7676] font-bold">Hero Image URL or Drag &amp; Drop Image</label>
+          <div class="flex items-center gap-4">
+            <input type="text" data-field="heroImg" id="article-hero-input-${key}" class="input-field flex-1" value="${art.heroImg || ''}">
+            <img src="${art.heroImg || ''}" id="article-hero-preview-${key}" class="w-16 h-12 rounded-lg object-cover shadow border border-white bg-white/50">
+          </div>
+          <div id="dropzone-article-${key}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            <span class="font-bold">Drag &amp; Drop Hero Image for ${art.title}</span>
+            <input type="file" id="file-article-${key}" accept="image/*" class="hidden">
+          </div>
         </div>
+
         <div>
           <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Excerpt Narrative</label>
           <textarea data-field="description" class="textarea-field">${art.description || ''}</textarea>
@@ -1074,6 +1261,10 @@ function renderArticlesForm() {
     `;
   });
   container.innerHTML = html;
+
+  Object.keys(articles).forEach((key) => {
+    setupDropzone(`dropzone-article-${key}`, `file-article-${key}`, `article-hero-input-${key}`, 'image', `article-hero-preview-${key}`);
+  });
 }
 
 function renderContactForm() {
@@ -1240,10 +1431,20 @@ function renderTestimonialsList() {
             <input type="text" data-field="location" class="input-field" value="${t.location || ''}">
           </div>
         </div>
-        <div>
-          <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Project Image URL</label>
-          <input type="text" data-field="img" class="input-field" value="${t.img || ''}">
+
+        <div class="space-y-2">
+          <label class="block text-xs font-mono text-[#6B7676] font-bold">Project Image URL or Drag &amp; Drop Image</label>
+          <div class="flex items-center gap-4">
+            <input type="text" data-field="img" id="testimonial-img-input-${idx}" class="input-field flex-1" value="${t.img || ''}">
+            <img src="${t.img || ''}" id="testimonial-img-preview-${idx}" class="w-16 h-12 rounded-lg object-cover shadow border border-white bg-white/50">
+          </div>
+          <div id="dropzone-testimonial-${idx}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            <span class="font-bold">Drag &amp; Drop Image for Testimonial ${idx + 1}</span>
+            <input type="file" id="file-testimonial-${idx}" accept="image/*" class="hidden">
+          </div>
         </div>
+
         <div>
           <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Client Quote / Testimonial Narrative</label>
           <textarea data-field="quote" class="textarea-field">${t.quote || ''}</textarea>
@@ -1252,6 +1453,10 @@ function renderTestimonialsList() {
     `;
   });
   container.innerHTML = html;
+
+  list.forEach((t, idx) => {
+    setupDropzone(`dropzone-testimonial-${idx}`, `file-testimonial-${idx}`, `testimonial-img-input-${idx}`, 'image', `testimonial-img-preview-${idx}`);
+  });
 }
 
 function addTestimonial() {
@@ -1317,10 +1522,27 @@ function renderTrustedBrandsList() {
             <input type="text" data-field="detail" class="input-field" value="${b.detail || ''}">
           </div>
         </div>
+
+        <div class="space-y-2">
+          <label class="block text-xs font-mono text-[#6B7676] font-bold">Brand Logo / Image URL or Drag &amp; Drop Logo</label>
+          <div class="flex items-center gap-4">
+            <input type="text" data-field="logo" id="trusted-logo-input-${idx}" class="input-field flex-1" value="${b.logo || ''}">
+            <img src="${b.logo || ''}" id="trusted-logo-preview-${idx}" class="w-16 h-12 rounded-lg object-contain p-1 shadow border border-white bg-white/70">
+          </div>
+          <div id="dropzone-trusted-${idx}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            <span class="font-bold">Drag &amp; Drop Brand Logo for ${b.name}</span>
+            <input type="file" id="file-trusted-${idx}" accept="image/*" class="hidden">
+          </div>
+        </div>
       </div>
     `;
   });
   container.innerHTML = html;
+
+  brands.forEach((b, idx) => {
+    setupDropzone(`dropzone-trusted-${idx}`, `file-trusted-${idx}`, `trusted-logo-input-${idx}`, 'image', `trusted-logo-preview-${idx}`);
+  });
 }
 
 function addPartnerBrand() {
@@ -1383,16 +1605,27 @@ function renderJournalArticlesList() {
             <input type="text" data-field="date" class="input-field" value="${a.date || ''}">
           </div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Hero Image URL</label>
-            <input type="text" data-field="heroImg" class="input-field" value="${a.heroImg || ''}">
+          <div class="space-y-2">
+            <label class="block text-xs font-mono text-[#6B7676] font-bold">Hero Image URL or Drag &amp; Drop Image</label>
+            <div class="flex items-center gap-4">
+              <input type="text" data-field="heroImg" id="journal-hero-input-${idx}" class="input-field flex-1" value="${a.heroImg || ''}">
+              <img src="${a.heroImg || ''}" id="journal-hero-preview-${idx}" class="w-16 h-12 rounded-lg object-cover shadow border border-white bg-white/50">
+            </div>
+            <div id="dropzone-journal-${idx}" class="clay-dropzone !py-2 text-xs flex items-center justify-center gap-2 text-[#8F7032]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+              <span class="font-bold">Drag &amp; Drop Image for Article ${idx + 1}</span>
+              <input type="file" id="file-journal-${idx}" accept="image/*" class="hidden">
+            </div>
           </div>
+
           <div>
             <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Article External Link</label>
             <input type="text" data-field="link" class="input-field" value="${a.link || '#'}">
           </div>
         </div>
+
         <div>
           <label class="block text-xs font-mono text-[#6B7676] font-bold mb-1">Excerpt Summary</label>
           <textarea data-field="excerpt" class="textarea-field">${a.excerpt || ''}</textarea>
@@ -1401,6 +1634,10 @@ function renderJournalArticlesList() {
     `;
   });
   container.innerHTML = html;
+
+  articles.forEach((a, idx) => {
+    setupDropzone(`dropzone-journal-${idx}`, `file-journal-${idx}`, `journal-hero-input-${idx}`, 'image', `journal-hero-preview-${idx}`);
+  });
 }
 
 function addJournalArticle() {
@@ -1654,6 +1891,16 @@ function collectFormData() {
         } else {
           currentCmsData.partners[key][field] = input.value;
         }
+      });
+    }
+  });
+
+  document.querySelectorAll('#articles-editor-list [data-article-key]').forEach(card => {
+    const key = card.getAttribute('data-article-key');
+    if (currentCmsData.articles && currentCmsData.articles[key]) {
+      card.querySelectorAll('[data-field]').forEach(input => {
+        const field = input.getAttribute('data-field');
+        currentCmsData.articles[key][field] = input.value;
       });
     }
   });

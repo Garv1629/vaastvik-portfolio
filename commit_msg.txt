@@ -1,1 +1,0 @@
-feat: update partner galleries with real project photography and sanitize svg assets

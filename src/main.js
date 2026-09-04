@@ -1296,12 +1296,34 @@ function initFeaturedProjectReveal() {
 function initProjectStoryAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
+  const isMobile = window.innerWidth < 768;
+
   // Masked Image Reveals with Scale 1.04 -> 1.00
   const storyImgs = document.querySelectorAll('.story-img-reveal');
   storyImgs.forEach((wrap) => {
     const mask = wrap.querySelector('.story-img-mask');
     const img = wrap.querySelector('.story-img');
     if (!mask || !img) return;
+
+    if (isMobile) {
+      gsap.set(mask, { clipPath: 'none' });
+      gsap.set(img, { scale: 1.0 });
+      gsap.fromTo(wrap,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: wrap,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+      return;
+    }
 
     gsap.fromTo(mask, 
       { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' },
@@ -1336,16 +1358,16 @@ function initProjectStoryAnimations() {
   const storyBlocks = document.querySelectorAll('.story-text-block');
   storyBlocks.forEach((block) => {
     gsap.fromTo(block,
-      { y: 40, opacity: 0 },
+      { y: isMobile ? 20 : 40, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 1.0,
+        duration: isMobile ? 0.6 : 1.0,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: block,
           start: 'top 85%',
-          toggleActions: 'play none none reverse'
+          toggleActions: isMobile ? 'play none none none' : 'play none none reverse'
         }
       }
     );
