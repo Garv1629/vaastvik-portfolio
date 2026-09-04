@@ -45,7 +45,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
 
-  <script type="module" crossorigin src="./assets/main-yjq91gkx.js"></script>
+  <script type="module" crossorigin src="./assets/main-FEksr7WJ.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="stylesheet" crossorigin href="./assets/main-CP90KMT3.css">
 </head>
@@ -327,8 +327,8 @@
       </section>
 
       <!-- 12 — CINEMATIC SCROLL REVEAL FEATURED PROJECT (220vh PINNED SECTION) -->
-      <section id="projects" class="relative w-full h-[220vh] bg-ivory text-charcoal border-t border-charcoal/10">
-        <div id="featured-project-sticky" class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-ivory z-10 pt-24 md:pt-28">
+      <section id="projects" class="relative w-full h-auto md:h-[220vh] bg-ivory text-charcoal border-t border-charcoal/10 overflow-hidden">
+        <div id="featured-project-sticky" class="relative md:sticky top-0 w-full h-auto min-h-[85vh] md:h-screen overflow-hidden flex flex-col justify-between p-6 md:p-12 bg-ivory z-10 pt-20 md:pt-28">
 
           <!-- Top Asymmetric Section & Project Number Metadata -->
           <div class="relative z-20 flex justify-between items-start text-[10px] md:text-xs uppercase tracking-[0.25em] font-mono text-muted border-b border-charcoal/10 pb-4">
@@ -343,8 +343,8 @@
           </div>
 
           <!-- Pinned Expanding Image Layer (Off-Center 55vw -> Full-Bleed 100vw) -->
-          <div id="aravali-image-mask" class="absolute inset-0 z-10 overflow-hidden flex items-center justify-end pr-[5vw] md:pr-[8vw] pointer-events-none" style="clip-path: inset(12% 8% 12% 36%);">
-            <img id="aravali-img-inner" src="./assets/aravali_main-Ca6tWFWA.png" alt="The Aravali Residence" class="w-full h-full object-cover scale-[1.15] translate-y-[-5%] gpu-layer" loading="eager" decoding="async">
+          <div id="aravali-image-mask" class="absolute inset-0 z-10 overflow-hidden flex items-center justify-end pr-0 md:pr-[8vw] pointer-events-none">
+            <img id="aravali-img-inner" src="./assets/aravali_main-Ca6tWFWA.png" alt="The Aravali Residence" class="w-full h-full object-cover scale-100 md:scale-[1.15] translate-y-0 md:translate-y-[-5%] gpu-layer" loading="eager" decoding="async">
             <!-- Dark gradient overlay for text readability when expanded -->
             <div id="aravali-img-overlay" class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/30 to-transparent opacity-75"></div>
           </div>
@@ -374,11 +374,11 @@
       </section>
 
       <!-- 13 — EDITORIAL PROJECT STORYTELLING (TWO-COLUMN ARCHITECTURAL MONOGRAPH) -->
-      <section id="featured-project-story" class="w-full py-32 px-6 md:px-12 bg-ivory border-t border-charcoal/10">
+      <section id="featured-project-story" class="w-full py-20 md:py-32 px-6 md:px-12 bg-ivory border-t border-charcoal/10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
           <!-- LEFT COLUMN: STICKY PROJECT METADATA -->
-          <div class="lg:col-span-4 sticky top-28 self-start space-y-8 font-mono text-xs uppercase tracking-[0.2em]">
+          <div class="lg:col-span-4 relative lg:sticky lg:top-28 self-start space-y-8 font-mono text-xs uppercase tracking-[0.2em] mb-10 lg:mb-0">
             <div>
               <span class="text-bronze font-semibold block mb-2">PROJECT MONOGRAPH</span>
               <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-charcoal tracking-tight leading-none">
