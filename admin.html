@@ -363,6 +363,51 @@
 
 <body class="h-full font-sans antialiased overflow-hidden flex flex-col bg-[#F2EDE4] text-[#232B2B]">
 
+  <!-- SECURITY LOCK OVERLAY MODAL -->
+  <div id="admin-security-overlay" class="fixed inset-0 z-[9999] bg-[#F2EDE4]/95 backdrop-blur-xl flex items-center justify-center p-6 transition-all duration-500">
+    <div class="clay-surface max-w-md w-full p-8 md:p-10 space-y-6 text-center shadow-2xl border-2 border-white relative overflow-hidden">
+      <!-- Gold Ambient Glow -->
+      <div class="absolute -top-12 -left-12 w-32 h-32 bg-[#C5A059]/20 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-[#A3C9BC]/20 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- Studio Badge & Lock Icon -->
+      <div class="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#C5A059] to-[#836513] text-white font-cinzel font-bold flex items-center justify-center text-2xl shadow-xl ring-4 ring-white/80">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+
+      <div>
+        <h2 class="font-cinzel text-xl font-bold tracking-widest text-[#232B2B]">VAASTVIK STUDIO</h2>
+        <p class="text-xs font-mono tracking-widest text-[#6B7676] uppercase mt-1">CMS Console Passkey Protection</p>
+      </div>
+
+      <div class="space-y-4 pt-2">
+        <div class="relative">
+          <input type="password" id="admin-passkey-input" placeholder="Enter Security Passkey" class="input-field text-center font-mono text-lg tracking-widest py-3.5" autocomplete="current-password" autofocus>
+        </div>
+
+        <div id="admin-passkey-error" class="hidden text-xs font-mono font-bold text-red-600 animate-bounce">
+          ⚠️ Incorrect Passkey. Please try again.
+        </div>
+
+        <button id="btn-unlock-admin" class="clay-btn clay-btn-gold w-full justify-center py-3.5 text-sm font-bold tracking-wider">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+          </svg>
+          UNLOCK CMS CONSOLE
+        </button>
+      </div>
+
+      <div class="pt-4 border-t border-[#E6E0D5]">
+        <p class="text-[11px] font-mono text-[#6B7676]">
+          Default Passkey: <span class="font-bold text-[#8F7032]">1629</span>
+        </p>
+        <p class="text-[10px] font-mono text-[#6B7676]/70 mt-1">You can change your passkey anytime inside the Admin Console header.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- TOP HEADER CONTROL BAR (EXECUTIVE LUXURY HEADER) -->
   <header class="h-20 px-8 py-3 flex items-center justify-between shrink-0 z-20">
     <div class="flex items-center gap-5">
@@ -385,6 +430,14 @@
 
     <!-- GLOBAL ACTION BUTTONS -->
     <div class="flex items-center gap-3.5">
+      <button id="btn-change-passkey" class="clay-btn text-[#6B7676] hover:text-[#232B2B]" title="Change Security Passkey">
+        🔑 Passkey
+      </button>
+
+      <button id="btn-lock-admin" class="clay-btn text-red-700 bg-red-50 hover:bg-red-100 border border-red-200" title="Lock Admin Console">
+        🔒 Lock Console
+      </button>
+
       <button id="btn-toggle-preview" class="clay-btn clay-btn-blue">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
         <span id="preview-btn-text">Hide Live Preview</span>

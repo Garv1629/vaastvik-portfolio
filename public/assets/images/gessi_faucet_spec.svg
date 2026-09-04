@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad_w0gzr" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="bgGrad_vswf5" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#181612"/>
       <stop offset="100%" stop-color="#242018"/>
     </linearGradient>
-    <pattern id="grid_64fjpb" width="40" height="40" patternUnits="userSpaceOnUse">
+    <pattern id="grid_v5dvyp" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D4AF37" stroke-opacity="0.08" stroke-width="1"/>
     </pattern>
   </defs>

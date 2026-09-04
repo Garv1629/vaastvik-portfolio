@@ -176,11 +176,11 @@ function createSpecSvgDataUrl(brandTitle, figTitle, figIndex, themeColor = '#C5A
     <line x1="1140" y1="760" x2="1180" y2="760" stroke="${themeColor}" stroke-width="1.5"/>
     <line x1="1160" y1="740" x2="1160" y2="780" stroke="${themeColor}" stroke-width="1.5"/>
 
-    <text x="80" y="88" font-family="monospace" font-size="13" fill="${themeColor}" fill-opacity="0.9" letter-spacing="3">VAASTVIK DESIGN GROUP &bull; ${categoryName}</text>
-    <text x="80" y="112" font-family="monospace" font-size="11" fill="${themeColor}" fill-opacity="0.6" letter-spacing="2">DRAWING REF: VDG-2026-${brandTitle.toUpperCase().replace(/[^A-Z]/g, '')} &bull; SCALE 1:10 &bull; FIG. ${figNum}</text>
+    <text x="80" y="88" font-family="monospace" font-size="13" fill="${themeColor}" fill-opacity="0.9" letter-spacing="3">VAASTVIK DESIGN GROUP &#8226; ${categoryName}</text>
+    <text x="80" y="112" font-family="monospace" font-size="11" fill="${themeColor}" fill-opacity="0.6" letter-spacing="2">DRAWING REF: VDG-2026-${brandTitle.toUpperCase().replace(/[^A-Z]/g, '')} &#8226; SCALE 1:10 &#8226; FIG. ${figNum}</text>
 
     <text x="80" y="175" font-family="Georgia, serif" font-size="34" font-weight="300" fill="${themeColor}" letter-spacing="1">${brandTitle.toUpperCase()}</text>
-    <text x="80" y="210" font-family="monospace" font-size="14" fill="${themeColor}" fill-opacity="0.85" letter-spacing="2">FIG ${figNum} &bull; ${figTitle.toUpperCase()}</text>
+    <text x="80" y="210" font-family="monospace" font-size="14" fill="${themeColor}" fill-opacity="0.85" letter-spacing="2">FIG ${figNum} &#8226; ${figTitle.toUpperCase()}</text>
 
     <g transform="translate(600, 440)">
       ${pathPatterns[figIndex % pathPatterns.length]}
@@ -188,19 +188,278 @@ function createSpecSvgDataUrl(brandTitle, figTitle, figIndex, themeColor = '#C5A
 
     <rect x="80" y="670" width="1040" height="60" fill="${themeColor}" fill-opacity="0.05" stroke="${themeColor}" stroke-opacity="0.25" stroke-width="1"/>
     <text x="100" y="695" font-family="monospace" font-size="12" fill="${themeColor}" fill-opacity="0.95" letter-spacing="2">SPECIFICATION: ${figTitle} for ${brandTitle} system.</text>
-    <text x="100" y="715" font-family="monospace" font-size="10" fill="${themeColor}" fill-opacity="0.55" letter-spacing="1">FACTORY AUTHORIZED &bull; PASSES EN/ISO 9001 STRUCTURAL INTEGRITY STANDARDS</text>
+    <text x="100" y="715" font-family="monospace" font-size="10" fill="${themeColor}" fill-opacity="0.55" letter-spacing="1">FACTORY AUTHORIZED &#8226; PASSES EN/ISO 9001 STRUCTURAL INTEGRITY STANDARDS</text>
   </svg>`;
 
   return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(drawingSvg)));
 }
 
-function generateBrandAssetSuite(brandTitle, category, color, titles) {
-  const images = [];
+const brandPhotoSuiteMap = {
+  boffi: [
+    "assets/images/aravali_main.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/after_finished.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/material_brass.png",
+    "assets/images/aravali_drawing.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png"
+  ],
+  poliform: [
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_main.png",
+    "assets/images/after_finished.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_brass.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/villa_serene.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  dada: [
+    "assets/images/aravali_main.png",
+    "assets/images/after_finished.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/material_travertine.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_brass.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  gaggenau: [
+    "assets/images/after_finished.png",
+    "assets/images/aravali_main.png",
+    "assets/images/material_brass.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/material_travertine.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/villa_serene.png",
+    "assets/images/aravali_drawing.png"
+  ],
+
+  dornbracht: [
+    "assets/images/material_travertine.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_brass.png",
+    "assets/images/after_finished.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_main.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  agape: [
+    "assets/images/material_travertine.png",
+    "assets/images/villa_serene.png",
+    "assets/images/after_finished.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/material_brass.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/aravali_main.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  gessi: [
+    "assets/images/material_brass.png",
+    "assets/images/material_travertine.png",
+    "assets/images/after_finished.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/aravali_main.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  kallista: [
+    "assets/images/material_brass.png",
+    "assets/images/material_travertine.png",
+    "assets/images/after_finished.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/aravali_main.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/aravali_drawing.png"
+  ],
+
+  buster_punch: [
+    "assets/images/material_brass.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_drawing.png",
+    "assets/images/after_finished.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_main.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_travertine.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png"
+  ],
+  formani: [
+    "assets/images/material_brass.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_drawing.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/after_finished.png",
+    "assets/images/aravali_main.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_travertine.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png"
+  ],
+  ogro: [
+    "assets/images/material_brass.png",
+    "assets/images/aravali_drawing.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/after_finished.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_main.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_travertine.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png"
+  ],
+  fsb: [
+    "assets/images/material_brass.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/after_finished.png",
+    "assets/images/aravali_drawing.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_main.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_travertine.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png"
+  ],
+
+  flos: [
+    "assets/images/penthouse_sky.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/after_finished.png",
+    "assets/images/aravali_main.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_brass.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  viabizzuno: [
+    "assets/images/courtyard_house.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/after_finished.png",
+    "assets/images/aravali_main.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_brass.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  occhio: [
+    "assets/images/penthouse_sky.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/after_finished.png",
+    "assets/images/aravali_main.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_brass.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  deltalight: [
+    "assets/images/courtyard_house.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/after_finished.png",
+    "assets/images/aravali_main.png",
+    "assets/images/villa_serene.png",
+    "assets/images/material_brass.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/aravali_drawing.png"
+  ],
+
+  salvatori: [
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/material_brass.png",
+    "assets/images/villa_serene.png",
+    "assets/images/aravali_main.png",
+    "assets/images/after_finished.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  mutina: [
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/after_finished.png",
+    "assets/images/villa_serene.png",
+    "assets/images/aravali_main.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/material_brass.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  dekton: [
+    "assets/images/villa_serene.png",
+    "assets/images/material_travertine.png",
+    "assets/images/after_finished.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_main.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/material_brass.png",
+    "assets/images/aravali_drawing.png"
+  ],
+  marazzi: [
+    "assets/images/villa_serene.png",
+    "assets/images/material_travertine.png",
+    "assets/images/aravali_main.png",
+    "assets/images/after_finished.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/courtyard_house.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/material_brass.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/aravali_drawing.png"
+  ]
+};
+
+function generateBrandAssetSuite(brandTitle, category, color, titles, brandKey = '') {
+  const defaultSuite = [
+    "assets/images/aravali_main.png",
+    "assets/images/material_travertine.png",
+    "assets/images/material_smoked_oak.png",
+    "assets/images/after_finished.png",
+    "assets/images/penthouse_sky.png",
+    "assets/images/hero_architecture.png",
+    "assets/images/material_brass.png",
+    "assets/images/aravali_drawing.png",
+    "assets/images/villa_serene.png",
+    "assets/images/courtyard_house.png"
+  ];
+  const images = (brandPhotoSuiteMap[brandKey] || defaultSuite).slice(0, 10);
   const figureTitles = [];
+
   for (let i = 0; i < 10; i++) {
     const figNum = i < 9 ? `0${i + 1}` : `${i + 1}`;
-    const titleText = titles[i] || `Architectural Specification Detail ${figNum}`;
-    images.push(createSpecSvgDataUrl(brandTitle, titleText, i, color, category));
+    const titleText = titles[i] || `Architectural Photography Detail ${figNum}`;
     figureTitles.push(`FIG. ${figNum} • ${titleText.toUpperCase()}`);
   }
   return { images, figureTitles };
@@ -662,7 +921,7 @@ const rawPartnersConfig = {
 const partnersData = {};
 Object.keys(rawPartnersConfig).forEach(key => {
   const conf = rawPartnersConfig[key];
-  const suite = generateBrandAssetSuite(conf.title, conf.category, conf.color, conf.titles);
+  const suite = generateBrandAssetSuite(conf.title, conf.category, conf.color, conf.titles, key);
   partnersData[key] = {
     title: conf.title,
     category: conf.category,
@@ -2546,7 +2805,7 @@ function applyRealTimeCmsData(cmsData) {
         if (p.characteristics) partnersData[key].characteristics = p.characteristics;
         if (p.applications) partnersData[key].applications = p.applications;
         
-        if (p.images && Array.isArray(p.images) && p.images.length >= 10 && p.images.every(img => typeof img === 'string' && (img.startsWith('data:image') || img.startsWith('http')))) {
+        if (p.images && Array.isArray(p.images) && p.images.length >= 10 && p.images.every(img => typeof img === 'string' && !img.includes('data:image/svg'))) {
           partnersData[key].images = p.images;
         }
       }

@@ -448,6 +448,7 @@ const DEFAULT_CMS_DATA = {
 let currentCmsData = JSON.parse(localStorage.getItem('vaastvik_cms_data')) || JSON.parse(JSON.stringify(DEFAULT_CMS_DATA));
 
 document.addEventListener('DOMContentLoaded', () => {
+  initAdminSecurityLock();
   initTabNavigation();
   initGlobalControls();
   renderAllModules();
@@ -455,6 +456,72 @@ document.addEventListener('DOMContentLoaded', () => {
   initRealTimeAutoSync();
   updateStorageMetrics();
 });
+
+// Security Lock & Passkey System
+function initAdminSecurityLock() {
+  const overlay = document.getElementById('admin-security-overlay');
+  const passkeyInput = document.getElementById('admin-passkey-input');
+  const unlockBtn = document.getElementById('btn-unlock-admin');
+  const errorMsg = document.getElementById('admin-passkey-error');
+  const lockBtn = document.getElementById('btn-lock-admin');
+  const changePasskeyBtn = document.getElementById('btn-change-passkey');
+
+  if (!overlay || !passkeyInput || !unlockBtn) return;
+
+  const isAuthed = sessionStorage.getItem('vaastvik_admin_authed') === 'true';
+
+  if (isAuthed) {
+    overlay.classList.add('hidden');
+  } else {
+    overlay.classList.remove('hidden');
+    setTimeout(() => passkeyInput.focus(), 100);
+  }
+
+  const attemptUnlock = () => {
+    const currentPasskey = localStorage.getItem('vaastvik_admin_passkey') || '1629';
+    const entered = passkeyInput.value.trim();
+
+    if (entered === currentPasskey) {
+      sessionStorage.setItem('vaastvik_admin_authed', 'true');
+      overlay.classList.add('hidden');
+      if (errorMsg) errorMsg.classList.add('hidden');
+      passkeyInput.value = '';
+      showToast('Admin Console Unlocked!');
+    } else {
+      if (errorMsg) errorMsg.classList.remove('hidden');
+      passkeyInput.classList.add('border-red-500');
+      setTimeout(() => passkeyInput.classList.remove('border-red-500'), 1500);
+    }
+  };
+
+  unlockBtn.addEventListener('click', attemptUnlock);
+
+  passkeyInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      attemptUnlock();
+    }
+  });
+
+  if (lockBtn) {
+    lockBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('vaastvik_admin_authed');
+      overlay.classList.remove('hidden');
+      passkeyInput.focus();
+      showToast('Admin Console Locked!');
+    });
+  }
+
+  if (changePasskeyBtn) {
+    changePasskeyBtn.addEventListener('click', () => {
+      const current = localStorage.getItem('vaastvik_admin_passkey') || '1629';
+      const newPin = prompt(`Enter new Security Passkey (Current: ${current}):`);
+      if (newPin && newPin.trim().length > 0) {
+        localStorage.setItem('vaastvik_admin_passkey', newPin.trim());
+        showToast(`Security Passkey updated to: ${newPin.trim()}`);
+      }
+    });
+  }
+}
 
 // Navigation Tabs
 function initTabNavigation() {

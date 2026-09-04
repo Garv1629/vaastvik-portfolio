@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#181B20"/><stop offset="100%" stop-color="#0D0F12"/></linearGradient>
+    <radialGradient id="halo" cx="65%" cy="40%" r="50%"><stop offset="0%" stop-color="#E0E0E0" stop-opacity="0.3"/><stop offset="100%" stop-color="#0D0F12" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.12"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.02"/></linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bgGrad)"/><rect width="1200" height="800" fill="url(#halo)"/>
+  <g stroke="#E0E0E0" stroke-opacity="0.15" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="800"/><line x1="1120" y1="0" x2="1120" y2="800"/>
+  </g>
+  <g transform="translate(600, 140)">
+    <rect x="0" y="0" width="520" height="520" rx="16" fill="url(#glassGrad)" stroke="#E0E0E0" stroke-opacity="0.4" stroke-width="1.5"/>
+    <g transform="translate(60, 80)">
+      <rect x="20" y="40" width="380" height="260" fill="#E0E0E0" fill-opacity="0.15" stroke="#E0E0E0" stroke-width="2"/>
+      <circle cx="80" cy="340" r="18" fill="#E0E0E0" fill-opacity="0.5"/>
+      <circle cx="160" cy="340" r="18" fill="#E0E0E0" fill-opacity="0.5"/>
+      <circle cx="240" cy="340" r="18" fill="#E0E0E0" fill-opacity="0.5"/>
+      <circle cx="320" cy="340" r="18" fill="#E0E0E0" fill-opacity="0.5"/>
+    </g>
+  </g>
+  <g transform="translate(100, 160)">
+    <rect x="0" y="0" width="340" height="28" rx="4" fill="#E0E0E0" fill-opacity="0.2" stroke="#E0E0E0" stroke-width="1"/>
+    <text x="16" y="18" font-family="monospace" font-size="11" font-weight="700" fill="#E0E0E0" letter-spacing="3">01 • KITCHEN ARCHITECTURE</text>
+    <text x="0" y="90" font-family="serif" font-size="52" font-weight="700" fill="#FFFFFF" letter-spacing="4">GAGGENAU</text>
+    <text x="0" y="130" font-family="serif" font-style="italic" font-size="22" fill="#E0E0E0">Full-Surface Induction &amp; Vario 400 Cooling</text>
+    <line x1="0" y1="160" x2="440" y2="160" stroke="#E0E0E0" stroke-width="2"/>
+    <g transform="translate(0, 200)">
+      <circle cx="8" cy="8" r="4" fill="#E0E0E0"/><text x="24" y="12" font-family="sans-serif" font-size="15" fill="#E2E8F0">3mm Solid Stainless Knobs</text>
+      <circle cx="8" cy="52" r="4" fill="#E0E0E0"/><text x="24" y="56" font-family="sans-serif" font-size="15" fill="#E2E8F0">Full-Surface Induction Optics</text>
+      <circle cx="8" cy="96" r="4" fill="#E0E0E0"/><text x="24" y="100" font-family="sans-serif" font-size="15" fill="#E2E8F0">Vario Modular Cooling</text>
+    </g>
+  </g>
+  <g transform="translate(100, 740)">
+    <text x="0" y="0" font-family="monospace" font-size="11" fill="#E0E0E0" letter-spacing="2">VAASTVIK DESIGN GROUP &bull; MATERIALITY NETWORK 2026</text>
+  </g>
+</svg>
