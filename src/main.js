@@ -1230,9 +1230,34 @@ function initFeaturedProjectReveal() {
   if (!wrap || !imageMask) return;
 
   const isMobile = window.innerWidth < 768;
-  const initialClip = isMobile ? 'inset(14% 5% 14% 20%)' : 'inset(12% 8% 12% 36%)';
 
-  gsap.set(imageMask, { clipPath: initialClip });
+  if (isMobile) {
+    // Reset mobile elements to prevent clip-path repaint lag and sticky scroll traps
+    gsap.set(imageMask, { clipPath: 'none', clearProps: 'transform' });
+    gsap.set(imgInner, { scale: 1.0, yPercent: 0, clearProps: 'transform' });
+    gsap.set([numMeta, titleWrap, locMeta, bottomMeta], { opacity: 1, y: 0, clearProps: 'transform' });
+
+    // Smooth, lightweight fade-in sequence for mobile
+    gsap.fromTo([numMeta, imageMask, titleWrap, locMeta, bottomMeta],
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: wrap,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+    return;
+  }
+
+  // Desktop (>= 768px): Full 220vh Pinned Expanding Clip-Path Sequence
+  gsap.set(imageMask, { clipPath: 'inset(12% 8% 12% 36%)' });
   gsap.set(imgInner, { scale: 1.15, yPercent: -5 });
   gsap.set(numMeta, { opacity: 0, y: 15 });
   gsap.set(titleWrap, { opacity: 0, y: 35 });
@@ -1263,9 +1288,7 @@ function initFeaturedProjectReveal() {
     .to(locMeta, { opacity: 1, y: 0, duration: 0.2, ease: 'none' }, 0.4)
     .to(bottomMeta, { opacity: 1, y: 0, duration: 0.2, ease: 'none' }, 0.45)
 
-    // 70% -> 85%: Image pins briefly at full width
-
-    // 85% -> 100%: Section moves upward so next section emerges from underneath!
+    // 85% -> 100%: Section moves upward so next section emerges from underneath
     .to(stickyContainer, { yPercent: -100, duration: 0.2, ease: 'none' }, 0.85);
 }
 

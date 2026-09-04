@@ -331,6 +331,50 @@ body.modal-open {
   .reveal-fade-horizontal {
     transform: translateX(-8px);
   }
+
+  /* Aravali Featured Project Mobile Optimization */
+  #projects {
+    height: auto !important;
+    min-height: 100vh;
+  }
+  #featured-project-sticky {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 5.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+  #aravali-image-mask {
+    clip-path: none !important;
+    position: relative !important;
+    height: 340px !important;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-right: 0 !important;
+  }
+  #aravali-title-wrap {
+    position: relative !important;
+    pointer-events: auto !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  #aravali-title-wrap h2 {
+    font-size: 2.75rem !important;
+    color: var(--color-charcoal) !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+  #aravali-title-wrap span.text-ivory\/90,
+  #aravali-title-wrap span.text-stone {
+    color: var(--color-charcoal) !important;
+  }
+  #aravali-bottom-meta {
+    color: var(--color-charcoal) !important;
+    border-top-color: rgba(23, 22, 20, 0.15) !important;
+  }
+  #aravali-bottom-meta button {
+    border-bottom-color: var(--color-charcoal) !important;
+  }
 }
 
 /* Reduced Motion Fallback: Ensures design remains flawless even if motion is disabled */
